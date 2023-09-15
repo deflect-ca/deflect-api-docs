@@ -1,0 +1,1484 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Deflect Dashboard API Documentation",
+    "version": "v0.1"
+  },
+  "paths": {
+    "/api/website/list": {
+      "get": {
+        "operationId": "listWebsites",
+        "description": "List of all website: /api/website/list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Website"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "website"
+        ]
+      }
+    },
+    "/api/website/{id}": {
+      "get": {
+        "operationId": "retrieveWebsite",
+        "description": "Detail config of a website: /api/website/<int:pk>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this website.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebsiteDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "website"
+        ]
+      }
+    },
+    "/api/website/{id}/options": {
+      "get": {
+        "operationId": "listWebsiteOptions",
+        "description": "List all options of a website: /api/website/<int:pk>/options",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WebsiteOption"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "website_options"
+        ]
+      }
+    },
+    "/api/website/{id}/options/{name}": {
+      "get": {
+        "operationId": "retrieveWebsiteOption",
+        "description": "List a option key/value of a website: /api/website/<int:pk>/options/<str:name>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebsiteOption"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "website_options"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyWebsiteOption",
+        "description": "List a option key/value of a website: /api/website/<int:pk>/options/<str:name>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "website_options"
+        ]
+      }
+    },
+    "/api/website/{id}/records": {
+      "get": {
+        "operationId": "listRecords",
+        "description": "/api/website/<int:pk>/records",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Record"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "DNS"
+        ]
+      }
+    },
+    "/api/website/{id}/records/{rpk}": {
+      "get": {
+        "operationId": "retrieveRecord",
+        "description": "/api/website/<int:pk>/records/<int:rpk>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this record.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Record"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "DNS"
+        ]
+      }
+    },
+    "/api/edgemanage/list": {
+      "get": {
+        "operationId": "listEdges",
+        "description": "List all edges managed by edgemanage",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "example": {
+                      "edgename": "edge1.prod.deflect.ca",
+                      "mode": "available",
+                      "state": "out",
+                      "health": "pass",
+                      "state_time": -1,
+                      "comment": "some comment"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "edgemanage"
+        ]
+      }
+    },
+    "/api/edgemanage/dnet": {
+      "get": {
+        "operationId": "listDnets",
+        "description": "List all dnets managed by edgemanage",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "example": "dnet1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "edgemanage"
+        ]
+      }
+    },
+    "/api/dnet/": {
+      "get": {
+        "operationId": "listDnets",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Dnet"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "dnet"
+        ]
+      },
+      "post": {
+        "operationId": "createDnet",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Dnet"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Dnet"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Dnet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dnet"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "dnet"
+        ]
+      }
+    },
+    "/api/dnet/{id}": {
+      "get": {
+        "operationId": "retrieveDnet",
+        "description": "We are not using `generics.RetrieveUpdateDestroyAPIView` here\nsince dnet shouldn't be allowed to update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this dnet.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dnet"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "dnet"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyDnet",
+        "description": "We are not using `generics.RetrieveUpdateDestroyAPIView` here\nsince dnet shouldn't be allowed to update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this dnet.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "dnet"
+        ]
+      }
+    },
+    "/api/edge/": {
+      "get": {
+        "operationId": "listEdges",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Edge"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "edge"
+        ]
+      },
+      "post": {
+        "operationId": "createEdge",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Edge"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "edge"
+        ]
+      }
+    },
+    "/api/edge/{id}": {
+      "get": {
+        "operationId": "retrieveEdge",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this edge.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Edge"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "edge"
+        ]
+      },
+      "put": {
+        "operationId": "updateEdge",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this edge.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Edge"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "edge"
+        ]
+      },
+      "patch": {
+        "operationId": "partialUpdateEdge",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this edge.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Edge"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "edge"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyEdge",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this edge.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "edge"
+        ]
+      }
+    },
+    "/api/integration/gen_site_config": {
+      "get": {
+        "operationId": "listGenSiteConfigs",
+        "description": "Invoke gen_site_config task in celery",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "gen_site_config"
+        ]
+      }
+    },
+    "/api-token-auth/": {
+      "post": {
+        "operationId": "createAuthToken",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthToken"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthToken"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthToken"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthToken"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api-token-auth"
+        ]
+      }
+    },
+    "/api/website/create": {
+      "post": {
+        "operationId": "createWebsite",
+        "description": "Create a new website: /api/website/create",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebsiteCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "website"
+        ]
+      }
+    },
+    "/api/website/{id}/records/create": {
+      "post": {
+        "operationId": "createRecordCreate",
+        "description": "/api/website/<int:pk>/records/create",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "DNS"
+        ]
+      }
+    },
+    "/api/website/{id}/modify": {
+      "put": {
+        "operationId": "updateWebsite",
+        "description": "Modify an existing website: /api/website/<int:pk>/modify",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this website.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebsiteUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "website"
+        ]
+      }
+    },
+    "/api/website/{id}/records/{rpk}/modify": {
+      "put": {
+        "operationId": "updateRecord",
+        "description": "/api/website/<int:pk>/records/<int:rpk>/modify",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this record.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordModify"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordModify"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordModify"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordModify"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "DNS"
+        ]
+      }
+    },
+    "/api/edgemanage/config": {
+      "put": {
+        "operationId": "updateEdgeConf",
+        "description": "Update edge config, put the edge in or out of rotation",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "edge": {
+                      "type": "string",
+                      "example": "edge1.prod.deflect.ca"
+                    },
+                    "prev_state": {
+                      "type": "object",
+                      "example": {
+                        "mode": "available",
+                        "comment": "This edge is available"
+                      }
+                    },
+                    "current_state": {
+                      "type": "object",
+                      "example": {
+                        "mode": "unavailable",
+                        "comment": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "edgemanage"
+        ]
+      }
+    },
+    "/api/website/{id}/delete": {
+      "delete": {
+        "operationId": "destroyWebsite",
+        "description": "Delete an existing website: /api/website/<int:pk>/delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this website.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "website"
+        ]
+      }
+    },
+    "/api/website/{id}/records/{rpk}/delete": {
+      "delete": {
+        "operationId": "destroyRecord",
+        "description": "/api/website/<int:pk>/records/<int:rpk>/delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this record.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "DNS"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Website": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "readOnly": true
+          },
+          "status": {
+            "type": "number"
+          },
+          "ip_address": {
+            "type": "string",
+            "maxLength": 16
+          },
+          "hidden_domain": {
+            "type": "string",
+            "maxLength": 32
+          },
+          "banjax_auth_hash": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "admin_key": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "under_attack": {
+            "type": "boolean"
+          },
+          "awstats_password": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "ats_purge_secret": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 64
+          }
+        },
+        "required": [
+          "ip_address"
+        ]
+      },
+      "WebsiteDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "readOnly": true
+          },
+          "status": {
+            "type": "number"
+          },
+          "ip_address": {
+            "type": "string",
+            "maxLength": 16
+          },
+          "hidden_domain": {
+            "type": "string",
+            "maxLength": 32
+          },
+          "banjax_auth_hash": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "admin_key": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "under_attack": {
+            "type": "boolean"
+          },
+          "awstats_password": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "ats_purge_secret": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 64
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "maxLength": 255
+                },
+                "data": {
+                  "type": "object",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        },
+        "required": [
+          "ip_address",
+          "options"
+        ]
+      },
+      "WebsiteOption": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Record": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "type": {
+            "type": "string",
+            "maxLength": 6
+          },
+          "hostname": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "value": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer",
+            "nullable": true
+          },
+          "weight": {
+            "type": "integer",
+            "nullable": true
+          },
+          "port": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ttl": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "hostname"
+        ]
+      },
+      "Dnet": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 20
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Edge": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "hostname": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "ip": {
+            "type": "string",
+            "maxLength": 16
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          }
+        },
+        "required": [
+          "hostname",
+          "ip"
+        ]
+      },
+      "AuthToken": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "password": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "token": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
+      },
+      "WebsiteCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "status": {
+            "type": "number"
+          },
+          "ip_address": {
+            "type": "string",
+            "maxLength": 16
+          },
+          "banjax_auth_hash": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "admin_key": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "maxLength": 255
+                },
+                "data": {
+                  "type": "object",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        },
+        "required": [
+          "url",
+          "ip_address"
+        ]
+      },
+      "RecordCreate": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "maxLength": 6
+          },
+          "hostname": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "value": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer",
+            "nullable": true
+          },
+          "weight": {
+            "type": "integer",
+            "nullable": true
+          },
+          "port": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ttl": {
+            "type": "integer",
+            "nullable": true
+          },
+          "website_id": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "type",
+          "hostname"
+        ]
+      },
+      "WebsiteUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "readOnly": true
+          },
+          "status": {
+            "type": "number"
+          },
+          "ip_address": {
+            "type": "string",
+            "maxLength": 16
+          },
+          "hidden_domain": {
+            "type": "string",
+            "maxLength": 32
+          },
+          "banjax_auth_hash": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "admin_key": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "under_attack": {
+            "type": "boolean"
+          },
+          "awstats_password": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "ats_purge_secret": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 64
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "maxLength": 255
+                },
+                "data": {
+                  "type": "object",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        },
+        "required": [
+          "ip_address",
+          "options"
+        ]
+      },
+      "RecordModify": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "maxLength": 6
+          },
+          "hostname": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "value": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer",
+            "nullable": true
+          },
+          "weight": {
+            "type": "integer",
+            "nullable": true
+          },
+          "port": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ttl": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "hostname"
+        ]
+      }
+    }
+  }
+}
