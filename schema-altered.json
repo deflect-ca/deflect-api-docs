@@ -664,7 +664,7 @@
         ]
       }
     },
-    "/api-token-auth/": {
+    "/auth/api/": {
       "post": {
         "operationId": "createAuthToken",
         "description": "",
@@ -701,7 +701,7 @@
           }
         },
         "tags": [
-          "api-token-auth"
+          "auth"
         ]
       }
     },
