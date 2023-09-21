@@ -5,6 +5,52 @@
     "version": "v0.1"
   },
   "paths": {
+    "/api/auth/logout": {
+      "get": {
+        "operationId": "listAuthLogouts",
+        "description": "API to revoke token",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "operationId": "listAuthMes",
+        "description": "API to query current user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
     "/api/website/list": {
       "get": {
         "operationId": "listWebsites",
@@ -664,10 +710,10 @@
         ]
       }
     },
-    "/auth/api/": {
+    "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
-        "description": "",
+        "description": "Override default rest_framework obtain_auth_token",
         "parameters": [],
         "requestBody": {
           "content": {
@@ -701,7 +747,7 @@
           }
         },
         "tags": [
-          "auth"
+          "api"
         ]
       }
     },
