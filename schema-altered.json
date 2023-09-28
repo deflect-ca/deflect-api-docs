@@ -51,6 +51,63 @@
         ]
       }
     },
+    "/api/users": {
+      "get": {
+        "operationId": "listUsers",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "operationId": "retrieveUser",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this user.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
     "/api/website/list": {
       "get": {
         "operationId": "listWebsites",
@@ -957,6 +1014,31 @@
   },
   "components": {
     "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "username": {
+            "type": "string",
+            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
+            "pattern": "^[\\w.@+-]+\\\\z",
+            "maxLength": 150
+          },
+          "websites": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "username",
+          "websites"
+        ]
+      },
       "Website": {
         "type": "object",
         "properties": {
@@ -1000,6 +1082,10 @@
             "type": "string",
             "nullable": true,
             "maxLength": 64
+          },
+          "creator": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -1068,6 +1154,10 @@
                 "name"
               ]
             }
+          },
+          "creator": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -1259,6 +1349,10 @@
                 "name"
               ]
             }
+          },
+          "creator": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
