@@ -24,7 +24,7 @@
           }
         },
         "tags": [
-          "api"
+          "auth"
         ]
       }
     },
@@ -47,14 +47,14 @@
           }
         },
         "tags": [
-          "api"
+          "auth"
         ]
       }
     },
     "/api/users": {
       "get": {
         "operationId": "listUsers",
-        "description": "",
+        "description": "List of all users (Permission: IsAdminOrDenied)",
         "parameters": [],
         "responses": {
           "200": {
@@ -72,14 +72,14 @@
           }
         },
         "tags": [
-          "api"
+          "users"
         ]
       }
     },
     "/api/users/{id}": {
       "get": {
         "operationId": "retrieveUser",
-        "description": "",
+        "description": "Detail of a user (Permission: IsAdminOrDenied)",
         "parameters": [
           {
             "name": "id",
@@ -104,7 +104,7 @@
           }
         },
         "tags": [
-          "api"
+          "users"
         ]
       }
     },
@@ -745,7 +745,7 @@
           }
         },
         "tags": [
-          "api"
+          "auth"
         ]
       }
     },
@@ -1057,10 +1057,6 @@
             "type": "string",
             "maxLength": 16
           },
-          "hidden_domain": {
-            "type": "string",
-            "maxLength": 32
-          },
           "banjax_auth_hash": {
             "type": "string",
             "nullable": true,
@@ -1073,15 +1069,6 @@
           },
           "under_attack": {
             "type": "boolean"
-          },
-          "awstats_password": {
-            "type": "string",
-            "maxLength": 40
-          },
-          "ats_purge_secret": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 64
           },
           "creator": {
             "type": "string",
@@ -1110,10 +1097,6 @@
             "type": "string",
             "maxLength": 16
           },
-          "hidden_domain": {
-            "type": "string",
-            "maxLength": 32
-          },
           "banjax_auth_hash": {
             "type": "string",
             "nullable": true,
@@ -1126,15 +1109,6 @@
           },
           "under_attack": {
             "type": "boolean"
-          },
-          "awstats_password": {
-            "type": "string",
-            "maxLength": 40
-          },
-          "ats_purge_secret": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 64
           },
           "options": {
             "type": "array",
@@ -1418,10 +1392,6 @@
             "type": "string",
             "maxLength": 16
           },
-          "hidden_domain": {
-            "type": "string",
-            "maxLength": 32
-          },
           "banjax_auth_hash": {
             "type": "string",
             "nullable": true,
@@ -1434,15 +1404,6 @@
           },
           "under_attack": {
             "type": "boolean"
-          },
-          "awstats_password": {
-            "type": "string",
-            "maxLength": 40
-          },
-          "ats_purge_secret": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 64
           },
           "options": {
             "type": "array",
