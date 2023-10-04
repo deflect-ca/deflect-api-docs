@@ -51,6 +51,106 @@
         ]
       }
     },
+    "/api/profile": {
+      "get": {
+        "operationId": "retrieveUserProfile",
+        "description": "get current user profile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfile"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "profile"
+        ]
+      },
+      "put": {
+        "operationId": "updateUserProfile",
+        "description": "update current user profile",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfile"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfile"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfile"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfile"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "profile"
+        ]
+      },
+      "patch": {
+        "operationId": "partialUpdateUserProfile",
+        "description": "partial update using self.partial_update with current user profile",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfile"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfile"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfile"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfile"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "profile"
+        ]
+      }
+    },
     "/api/users": {
       "get": {
         "operationId": "listUsers",
@@ -1014,6 +1114,22 @@
   },
   "components": {
     "schemas": {
+      "UserProfile": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "string",
+            "readOnly": true
+          },
+          "tos_accepted": {
+            "type": "boolean"
+          },
+          "locale": {
+            "type": "string",
+            "maxLength": 5
+          }
+        }
+      },
       "User": {
         "type": "object",
         "properties": {
