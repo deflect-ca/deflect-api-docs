@@ -211,7 +211,7 @@
     "/api/website": {
       "get": {
         "operationId": "listWebsiteCreates",
-        "description": "Create a new website: /api/website",
+        "description": "Create a new website: GET/POST: /api/website",
         "parameters": [],
         "responses": {
           "200": {
@@ -234,7 +234,7 @@
       },
       "post": {
         "operationId": "createWebsiteCreate",
-        "description": "Create a new website: /api/website",
+        "description": "Create a new website: GET/POST: /api/website",
         "parameters": [],
         "requestBody": {
           "content": {
@@ -275,7 +275,7 @@
     "/api/website/{id}": {
       "get": {
         "operationId": "retrieveWebsite",
-        "description": "Detail config of a website: /api/website/<int:pk>",
+        "description": "Detail config of a website: GET/PUT/DELETE: /api/website/<int:pk>",
         "parameters": [
           {
             "name": "id",
@@ -305,7 +305,7 @@
       },
       "put": {
         "operationId": "updateWebsite",
-        "description": "Detail config of a website: /api/website/<int:pk>",
+        "description": "Detail config of a website: GET/PUT/DELETE: /api/website/<int:pk>",
         "parameters": [
           {
             "name": "id",
@@ -354,7 +354,7 @@
       },
       "delete": {
         "operationId": "destroyWebsite",
-        "description": "Detail config of a website: /api/website/<int:pk>",
+        "description": "Detail config of a website: GET/PUT/DELETE: /api/website/<int:pk>",
         "parameters": [
           {
             "name": "id",
@@ -414,7 +414,7 @@
     "/api/website/{id}/options/{name}": {
       "get": {
         "operationId": "retrieveWebsiteOption",
-        "description": "List a option key/value of a website: /api/website/<int:pk>/options/<str:name>",
+        "description": "GET/POST: /api/website/<int:pk>/options/<str:name>",
         "parameters": [
           {
             "name": "id",
@@ -453,7 +453,7 @@
       },
       "delete": {
         "operationId": "destroyWebsiteOption",
-        "description": "List a option key/value of a website: /api/website/<int:pk>/options/<str:name>",
+        "description": "GET/POST: /api/website/<int:pk>/options/<str:name>",
         "parameters": [
           {
             "name": "id",
@@ -486,8 +486,8 @@
     },
     "/api/website/{id}/records": {
       "get": {
-        "operationId": "listRecords",
-        "description": "/api/website/<int:pk>/records",
+        "operationId": "listRecordCreates",
+        "description": "GET/POST: /api/website/<int:pk>/records",
         "parameters": [
           {
             "name": "id",
@@ -506,8 +506,57 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Record"
+                    "$ref": "#/components/schemas/RecordCreate"
                   }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "DNS"
+        ]
+      },
+      "post": {
+        "operationId": "createRecordCreate",
+        "description": "GET/POST: /api/website/<int:pk>/records",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordCreate"
                 }
               }
             },
@@ -521,8 +570,8 @@
     },
     "/api/website/{id}/records/{rpk}": {
       "get": {
-        "operationId": "retrieveRecord",
-        "description": "/api/website/<int:pk>/records/<int:rpk>",
+        "operationId": "retrieveRecordModify",
+        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/records/<int:rpk>",
         "parameters": [
           {
             "name": "id",
@@ -548,10 +597,100 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Record"
+                  "$ref": "#/components/schemas/RecordModify"
                 }
               }
             },
+            "description": ""
+          }
+        },
+        "tags": [
+          "DNS"
+        ]
+      },
+      "patch": {
+        "operationId": "partialUpdateRecordModify",
+        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/records/<int:rpk>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordModify"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordModify"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordModify"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordModify"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "DNS"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyRecordModify",
+        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/records/<int:rpk>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
             "description": ""
           }
         },
@@ -1000,151 +1139,6 @@
           "auth"
         ]
       }
-    },
-    "/api/website/{id}/records/create": {
-      "post": {
-        "operationId": "createRecordCreate",
-        "description": "/api/website/<int:pk>/records/create",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RecordCreate"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/RecordCreate"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/RecordCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RecordCreate"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "DNS"
-        ]
-      }
-    },
-    "/api/website/{id}/records/{rpk}/modify": {
-      "patch": {
-        "operationId": "partialUpdateRecordModify",
-        "description": "/api/website/<int:pk>/records/<int:rpk>/modify",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "rpk",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RecordModify"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/RecordModify"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/RecordModify"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RecordModify"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "DNS"
-        ]
-      }
-    },
-    "/api/website/{id}/records/{rpk}/delete": {
-      "delete": {
-        "operationId": "destroyRecord",
-        "description": "/api/website/<int:pk>/records/<int:rpk>/delete",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "rpk",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "DNS"
-        ]
-      }
     }
   },
   "components": {
@@ -1356,7 +1350,51 @@
           "name"
         ]
       },
-      "Record": {
+      "RecordCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "type": {
+            "type": "string",
+            "maxLength": 6
+          },
+          "hostname": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "value": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer",
+            "nullable": true
+          },
+          "weight": {
+            "type": "integer",
+            "nullable": true
+          },
+          "port": {
+            "type": "integer",
+            "nullable": true
+          },
+          "ttl": {
+            "type": "integer",
+            "nullable": true
+          },
+          "website_id": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "type",
+          "hostname"
+        ]
+      },
+      "RecordModify": {
         "type": "object",
         "properties": {
           "id": {
@@ -1497,90 +1535,6 @@
         },
         "required": [
           "email"
-        ]
-      },
-      "RecordCreate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "type": {
-            "type": "string",
-            "maxLength": 6
-          },
-          "hostname": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "value": {
-            "type": "string"
-          },
-          "priority": {
-            "type": "integer",
-            "nullable": true
-          },
-          "weight": {
-            "type": "integer",
-            "nullable": true
-          },
-          "port": {
-            "type": "integer",
-            "nullable": true
-          },
-          "ttl": {
-            "type": "integer",
-            "nullable": true
-          },
-          "website_id": {
-            "type": "string",
-            "readOnly": true
-          }
-        },
-        "required": [
-          "type",
-          "hostname"
-        ]
-      },
-      "RecordModify": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "type": {
-            "type": "string",
-            "maxLength": 6
-          },
-          "hostname": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "value": {
-            "type": "string"
-          },
-          "priority": {
-            "type": "integer",
-            "nullable": true
-          },
-          "weight": {
-            "type": "integer",
-            "nullable": true
-          },
-          "port": {
-            "type": "integer",
-            "nullable": true
-          },
-          "ttl": {
-            "type": "integer",
-            "nullable": true
-          }
-        },
-        "required": [
-          "type",
-          "hostname"
         ]
       }
     }
