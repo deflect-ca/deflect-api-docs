@@ -208,10 +208,10 @@
         ]
       }
     },
-    "/api/website/list": {
+    "/api/website": {
       "get": {
-        "operationId": "listWebsites",
-        "description": "List of all website: /api/website/list",
+        "operationId": "listWebsiteCreates",
+        "description": "Create a new website: /api/website",
         "parameters": [],
         "responses": {
           "200": {
@@ -220,8 +220,47 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Website"
+                    "$ref": "#/components/schemas/WebsiteCreate"
                   }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "website"
+        ]
+      },
+      "post": {
+        "operationId": "createWebsiteCreate",
+        "description": "Create a new website: /api/website",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebsiteCreate"
                 }
               }
             },
@@ -890,47 +929,6 @@
         ]
       }
     },
-    "/api/website/create": {
-      "post": {
-        "operationId": "createWebsite",
-        "description": "Create a new website: /api/website/create",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WebsiteCreate"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/WebsiteCreate"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/WebsiteCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/WebsiteCreate"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "website"
-        ]
-      }
-    },
     "/api/website/{id}/records/create": {
       "post": {
         "operationId": "createRecordCreate",
@@ -1205,7 +1203,7 @@
           "websites"
         ]
       },
-      "Website": {
+      "WebsiteCreate": {
         "type": "object",
         "properties": {
           "id": {
@@ -1214,7 +1212,7 @@
           },
           "url": {
             "type": "string",
-            "readOnly": true
+            "maxLength": 255
           },
           "status": {
             "type": "number"
@@ -1234,8 +1232,24 @@
             "nullable": true,
             "maxLength": 255
           },
-          "under_attack": {
-            "type": "boolean"
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "maxLength": 255
+                },
+                "data": {
+                  "type": "object",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
           },
           "creator": {
             "type": "string",
@@ -1253,7 +1267,10 @@
             "readOnly": true,
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "url"
+        ]
       },
       "WebsiteDetail": {
         "type": "object",
@@ -1484,75 +1501,6 @@
         },
         "required": [
           "email"
-        ]
-      },
-      "WebsiteCreate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "url": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "status": {
-            "type": "number"
-          },
-          "ip_address": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 16
-          },
-          "banjax_auth_hash": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 255
-          },
-          "admin_key": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 255
-          },
-          "options": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "maxLength": 255
-                },
-                "data": {
-                  "type": "object",
-                  "nullable": true
-                }
-              },
-              "required": [
-                "name"
-              ]
-            }
-          },
-          "creator": {
-            "type": "string",
-            "readOnly": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          }
-        },
-        "required": [
-          "url"
         ]
       },
       "RecordCreate": {
