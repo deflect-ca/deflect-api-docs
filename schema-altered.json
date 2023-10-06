@@ -302,6 +302,78 @@
         "tags": [
           "website"
         ]
+      },
+      "put": {
+        "operationId": "updateWebsite",
+        "description": "Detail config of a website: /api/website/<int:pk>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this website.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteDetail"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteDetail"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteDetail"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebsiteDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "website"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyWebsite",
+        "description": "Detail config of a website: /api/website/<int:pk>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this website.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "website"
+        ]
       }
     },
     "/api/website/{id}/options": {
@@ -980,57 +1052,6 @@
         ]
       }
     },
-    "/api/website/{id}/modify": {
-      "put": {
-        "operationId": "updateWebsite",
-        "description": "Modify an existing website: /api/website/<int:pk>/modify",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this website.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WebsiteUpdate"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/WebsiteUpdate"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/WebsiteUpdate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/WebsiteUpdate"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "website"
-        ]
-      }
-    },
     "/api/website/{id}/records/{rpk}/modify": {
       "patch": {
         "operationId": "partialUpdateRecordModify",
@@ -1088,31 +1109,6 @@
         },
         "tags": [
           "DNS"
-        ]
-      }
-    },
-    "/api/website/{id}/delete": {
-      "delete": {
-        "operationId": "destroyWebsite",
-        "description": "Delete an existing website: /api/website/<int:pk>/delete",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this website.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "website"
         ]
       }
     },
@@ -1545,74 +1541,6 @@
         "required": [
           "type",
           "hostname"
-        ]
-      },
-      "WebsiteUpdate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "url": {
-            "type": "string",
-            "readOnly": true
-          },
-          "status": {
-            "type": "number"
-          },
-          "ip_address": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 16
-          },
-          "banjax_auth_hash": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 255
-          },
-          "admin_key": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 255
-          },
-          "under_attack": {
-            "type": "boolean"
-          },
-          "options": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "maxLength": 255
-                },
-                "data": {
-                  "type": "object",
-                  "nullable": true
-                }
-              },
-              "required": [
-                "name"
-              ]
-            }
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          }
-        },
-        "required": [
-          "options"
         ]
       },
       "RecordModify": {
