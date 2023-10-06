@@ -210,7 +210,7 @@
     },
     "/api/website": {
       "get": {
-        "operationId": "listWebsiteCreates",
+        "operationId": "listWebsiteListCreates",
         "description": "Create a new website: GET/POST: /api/website",
         "parameters": [],
         "responses": {
@@ -220,7 +220,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WebsiteCreate"
+                    "$ref": "#/components/schemas/WebsiteListCreate"
                   }
                 }
               }
@@ -233,24 +233,24 @@
         ]
       },
       "post": {
-        "operationId": "createWebsiteCreate",
+        "operationId": "createWebsiteListCreate",
         "description": "Create a new website: GET/POST: /api/website",
         "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WebsiteCreate"
+                "$ref": "#/components/schemas/WebsiteListCreate"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/WebsiteCreate"
+                "$ref": "#/components/schemas/WebsiteListCreate"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/WebsiteCreate"
+                "$ref": "#/components/schemas/WebsiteListCreate"
               }
             }
           }
@@ -260,7 +260,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/WebsiteCreate"
+                  "$ref": "#/components/schemas/WebsiteListCreate"
                 }
               }
             },
@@ -486,7 +486,7 @@
     },
     "/api/website/{id}/records": {
       "get": {
-        "operationId": "listRecordCreates",
+        "operationId": "listRecordListCreates",
         "description": "GET/POST: /api/website/<int:pk>/records",
         "parameters": [
           {
@@ -506,7 +506,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RecordCreate"
+                    "$ref": "#/components/schemas/RecordListCreate"
                   }
                 }
               }
@@ -519,7 +519,7 @@
         ]
       },
       "post": {
-        "operationId": "createRecordCreate",
+        "operationId": "createRecordListCreate",
         "description": "GET/POST: /api/website/<int:pk>/records",
         "parameters": [
           {
@@ -536,17 +536,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RecordCreate"
+                "$ref": "#/components/schemas/RecordListCreate"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/RecordCreate"
+                "$ref": "#/components/schemas/RecordListCreate"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/RecordCreate"
+                "$ref": "#/components/schemas/RecordListCreate"
               }
             }
           }
@@ -556,7 +556,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RecordCreate"
+                  "$ref": "#/components/schemas/RecordListCreate"
                 }
               }
             },
@@ -570,7 +570,7 @@
     },
     "/api/website/{id}/records/{rpk}": {
       "get": {
-        "operationId": "retrieveRecordModify",
+        "operationId": "retrieveRecordDetail",
         "description": "GET/PATCH/DELETE: /api/website/<int:pk>/records/<int:rpk>",
         "parameters": [
           {
@@ -597,7 +597,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RecordModify"
+                  "$ref": "#/components/schemas/RecordDetail"
                 }
               }
             },
@@ -609,7 +609,7 @@
         ]
       },
       "patch": {
-        "operationId": "partialUpdateRecordModify",
+        "operationId": "partialUpdateRecordDetail",
         "description": "GET/PATCH/DELETE: /api/website/<int:pk>/records/<int:rpk>",
         "parameters": [
           {
@@ -635,17 +635,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RecordModify"
+                "$ref": "#/components/schemas/RecordDetail"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/RecordModify"
+                "$ref": "#/components/schemas/RecordDetail"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/RecordModify"
+                "$ref": "#/components/schemas/RecordDetail"
               }
             }
           }
@@ -655,7 +655,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RecordModify"
+                  "$ref": "#/components/schemas/RecordDetail"
                 }
               }
             },
@@ -667,7 +667,7 @@
         ]
       },
       "delete": {
-        "operationId": "destroyRecordModify",
+        "operationId": "destroyRecordDetail",
         "description": "GET/PATCH/DELETE: /api/website/<int:pk>/records/<int:rpk>",
         "parameters": [
           {
@@ -1193,7 +1193,7 @@
           "websites"
         ]
       },
-      "WebsiteCreate": {
+      "WebsiteListCreate": {
         "type": "object",
         "properties": {
           "id": {
@@ -1350,7 +1350,7 @@
           "name"
         ]
       },
-      "RecordCreate": {
+      "RecordListCreate": {
         "type": "object",
         "properties": {
           "id": {
@@ -1394,7 +1394,7 @@
           "hostname"
         ]
       },
-      "RecordModify": {
+      "RecordDetail": {
         "type": "object",
         "properties": {
           "id": {
