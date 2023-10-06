@@ -417,7 +417,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "A unique integer value identifying this record.",
+            "description": "",
             "schema": {
               "type": "string"
             }
@@ -1034,15 +1034,15 @@
       }
     },
     "/api/website/{id}/records/{rpk}/modify": {
-      "put": {
-        "operationId": "updateRecord",
+      "patch": {
+        "operationId": "partialUpdateRecordModify",
         "description": "/api/website/<int:pk>/records/<int:rpk>/modify",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "A unique integer value identifying this record.",
+            "description": "",
             "schema": {
               "type": "string"
             }
@@ -1127,7 +1127,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "A unique integer value identifying this record.",
+            "description": "",
             "schema": {
               "type": "string"
             }
@@ -1558,6 +1558,10 @@
       "RecordCreate": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
           "type": {
             "type": "string",
             "maxLength": 6
@@ -1666,6 +1670,10 @@
       "RecordModify": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
           "type": {
             "type": "string",
             "maxLength": 6
