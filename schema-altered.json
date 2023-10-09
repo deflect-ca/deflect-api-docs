@@ -51,6 +51,29 @@
         ]
       }
     },
+    "/api/auth/csrf": {
+      "get": {
+        "operationId": "listAuthCSRFs",
+        "description": "API to get CSRF token",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
     "/api/profile": {
       "get": {
         "operationId": "retrieveUserProfile",
