@@ -1038,7 +1038,7 @@
     "/api/integration/gen_site_config": {
       "get": {
         "operationId": "listGenSiteConfigs",
-        "description": "Invoke gen_site_config task in celery",
+        "description": "Invoke gen_site_config task in celery (admin only)",
         "parameters": [],
         "responses": {
           "200": {
