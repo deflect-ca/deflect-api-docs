@@ -303,8 +303,8 @@
           "website"
         ]
       },
-      "put": {
-        "operationId": "updateWebsite",
+      "patch": {
+        "operationId": "partialUpdateWebsite",
         "description": "Detail config of a website: GET/PUT/DELETE: /api/website/<int:pk>",
         "parameters": [
           {
