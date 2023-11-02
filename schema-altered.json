@@ -328,7 +328,7 @@
       },
       "patch": {
         "operationId": "partialUpdateWebsite",
-        "description": "Detail config of a website: GET/PUT/DELETE: /api/website/<int:pk>",
+        "description": "Although we can update website options here,\nits recommended to use /api/website/{id}/options/{name} for better logging",
         "parameters": [
           {
             "name": "id",
@@ -437,7 +437,7 @@
     "/api/website/{id}/options/{name}": {
       "get": {
         "operationId": "retrieveWebsiteOption",
-        "description": "GET/POST: /api/website/<int:pk>/options/<str:name>",
+        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/options/<str:name>",
         "parameters": [
           {
             "name": "id",
@@ -476,7 +476,7 @@
       },
       "delete": {
         "operationId": "destroyWebsiteOption",
-        "description": "GET/POST: /api/website/<int:pk>/options/<str:name>",
+        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/options/<str:name>",
         "parameters": [
           {
             "name": "id",
