@@ -234,7 +234,7 @@
     "/api/website": {
       "get": {
         "operationId": "listWebsiteListCreates",
-        "description": "Create a new website: GET/POST: /api/website",
+        "description": "Get all website under current user",
         "parameters": [],
         "responses": {
           "200": {
@@ -257,7 +257,7 @@
       },
       "post": {
         "operationId": "createWebsiteListCreate",
-        "description": "Create a new website: GET/POST: /api/website",
+        "description": "Create new website under current user",
         "parameters": [],
         "requestBody": {
           "content": {
@@ -402,7 +402,7 @@
     "/api/website/{id}/options": {
       "get": {
         "operationId": "listWebsiteOptions",
-        "description": "List all options of a website: /api/website/<int:pk>/options",
+        "description": "List all options of a website",
         "parameters": [
           {
             "name": "id",
@@ -437,7 +437,7 @@
     "/api/website/{id}/options/{name}": {
       "get": {
         "operationId": "retrieveWebsiteOptionSerializerDetail",
-        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/options/<str:name>",
+        "description": "Get target option under current website",
         "parameters": [
           {
             "name": "id",
@@ -476,7 +476,7 @@
       },
       "post": {
         "operationId": "createWebsiteOptionSerializerDetail",
-        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/options/<str:name>",
+        "description": "Create option under current website",
         "parameters": [
           {
             "name": "id",
@@ -534,7 +534,7 @@
       },
       "delete": {
         "operationId": "destroyWebsiteOptionSerializerDetail",
-        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/options/<str:name>",
+        "description": "Delete option under current website",
         "parameters": [
           {
             "name": "id",
