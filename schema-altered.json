@@ -532,6 +532,64 @@
           "website_options"
         ]
       },
+      "patch": {
+        "operationId": "partialUpdateWebsiteOptionSerializerDetail",
+        "description": "Update option under current website",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteOptionDetail"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteOptionDetail"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WebsiteOptionDetail"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebsiteOptionDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "website_options"
+        ]
+      },
       "delete": {
         "operationId": "destroyWebsiteOptionSerializerDetail",
         "description": "Delete option under current website",
