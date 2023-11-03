@@ -568,7 +568,7 @@
     "/api/website/{id}/records": {
       "get": {
         "operationId": "listRecordListCreates",
-        "description": "GET/POST: /api/website/<int:pk>/records",
+        "description": "List all DNS records under current website",
         "parameters": [
           {
             "name": "id",
@@ -601,7 +601,7 @@
       },
       "post": {
         "operationId": "createRecordListCreate",
-        "description": "GET/POST: /api/website/<int:pk>/records",
+        "description": "Create a new DNS record under current website",
         "parameters": [
           {
             "name": "id",
@@ -652,7 +652,7 @@
     "/api/website/{id}/records/{rpk}": {
       "get": {
         "operationId": "retrieveRecordDetail",
-        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/records/<int:rpk>",
+        "description": "Get target DNS record using DNS record ID (rpk) under current website",
         "parameters": [
           {
             "name": "id",
@@ -691,7 +691,7 @@
       },
       "patch": {
         "operationId": "partialUpdateRecordDetail",
-        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/records/<int:rpk>",
+        "description": "Update target DNS record using DNS record ID (rpk) under current website",
         "parameters": [
           {
             "name": "id",
@@ -749,7 +749,7 @@
       },
       "delete": {
         "operationId": "destroyRecordDetail",
-        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/records/<int:rpk>",
+        "description": "Delete target DNS record using DNS record ID (rpk) under current website",
         "parameters": [
           {
             "name": "id",
