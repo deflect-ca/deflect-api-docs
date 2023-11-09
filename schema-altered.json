@@ -1453,13 +1453,19 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/BanjaxPassword"
+              }
             },
             "application/x-www-form-urlencoded": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/BanjaxPassword"
+              }
             },
             "multipart/form-data": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/BanjaxPassword"
+              }
             }
           }
         },
@@ -1467,7 +1473,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/BanjaxPassword"
+                }
               }
             },
             "description": ""
@@ -1931,6 +1939,18 @@
         },
         "required": [
           "email"
+        ]
+      },
+      "BanjaxPassword": {
+        "type": "object",
+        "properties": {
+          "banjax_auth_hash": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "banjax_auth_hash"
         ]
       }
     }
