@@ -1197,6 +1197,93 @@
         ]
       }
     },
+    "/api/integration/zone_fetch": {
+      "get": {
+        "operationId": "listZoneFetchs",
+        "description": "Query AsyncResult for task status",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "test"
+        ]
+      },
+      "post": {
+        "operationId": "createZoneFetch",
+        "description": "Fetch DNS zone for domain",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "test"
+        ]
+      }
+    },
+    "/api/special/{website_id}/tasks/fetch_dns_zone": {
+      "get": {
+        "operationId": "listTaskStatusFetchZones",
+        "description": "",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "special"
+        ]
+      }
+    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
