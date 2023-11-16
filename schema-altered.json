@@ -1254,7 +1254,7 @@
     "/api/special/{website_id}/tasks/fetch_dns_zone": {
       "get": {
         "operationId": "listTaskStatusFetchZones",
-        "description": "",
+        "description": "Sample output:\n{\n    \"task_id\": \"d934c143-3aba-4759-a88e-ccc519b2cd20\",\n    \"task_name\": \"tasks.fetch_dns_zone_task\",\n    \"state\": \"SUCCESS\",\n    \"date_created\": \"2023-11-16T07:53:44.910986Z\",\n    \"date_done\": \"2023-11-16T07:54:07.003721Z\",\n    \"result\": \"[]\"\n}",
         "parameters": [
           {
             "name": "website_id",
@@ -1519,6 +1519,58 @@
         },
         "tags": [
           "test"
+        ]
+      }
+    },
+    "/api/setup/{website_id}/{setup_step}": {
+      "post": {
+        "operationId": "createSetupStatus",
+        "description": "API to update website setup status.\nNote status will only increase, not decrease.",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "setup_step",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "setup"
         ]
       }
     },
