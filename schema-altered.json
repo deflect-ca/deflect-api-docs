@@ -1638,7 +1638,8 @@
             "maxLength": 255
           },
           "status": {
-            "type": "number"
+            "type": "number",
+            "readOnly": true
           },
           "ip_address": {
             "type": "string",
@@ -1678,6 +1679,11 @@
             "type": "string",
             "readOnly": true
           },
+          "nsinfo": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -1707,7 +1713,8 @@
             "readOnly": true
           },
           "status": {
-            "type": "number"
+            "type": "number",
+            "readOnly": true
           },
           "ip_address": {
             "type": "string",
@@ -1749,6 +1756,11 @@
           "creator": {
             "type": "string",
             "readOnly": true
+          },
+          "nsinfo": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
           },
           "created_at": {
             "type": "string",
