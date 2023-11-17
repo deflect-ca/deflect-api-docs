@@ -1328,7 +1328,7 @@
     "/api/auth/signup": {
       "post": {
         "operationId": "createAuthSignUpUser",
-        "description": "Attempt to create a user and a website, rollback all if any error",
+        "description": "Create a user and a website, arg: `email`, `url`, `business` = True (omit if non-profits)",
         "parameters": [],
         "requestBody": {
           "content": {
@@ -1698,15 +1698,21 @@
             "nullable": true,
             "maxLength": 16
           },
-          "banjax_auth_hash": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 255
-          },
           "admin_key": {
             "type": "string",
             "nullable": true,
             "maxLength": 255
+          },
+          "under_attack": {
+            "type": "boolean"
+          },
+          "nsinfo": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "business": {
+            "type": "boolean"
           },
           "options": {
             "type": "array",
@@ -1730,11 +1736,6 @@
           "creator": {
             "type": "string",
             "readOnly": true
-          },
-          "nsinfo": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 255
           },
           "created_at": {
             "type": "string",
@@ -1773,11 +1774,6 @@
             "nullable": true,
             "maxLength": 16
           },
-          "banjax_auth_hash": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 255
-          },
           "admin_key": {
             "type": "string",
             "nullable": true,
@@ -1785,6 +1781,15 @@
           },
           "under_attack": {
             "type": "boolean"
+          },
+          "nsinfo": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "business": {
+            "type": "boolean",
+            "readOnly": true
           },
           "options": {
             "type": "array",
@@ -1808,11 +1813,6 @@
           "creator": {
             "type": "string",
             "readOnly": true
-          },
-          "nsinfo": {
-            "type": "string",
-            "nullable": true,
-            "maxLength": 255
           },
           "created_at": {
             "type": "string",
