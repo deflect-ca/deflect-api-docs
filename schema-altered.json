@@ -1284,6 +1284,221 @@
         ]
       }
     },
+    "/api/website/{id}/hosting": {
+      "get": {
+        "operationId": "listHostings",
+        "description": "List all hosting records under current website",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Hosting"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "hosting"
+        ]
+      },
+      "post": {
+        "operationId": "createHosting",
+        "description": "Create a new hosting record under current website",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Hosting"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Hosting"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Hosting"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hosting"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "hosting"
+        ]
+      }
+    },
+    "/api/website/{id}/hosting/{hpk}": {
+      "get": {
+        "operationId": "retrieveHosting",
+        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/hosting/<int:hpk>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hosting"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "hosting"
+        ]
+      },
+      "patch": {
+        "operationId": "partialUpdateHosting",
+        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/hosting/<int:hpk>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Hosting"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Hosting"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Hosting"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hosting"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "hosting"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyHosting",
+        "description": "GET/PATCH/DELETE: /api/website/<int:pk>/hosting/<int:hpk>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "hosting"
+        ]
+      }
+    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
@@ -2010,6 +2225,77 @@
         "required": [
           "hostname",
           "ip"
+        ]
+      },
+      "Hosting": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "mission_textarea": {
+            "type": "string",
+            "nullable": true
+          },
+          "info_need_textarea": {
+            "type": "string",
+            "nullable": true
+          },
+          "audience_textarea": {
+            "type": "string",
+            "nullable": true
+          },
+          "how_we_help_textarea": {
+            "type": "string",
+            "nullable": true
+          },
+          "past_tech_difficulties_textarea": {
+            "type": "string",
+            "nullable": true
+          },
+          "new_or_migrate": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "pre_load_theme": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "other_theme": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "status": {
+            "enum": [
+              "request",
+              "complete"
+            ],
+            "type": "string"
+          },
+          "hosting_type": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "email"
         ]
       },
       "AuthToken": {
