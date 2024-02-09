@@ -2119,6 +2119,10 @@
           "website_id": {
             "type": "string",
             "readOnly": true
+          },
+          "website": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -2159,6 +2163,10 @@
           "ttl": {
             "type": "integer",
             "nullable": true
+          },
+          "website": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
