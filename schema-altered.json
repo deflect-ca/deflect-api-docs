@@ -1251,6 +1251,29 @@
         ]
       }
     },
+    "/api/integration/test_sentry": {
+      "get": {
+        "operationId": "listTestSentrys",
+        "description": "Test sentry by raising an exception",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "test"
+        ]
+      }
+    },
     "/api/special/{website_id}/tasks/fetch_dns_zone": {
       "get": {
         "operationId": "listTaskStatusFetchZones",
