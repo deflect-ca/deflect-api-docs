@@ -1522,6 +1522,29 @@
         ]
       }
     },
+    "/api/admin/all_website_options": {
+      "get": {
+        "operationId": "listAllWebsiteOptions",
+        "description": "List all website options from OptionSchema",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin"
+        ]
+      }
+    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
