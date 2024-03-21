@@ -196,6 +196,51 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "name": "id",
+            "required": false,
+            "in": "query",
+            "description": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "required": false,
+            "in": "query",
+            "description": "username",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "required": false,
+            "in": "query",
+            "description": "email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "first_name",
+            "required": false,
+            "in": "query",
+            "description": "first_name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -292,6 +337,15 @@
             "description": "Number of results to return per page.",
             "schema": {
               "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
             }
           }
         ],
