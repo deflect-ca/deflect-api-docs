@@ -1640,36 +1640,6 @@
         ]
       }
     },
-    "/api/admin/checks/on_edge/{website_id}": {
-      "get": {
-        "operationId": "retrieveChecksOnEdge",
-        "description": "Check if the edge is up and running",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin"
-        ]
-      }
-    },
     "/api/admin/all_websites": {
       "get": {
         "operationId": "listWebsiteListCreates",
@@ -1770,6 +1740,66 @@
                     }
                   }
                 }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/api/admin/checks/on_edge/{website_id}": {
+      "get": {
+        "operationId": "retrieveChecksOnEdge",
+        "description": "Check if the edge is up and running",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/api/admin/checks/on_easydns/{website_id}": {
+      "get": {
+        "operationId": "retrieveChecksOnEasyDNS",
+        "description": "Check if the domain is served by easyDNS",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
               }
             },
             "description": ""
