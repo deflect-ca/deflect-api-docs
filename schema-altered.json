@@ -1679,6 +1679,29 @@
         ]
       }
     },
+    "/api/admin/checks/on_edge": {
+      "get": {
+        "operationId": "listChecksOnEdges",
+        "description": "Check if the edge is up and running",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin"
+        ]
+      }
+    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
