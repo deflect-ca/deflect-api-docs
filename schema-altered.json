@@ -1640,19 +1640,26 @@
         ]
       }
     },
-    "/api/admin/checks/on_edge": {
+    "/api/admin/checks/on_edge/{website_id}": {
       "get": {
-        "operationId": "listChecksOnEdges",
+        "operationId": "retrieveChecksOnEdge",
         "description": "Check if the edge is up and running",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
+                "schema": {}
               }
             },
             "description": ""
