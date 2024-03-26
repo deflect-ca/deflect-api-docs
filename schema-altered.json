@@ -322,24 +322,6 @@
         "description": "Get all website under current user",
         "parameters": [
           {
-            "name": "page",
-            "required": false,
-            "in": "query",
-            "description": "A page number within the paginated result set.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "page_size",
-            "required": false,
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
             "name": "search",
             "required": false,
             "in": "query",
@@ -354,30 +336,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "count": {
-                      "type": "integer",
-                      "example": 123
-                    },
-                    "next": {
-                      "type": "string",
-                      "nullable": true,
-                      "format": "uri",
-                      "example": "http://api.example.org/accounts/?page=4"
-                    },
-                    "previous": {
-                      "type": "string",
-                      "nullable": true,
-                      "format": "uri",
-                      "example": "http://api.example.org/accounts/?page=2"
-                    },
-                    "results": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/WebsiteListCreate"
-                      }
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WebsiteListCreate"
                   }
                 }
               }
@@ -1691,6 +1652,116 @@
                 "schema": {
                   "type": "array",
                   "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/api/admin/all_websites": {
+      "get": {
+        "operationId": "listWebsiteListCreates",
+        "description": "Get all website under current user",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "url",
+            "required": false,
+            "in": "query",
+            "description": "url",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "status",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip_address",
+            "required": false,
+            "in": "query",
+            "description": "ip_address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": false,
+            "in": "query",
+            "description": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "example": 123
+                    },
+                    "next": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "uri",
+                      "example": "http://api.example.org/accounts/?page=4"
+                    },
+                    "previous": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "uri",
+                      "example": "http://api.example.org/accounts/?page=2"
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/WebsiteListCreate"
+                      }
+                    }
+                  }
                 }
               }
             },
