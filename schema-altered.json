@@ -1810,6 +1810,36 @@
         ]
       }
     },
+    "/api/admin/checks/dns_sync/{website_id}": {
+      "get": {
+        "operationId": "retrieveChecksDNSSync",
+        "description": "Check that DNS records have synced to the nameservers\n\nReturns JSON result on success otherwise it raises an exception",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin"
+        ]
+      }
+    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
