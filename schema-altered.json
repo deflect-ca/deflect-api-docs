@@ -1288,7 +1288,7 @@
           }
         },
         "tags": [
-          "gen_site_config"
+          "integration"
         ]
       }
     },
@@ -2210,6 +2210,49 @@
         },
         "tags": [
           "test"
+        ]
+      }
+    },
+    "/api/integration/cache_purge/{website_id}": {
+      "post": {
+        "operationId": "createCachePurge",
+        "description": "Purge cache for website",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "integration"
         ]
       }
     },
