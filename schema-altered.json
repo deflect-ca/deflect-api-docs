@@ -1636,7 +1636,7 @@
           }
         },
         "tags": [
-          "admin"
+          "admin-website"
         ]
       }
     },
@@ -1746,7 +1746,7 @@
           }
         },
         "tags": [
-          "admin"
+          "admin-website"
         ]
       }
     },
@@ -1776,7 +1776,7 @@
           }
         },
         "tags": [
-          "admin"
+          "admin-checks"
         ]
       }
     },
@@ -1806,7 +1806,7 @@
           }
         },
         "tags": [
-          "admin"
+          "admin-checks"
         ]
       }
     },
@@ -1836,7 +1836,7 @@
           }
         },
         "tags": [
-          "admin"
+          "admin-checks"
         ]
       }
     },
@@ -1866,7 +1866,7 @@
           }
         },
         "tags": [
-          "admin"
+          "admin-easydns"
         ]
       },
       "post": {
@@ -1907,7 +1907,7 @@
           }
         },
         "tags": [
-          "admin"
+          "admin-easydns"
         ]
       },
       "put": {
@@ -1948,7 +1948,7 @@
           }
         },
         "tags": [
-          "admin"
+          "admin-easydns"
         ]
       },
       "delete": {
@@ -1971,7 +1971,7 @@
           }
         },
         "tags": [
-          "admin"
+          "admin-easydns"
         ]
       }
     },
@@ -2355,7 +2355,7 @@
           }
         },
         "tags": [
-          "admin"
+          "admin-website"
         ]
       }
     },
@@ -2398,7 +2398,7 @@
           }
         },
         "tags": [
-          "admin"
+          "admin-website"
         ]
       }
     }
