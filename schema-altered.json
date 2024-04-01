@@ -1871,7 +1871,7 @@
       },
       "post": {
         "operationId": "createEasyDNS",
-        "description": "Rgister domain on easyDNS",
+        "description": "Register domain on easyDNS",
         "parameters": [
           {
             "name": "website_id",
@@ -1912,7 +1912,7 @@
       },
       "put": {
         "operationId": "updateEasyDNS",
-        "description": "Update domain primary NS on easyDNS",
+        "description": "Update domain primary NS on easyDNS (body param: primary_ns)",
         "parameters": [
           {
             "name": "website_id",
@@ -2362,7 +2362,7 @@
     "/api/admin/website/complete_setup/{website_id}": {
       "patch": {
         "operationId": "partialUpdateWebsiteCompleteSetup",
-        "description": "Mark the website as setup completed",
+        "description": "Mark the website as setup completed (No WebsiteStatusGuardMixin)",
         "parameters": [
           {
             "name": "website_id",
@@ -2405,7 +2405,265 @@
     "/api/admin/website/reset_to_zero/{website_id}": {
       "patch": {
         "operationId": "partialUpdateWebsiteResetToZero",
-        "description": "Reset the website status to 0",
+        "description": "Reset the website status to 0 (No WebsiteStatusGuardMixin)",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
+    "/api/admin/website/approve/{website_id}": {
+      "patch": {
+        "operationId": "partialUpdateWebsiteApprove",
+        "description": "Approve website (To 3.4)",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
+    "/api/admin/website/reject/{website_id}": {
+      "patch": {
+        "operationId": "partialUpdateWebsiteReject",
+        "description": "Reject website, To 0 (No WebsiteStatusGuardMixin)",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
+    "/api/admin/website/confirm_ns_info/{website_id}": {
+      "patch": {
+        "operationId": "partialUpdateWebsiteConfirmNSInfo",
+        "description": "Confirm NS info (To 3.5)",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
+    "/api/admin/website/confirm_technical_setup/{website_id}": {
+      "patch": {
+        "operationId": "partialUpdateWebsiteConfirmTechnicalSetup",
+        "description": "Confirm technical setup (To 3.6)",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
+    "/api/admin/website/update_status_and_notify/{website_id}": {
+      "patch": {
+        "operationId": "partialUpdateWebsiteUpdateStatusAndNotify",
+        "description": "Update website status and notify (To 4.0)",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
+    "/api/admin/website/restart_admin_setup/{website_id}": {
+      "patch": {
+        "operationId": "partialUpdateWebsiteRestartAdminSetup",
+        "description": "Restart admin setup, To to 3.0 and delete approval (No WebsiteStatusGuardMixin)",
         "parameters": [
           {
             "name": "website_id",
