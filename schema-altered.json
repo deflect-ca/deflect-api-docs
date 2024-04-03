@@ -1288,7 +1288,7 @@
           }
         },
         "tags": [
-          "integration"
+          "gen_site_config"
         ]
       }
     },
@@ -1636,7 +1636,7 @@
           }
         },
         "tags": [
-          "admin-website"
+          "admin"
         ]
       }
     },
@@ -1746,7 +1746,7 @@
           }
         },
         "tags": [
-          "admin-website"
+          "admin"
         ]
       }
     },
@@ -1776,7 +1776,7 @@
           }
         },
         "tags": [
-          "admin-checks"
+          "admin"
         ]
       }
     },
@@ -1806,172 +1806,7 @@
           }
         },
         "tags": [
-          "admin-checks"
-        ]
-      }
-    },
-    "/api/admin/checks/dns_sync/{website_id}": {
-      "get": {
-        "operationId": "retrieveChecksDNSSync",
-        "description": "Check that DNS records have synced to the nameservers\n\nReturns JSON result on success otherwise it raises an exception",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-checks"
-        ]
-      }
-    },
-    "/api/admin/easydns/{website_id}": {
-      "get": {
-        "operationId": "retrieveEasyDNS",
-        "description": "Get domain status from easyDNS",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-easydns"
-        ]
-      },
-      "post": {
-        "operationId": "createEasyDNS",
-        "description": "Register domain on easyDNS",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-easydns"
-        ]
-      },
-      "put": {
-        "operationId": "updateEasyDNS",
-        "description": "Update domain primary NS on easyDNS (body param: primary_ns)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-easydns"
-        ]
-      },
-      "delete": {
-        "operationId": "destroyEasyDNS",
-        "description": "Delete domain on easyDNS",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-easydns"
+          "admin"
         ]
       }
     },
@@ -2213,49 +2048,6 @@
         ]
       }
     },
-    "/api/integration/cache_purge/{website_id}": {
-      "post": {
-        "operationId": "createCachePurge",
-        "description": "Purge cache for website",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "integration"
-        ]
-      }
-    },
     "/api/setup/{website_id}/{setup_step}": {
       "post": {
         "operationId": "createSetupStatus",
@@ -2308,6 +2100,49 @@
         ]
       }
     },
+    "/api/tls/{website_id}/origin": {
+      "post": {
+        "operationId": "createGenerateOriginCert",
+        "description": "List all website options from OptionSchema",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "tls"
+        ]
+      }
+    },
     "/api/special/{website_id}/banjax_auth_hash": {
       "patch": {
         "operationId": "partialUpdateBanjaxPassword",
@@ -2356,350 +2191,6 @@
         },
         "tags": [
           "special"
-        ]
-      }
-    },
-    "/api/admin/website/complete_setup/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteCompleteSetup",
-        "description": "Mark the website as setup completed (No WebsiteStatusGuardMixin)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/reset_to_zero/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteResetToZero",
-        "description": "Reset the website status to 0 (No WebsiteStatusGuardMixin)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/approve/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteApprove",
-        "description": "Approve website (To 3.4)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/reject/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteReject",
-        "description": "Reject website, To 0 (No WebsiteStatusGuardMixin)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/confirm_ns_info/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteConfirmNSInfo",
-        "description": "Confirm NS info (To 3.5)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/confirm_technical_setup/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteConfirmTechnicalSetup",
-        "description": "Confirm technical setup (To 3.6)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/update_status_and_notify/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteUpdateStatusAndNotify",
-        "description": "Update website status and notify (To 4.0)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/restart_admin_setup/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteRestartAdminSetup",
-        "description": "Restart admin setup, To to 3.0 and delete approval (No WebsiteStatusGuardMixin)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
         ]
       }
     }
