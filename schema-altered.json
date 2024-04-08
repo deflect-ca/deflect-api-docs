@@ -2747,13 +2747,61 @@
           "websites": {
             "type": "array",
             "items": {
-              "type": "integer"
-            }
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "readOnly": true
+                },
+                "url": {
+                  "type": "string",
+                  "maxLength": 255
+                },
+                "status": {
+                  "type": "number"
+                },
+                "ip_address": {
+                  "type": "string",
+                  "nullable": true,
+                  "maxLength": 16
+                },
+                "under_attack": {
+                  "type": "boolean"
+                },
+                "nsinfo": {
+                  "type": "string",
+                  "nullable": true,
+                  "maxLength": 255
+                },
+                "business": {
+                  "type": "boolean"
+                },
+                "created_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "readOnly": true,
+                  "nullable": true
+                },
+                "updated_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "readOnly": true,
+                  "nullable": true
+                },
+                "creator": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "url",
+                "creator"
+              ]
+            },
+            "readOnly": true
           }
         },
         "required": [
-          "username",
-          "websites"
+          "username"
         ]
       },
       "WebsiteListCreate": {
