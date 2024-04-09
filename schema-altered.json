@@ -1975,6 +1975,47 @@
         ]
       }
     },
+    "/api/admin/action_log/{website_id}": {
+      "get": {
+        "operationId": "retrievePlaceholder",
+        "description": "Log action",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Placeholder"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-action-log"
+        ]
+      }
+    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
@@ -3216,6 +3257,10 @@
           "name",
           "email"
         ]
+      },
+      "Placeholder": {
+        "type": "object",
+        "properties": {}
       },
       "AuthToken": {
         "type": "object",
