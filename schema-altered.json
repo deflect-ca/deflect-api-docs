@@ -2349,6 +2349,47 @@
         ]
       }
     },
+    "/api/profile/change_password": {
+      "patch": {
+        "operationId": "partialUpdateChangePassword",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePassword"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePassword"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePassword"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "profile"
+        ]
+      }
+    },
     "/api/special/{website_id}/banjax_auth_hash": {
       "patch": {
         "operationId": "partialUpdateBanjaxPassword",
@@ -3340,6 +3381,21 @@
         },
         "required": [
           "email"
+        ]
+      },
+      "ChangePassword": {
+        "type": "object",
+        "properties": {
+          "old_password": {
+            "type": "string"
+          },
+          "new_password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "old_password",
+          "new_password"
         ]
       },
       "BanjaxPassword": {
