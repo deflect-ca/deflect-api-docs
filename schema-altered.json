@@ -2254,10 +2254,10 @@
         ]
       }
     },
-    "/api/integration/cache_purge/{website_id}": {
+    "/api/special/cache_purge/{website_id}": {
       "post": {
         "operationId": "createCachePurge",
-        "description": "Purge cache for website",
+        "description": "Cache purge for website (GET ?sync=True to get result in sync)",
         "parameters": [
           {
             "name": "website_id",
@@ -2293,7 +2293,7 @@
           }
         },
         "tags": [
-          "integration"
+          "special"
         ]
       }
     },
