@@ -1311,7 +1311,7 @@
           }
         },
         "tags": [
-          "test"
+          "special"
         ]
       },
       "post": {
@@ -1342,7 +1342,7 @@
           }
         },
         "tags": [
-          "test"
+          "special"
         ]
       }
     },
