@@ -3223,6 +3223,62 @@
             "type": "string",
             "maxLength": 150
           },
+          "last_name": {
+            "type": "string",
+            "maxLength": 150
+          },
+          "date_joined": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "last_login": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "is_active": {
+            "type": "boolean",
+            "description": "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."
+          },
+          "is_staff": {
+            "type": "boolean",
+            "description": "Designates whether the user can log into this admin site."
+          },
+          "is_superuser": {
+            "type": "boolean",
+            "description": "Designates that this user has all permissions without explicitly assigning them."
+          },
+          "user_permissions": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Specific permissions for this user."
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "The groups this user belongs to. A user will get all permissions granted to each of their groups."
+          },
+          "has_password": {
+            "type": "string",
+            "readOnly": true
+          },
+          "userprofile": {
+            "type": "object",
+            "properties": {
+              "tos_accepted": {
+                "type": "boolean"
+              },
+              "locale": {
+                "type": "string",
+                "maxLength": 5
+              }
+            },
+            "readOnly": true
+          },
           "websites": {
             "type": "array",
             "items": {
