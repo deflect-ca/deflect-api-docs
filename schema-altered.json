@@ -1589,10 +1589,28 @@
             }
           },
           {
-            "name": "first_name",
+            "name": "is_active",
             "required": false,
             "in": "query",
-            "description": "first_name",
+            "description": "is_active",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "is_staff",
+            "required": false,
+            "in": "query",
+            "description": "is_staff",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "is_superuser",
+            "required": false,
+            "in": "query",
+            "description": "is_superuser",
             "schema": {
               "type": "string"
             }
