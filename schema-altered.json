@@ -2317,7 +2317,7 @@
     },
     "/api/setup/{website_id}/{setup_step}": {
       "post": {
-        "operationId": "createSetupStatus",
+        "operationId": "createWebsite",
         "description": "API to update website setup status.\nNote status will only increase, not decrease.",
         "parameters": [
           {
@@ -2342,13 +2342,19 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/Placeholder"
+              }
             },
             "application/x-www-form-urlencoded": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/Placeholder"
+              }
             },
             "multipart/form-data": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/Placeholder"
+              }
             }
           }
         },
@@ -2356,7 +2362,9 @@
           "201": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/Placeholder"
+                }
               }
             },
             "description": ""
