@@ -3381,20 +3381,6 @@
             "type": "boolean",
             "description": "Designates that this user has all permissions without explicitly assigning them."
           },
-          "user_permissions": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
-            "description": "Specific permissions for this user."
-          },
-          "groups": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
-            "description": "The groups this user belongs to. A user will get all permissions granted to each of their groups."
-          },
           "has_password": {
             "type": "string",
             "readOnly": true
