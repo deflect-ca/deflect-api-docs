@@ -2422,67 +2422,7 @@
         ]
       }
     },
-    "/api/setup/{website_id}/{setup_step}": {
-      "post": {
-        "operationId": "createWebsite",
-        "description": "API to update website setup status.\nNote status will only increase, not decrease.",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "setup_step",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Placeholder"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Placeholder"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Placeholder"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Placeholder"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "setup"
-        ]
-      }
-    },
-    "/api/profile/change_password": {
+    "/api/profile/password": {
       "patch": {
         "operationId": "partialUpdateChangePassword",
         "description": "",
@@ -2523,7 +2463,7 @@
         ]
       }
     },
-    "/api/profile/change_email": {
+    "/api/profile/email": {
       "patch": {
         "operationId": "partialUpdateChangeEmail",
         "description": "",
@@ -2612,6 +2552,66 @@
         },
         "tags": [
           "special"
+        ]
+      }
+    },
+    "/api/setup/{website_id}/{setup_step}": {
+      "patch": {
+        "operationId": "partialUpdateWebsite",
+        "description": "API to update website setup status.\nNote status will only increase, not decrease.",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "setup_step",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Placeholder"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Placeholder"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Placeholder"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Placeholder"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "setup"
         ]
       }
     },
