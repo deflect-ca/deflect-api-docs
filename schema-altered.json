@@ -174,6 +174,148 @@
         ]
       }
     },
+    "/api/users": {
+      "get": {
+        "operationId": "listUsers",
+        "description": "List of all users (Permission: IsAdminOrDenied)",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "id",
+            "required": false,
+            "in": "query",
+            "description": "id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "required": false,
+            "in": "query",
+            "description": "username",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "required": false,
+            "in": "query",
+            "description": "email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "first_name",
+            "required": false,
+            "in": "query",
+            "description": "first_name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "example": 123
+                    },
+                    "next": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "uri",
+                      "example": "http://api.example.org/accounts/?page=4"
+                    },
+                    "previous": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "uri",
+                      "example": "http://api.example.org/accounts/?page=2"
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "operationId": "retrieveUser",
+        "description": "Detail of a user (Permission: IsAdminOrDenied)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this user.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      }
+    },
     "/api/website": {
       "get": {
         "operationId": "listWebsiteListCreates",
@@ -791,16 +933,80 @@
         ]
       }
     },
-    "/api/website/{id}/authorize_user": {
+    "/api/dnet/": {
       "get": {
-        "operationId": "listWebsites",
-        "description": "Get all sites under current user",
+        "operationId": "listDnets",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Dnet"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "dnet"
+        ]
+      },
+      "post": {
+        "operationId": "createDnet",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Dnet"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Dnet"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Dnet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dnet"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "dnet"
+        ]
+      }
+    },
+    "/api/dnet/{id}": {
+      "get": {
+        "operationId": "retrieveDnet",
+        "description": "We are not using `generics.RetrieveUpdateDestroyAPIView` here\nsince dnet shouldn't be allowed to update",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "A unique integer value identifying this website.",
+            "description": "A unique integer value identifying this dnet.",
             "schema": {
               "type": "string"
             }
@@ -811,10 +1017,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Placeholder"
-                  }
+                  "$ref": "#/components/schemas/Dnet"
                 }
               }
             },
@@ -822,67 +1025,18 @@
           }
         },
         "tags": [
-          "website-authorize-user"
-        ]
-      },
-      "post": {
-        "operationId": "createWebsite",
-        "description": "Authorize user to access the website",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this website.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Placeholder"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Placeholder"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Placeholder"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Placeholder"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "website-authorize-user"
+          "dnet"
         ]
       },
       "delete": {
-        "operationId": "destroyWebsite",
-        "description": "Revoke user access to the website",
+        "operationId": "destroyDnet",
+        "description": "We are not using `generics.RetrieveUpdateDestroyAPIView` here\nsince dnet shouldn't be allowed to update",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "A unique integer value identifying this website.",
+            "description": "A unique integer value identifying this dnet.",
             "schema": {
               "type": "string"
             }
@@ -894,7 +1048,224 @@
           }
         },
         "tags": [
-          "website-authorize-user"
+          "dnet"
+        ]
+      }
+    },
+    "/api/edge/": {
+      "get": {
+        "operationId": "listEdges",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Edge"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "edge"
+        ]
+      },
+      "post": {
+        "operationId": "createEdge",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Edge"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "edge"
+        ]
+      }
+    },
+    "/api/edge/{id}": {
+      "get": {
+        "operationId": "retrieveEdge",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this edge.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Edge"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "edge"
+        ]
+      },
+      "put": {
+        "operationId": "updateEdge",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this edge.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Edge"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "edge"
+        ]
+      },
+      "patch": {
+        "operationId": "partialUpdateEdge",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this edge.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Edge"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Edge"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "edge"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyEdge",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this edge.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "edge"
         ]
       }
     },
@@ -917,7 +1288,7 @@
           }
         },
         "tags": [
-          "integration"
+          "gen_site_config"
         ]
       }
     },
@@ -940,7 +1311,7 @@
           }
         },
         "tags": [
-          "special"
+          "test"
         ]
       },
       "post": {
@@ -971,7 +1342,7 @@
           }
         },
         "tags": [
-          "special"
+          "test"
         ]
       }
     },
@@ -1265,7 +1636,7 @@
           }
         },
         "tags": [
-          "admin-website"
+          "admin"
         ]
       }
     },
@@ -1375,7 +1746,7 @@
           }
         },
         "tags": [
-          "admin-website"
+          "admin"
         ]
       }
     },
@@ -1405,7 +1776,7 @@
           }
         },
         "tags": [
-          "admin-checks"
+          "admin"
         ]
       }
     },
@@ -1435,709 +1806,7 @@
           }
         },
         "tags": [
-          "admin-checks"
-        ]
-      }
-    },
-    "/api/admin/checks/dns_sync/{website_id}": {
-      "get": {
-        "operationId": "retrieveChecksDNSSync",
-        "description": "Check that DNS records have synced to the nameservers\n\nReturns JSON result on success otherwise it raises an exception",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-checks"
-        ]
-      }
-    },
-    "/api/admin/easydns/{website_id}": {
-      "get": {
-        "operationId": "retrieveEasyDNS",
-        "description": "Get easydns status from easyDNS (GET ?refersh_status=True to refresh status from easydns)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-easydns"
-        ]
-      },
-      "post": {
-        "operationId": "createEasyDNS",
-        "description": "Register domain on easyDNS",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-easydns"
-        ]
-      },
-      "put": {
-        "operationId": "updateEasyDNS",
-        "description": "Update domain primary NS on easyDNS (body param: primary_ns)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-easydns"
-        ]
-      },
-      "delete": {
-        "operationId": "destroyEasyDNS",
-        "description": "Delete domain on easyDNS",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-easydns"
-        ]
-      }
-    },
-    "/api/admin/action_log/{website_id}": {
-      "get": {
-        "operationId": "retrievePlaceholder",
-        "description": "Log action",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "search",
-            "required": false,
-            "in": "query",
-            "description": "A search term.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Placeholder"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-action-log"
-        ]
-      }
-    },
-    "/api/users": {
-      "get": {
-        "operationId": "listUsers",
-        "description": "List of all users (Permission: IsAdminOrDenied)",
-        "parameters": [
-          {
-            "name": "page",
-            "required": false,
-            "in": "query",
-            "description": "A page number within the paginated result set.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "page_size",
-            "required": false,
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "id",
-            "required": false,
-            "in": "query",
-            "description": "id",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "username",
-            "required": false,
-            "in": "query",
-            "description": "username",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "email",
-            "required": false,
-            "in": "query",
-            "description": "email",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "is_active",
-            "required": false,
-            "in": "query",
-            "description": "is_active",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "is_staff",
-            "required": false,
-            "in": "query",
-            "description": "is_staff",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "is_superuser",
-            "required": false,
-            "in": "query",
-            "description": "is_superuser",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "search",
-            "required": false,
-            "in": "query",
-            "description": "A search term.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "count": {
-                      "type": "integer",
-                      "example": 123
-                    },
-                    "next": {
-                      "type": "string",
-                      "nullable": true,
-                      "format": "uri",
-                      "example": "http://api.example.org/accounts/?page=4"
-                    },
-                    "previous": {
-                      "type": "string",
-                      "nullable": true,
-                      "format": "uri",
-                      "example": "http://api.example.org/accounts/?page=2"
-                    },
-                    "results": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/User"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-users"
-        ]
-      }
-    },
-    "/api/users/{id}": {
-      "get": {
-        "operationId": "retrieveUser",
-        "description": "Detail of a user (Permission: IsAdminOrDenied)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this user.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-users"
-        ]
-      }
-    },
-    "/api/dnet/": {
-      "get": {
-        "operationId": "listDnets",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Dnet"
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-dnet"
-        ]
-      },
-      "post": {
-        "operationId": "createDnet",
-        "description": "",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Dnet"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Dnet"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Dnet"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Dnet"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-dnet"
-        ]
-      }
-    },
-    "/api/dnet/{id}": {
-      "get": {
-        "operationId": "retrieveDnet",
-        "description": "We are not using `generics.RetrieveUpdateDestroyAPIView` here\nsince dnet shouldn't be allowed to update",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this dnet.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Dnet"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-dnet"
-        ]
-      },
-      "delete": {
-        "operationId": "destroyDnet",
-        "description": "We are not using `generics.RetrieveUpdateDestroyAPIView` here\nsince dnet shouldn't be allowed to update",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this dnet.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-dnet"
-        ]
-      }
-    },
-    "/api/edge/": {
-      "get": {
-        "operationId": "listEdges",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Edge"
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-edge"
-        ]
-      },
-      "post": {
-        "operationId": "createEdge",
-        "description": "",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Edge"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-edge"
-        ]
-      }
-    },
-    "/api/edge/{id}": {
-      "get": {
-        "operationId": "retrieveEdge",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this edge.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Edge"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-edge"
-        ]
-      },
-      "put": {
-        "operationId": "updateEdge",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this edge.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Edge"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-edge"
-        ]
-      },
-      "patch": {
-        "operationId": "partialUpdateEdge",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this edge.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Edge"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-edge"
-        ]
-      },
-      "delete": {
-        "operationId": "destroyEdge",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this edge.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-edge"
+          "admin"
         ]
       }
     },
@@ -2379,13 +2048,22 @@
         ]
       }
     },
-    "/api/special/cache_purge/{website_id}": {
+    "/api/setup/{website_id}/{setup_step}": {
       "post": {
-        "operationId": "createCachePurge",
-        "description": "Cache purge for website (GET ?sync=True to get result in sync)",
+        "operationId": "createSetupStatus",
+        "description": "API to update website setup status.\nNote status will only increase, not decrease.",
         "parameters": [
           {
             "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "setup_step",
             "in": "path",
             "required": true,
             "description": "",
@@ -2418,40 +2096,50 @@
           }
         },
         "tags": [
-          "special"
+          "setup"
         ]
       }
     },
-    "/api/profile/password": {
-      "patch": {
-        "operationId": "partialUpdateChangePassword",
-        "description": "",
-        "parameters": [],
+    "/api/certificate/{website_id}/origin": {
+      "post": {
+        "operationId": "createTlsCreate",
+        "description": "List all website options from OptionSchema",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ChangePassword"
+                "$ref": "#/components/schemas/TlsCreate"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/ChangePassword"
+                "$ref": "#/components/schemas/TlsCreate"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/ChangePassword"
+                "$ref": "#/components/schemas/TlsCreate"
               }
             }
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ChangePassword"
+                  "$ref": "#/components/schemas/TlsCreate"
                 }
               }
             },
@@ -2459,48 +2147,7 @@
           }
         },
         "tags": [
-          "profile"
-        ]
-      }
-    },
-    "/api/profile/email": {
-      "patch": {
-        "operationId": "partialUpdateChangeEmail",
-        "description": "",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChangeEmail"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/ChangeEmail"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/ChangeEmail"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ChangeEmail"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "profile"
+          "tls"
         ]
       }
     },
@@ -2554,410 +2201,6 @@
           "special"
         ]
       }
-    },
-    "/api/setup/{website_id}/{setup_step}": {
-      "patch": {
-        "operationId": "partialUpdateWebsite",
-        "description": "API to update website setup status.\nNote status will only increase, not decrease.",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "setup_step",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Placeholder"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Placeholder"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Placeholder"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Placeholder"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "setup"
-        ]
-      }
-    },
-    "/api/admin/website/complete_setup/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteCompleteSetup",
-        "description": "Mark the website as setup completed (No WebsiteStatusGuardMixin)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/reset_to_zero/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteResetToZero",
-        "description": "Reset the website status to 0 (No WebsiteStatusGuardMixin)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/approve/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteApprove",
-        "description": "Approve website (To 3.4)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/reject/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteReject",
-        "description": "Reject website, To 0 (No WebsiteStatusGuardMixin)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/confirm_ns_info/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteConfirmNSInfo",
-        "description": "Confirm NS info (To 3.5)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/confirm_technical_setup/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteConfirmTechnicalSetup",
-        "description": "Confirm technical setup (To 3.6)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/update_status_and_notify/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteUpdateStatusAndNotify",
-        "description": "Update website status and notify (To 4.0)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/admin/website/restart_admin_setup/{website_id}": {
-      "patch": {
-        "operationId": "partialUpdateWebsiteRestartAdminSetup",
-        "description": "Restart admin setup, To to 3.0 and delete approval (No WebsiteStatusGuardMixin)",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
-        ]
-      }
     }
   },
   "components": {
@@ -2977,6 +2220,40 @@
             "maxLength": 5
           }
         }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "username": {
+            "type": "string",
+            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
+            "pattern": "^[\\w.@+-]+\\\\z",
+            "maxLength": 150
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 254
+          },
+          "first_name": {
+            "type": "string",
+            "maxLength": 150
+          },
+          "websites": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "username",
+          "websites"
+        ]
       },
       "WebsiteListCreate": {
         "type": "object",
@@ -3259,9 +2536,66 @@
           "hostname"
         ]
       },
-      "Placeholder": {
+      "Dnet": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 20
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Edge": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "hostname": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "ip": {
+            "type": "string",
+            "maxLength": 16
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          }
+        },
+        "required": [
+          "hostname",
+          "ip"
+        ]
       },
       "Hosting": {
         "type": "object",
@@ -3332,191 +2666,6 @@
         "required": [
           "name",
           "email"
-        ]
-      },
-      "User": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "username": {
-            "type": "string",
-            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
-            "pattern": "^[\\w.@+-]+\\\\z",
-            "maxLength": 150
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "maxLength": 254
-          },
-          "first_name": {
-            "type": "string",
-            "maxLength": 150
-          },
-          "last_name": {
-            "type": "string",
-            "maxLength": 150
-          },
-          "date_joined": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "last_login": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "is_active": {
-            "type": "boolean",
-            "description": "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."
-          },
-          "is_staff": {
-            "type": "boolean",
-            "description": "Designates whether the user can log into this admin site."
-          },
-          "is_superuser": {
-            "type": "boolean",
-            "description": "Designates that this user has all permissions without explicitly assigning them."
-          },
-          "has_password": {
-            "type": "string",
-            "readOnly": true
-          },
-          "userprofile": {
-            "type": "object",
-            "properties": {
-              "tos_accepted": {
-                "type": "boolean"
-              },
-              "locale": {
-                "type": "string",
-                "maxLength": 5
-              }
-            },
-            "readOnly": true
-          },
-          "websites": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "integer",
-                  "readOnly": true
-                },
-                "url": {
-                  "type": "string",
-                  "maxLength": 255
-                },
-                "status": {
-                  "type": "number"
-                },
-                "ip_address": {
-                  "type": "string",
-                  "nullable": true,
-                  "maxLength": 16
-                },
-                "under_attack": {
-                  "type": "boolean"
-                },
-                "nsinfo": {
-                  "type": "string",
-                  "nullable": true,
-                  "maxLength": 255
-                },
-                "business": {
-                  "type": "boolean"
-                },
-                "created_at": {
-                  "type": "string",
-                  "format": "date-time",
-                  "readOnly": true,
-                  "nullable": true
-                },
-                "updated_at": {
-                  "type": "string",
-                  "format": "date-time",
-                  "readOnly": true,
-                  "nullable": true
-                },
-                "creator": {
-                  "type": "integer"
-                }
-              },
-              "required": [
-                "url",
-                "creator"
-              ]
-            },
-            "readOnly": true
-          }
-        },
-        "required": [
-          "username"
-        ]
-      },
-      "Dnet": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 20
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "Edge": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "hostname": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "ip": {
-            "type": "string",
-            "maxLength": 16
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          }
-        },
-        "required": [
-          "hostname",
-          "ip"
         ]
       },
       "AuthToken": {
@@ -3599,35 +2748,35 @@
           "email"
         ]
       },
-      "ChangePassword": {
+      "TlsCreate": {
         "type": "object",
         "properties": {
-          "old_password": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "hostnames": {
             "type": "string"
           },
-          "new_password": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "old_password",
-          "new_password"
-        ]
-      },
-      "ChangeEmail": {
-        "type": "object",
-        "properties": {
-          "new_email": {
+          "date_created": {
             "type": "string",
-            "format": "email"
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
           },
-          "password": {
-            "type": "string"
+          "date_expires": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "website": {
+            "type": "integer"
           }
         },
         "required": [
-          "new_email",
-          "password"
+          "hostnames",
+          "website"
         ]
       },
       "BanjaxPassword": {
