@@ -1402,6 +1402,90 @@
         ]
       }
     },
+    "/api/certificate/{website_id}/origin": {
+      "get": {
+        "operationId": "listTlsCreates",
+        "description": "List all options of a website",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TlsCreate"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "certificate"
+        ]
+      },
+      "post": {
+        "operationId": "createTlsCreate",
+        "description": "List all website options from OptionSchema",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TlsCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TlsCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TlsCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TlsCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "certificate"
+        ]
+      }
+    },
     "/api/website/{id}/hosting": {
       "get": {
         "operationId": "listHostings",
@@ -2100,57 +2184,6 @@
         ]
       }
     },
-    "/api/certificate/{website_id}/origin": {
-      "post": {
-        "operationId": "createTlsCreate",
-        "description": "List all website options from OptionSchema",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TlsCreate"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/TlsCreate"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/TlsCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TlsCreate"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "tls"
-        ]
-      }
-    },
     "/api/special/{website_id}/banjax_auth_hash": {
       "patch": {
         "operationId": "partialUpdateBanjaxPassword",
@@ -2597,6 +2630,37 @@
           "ip"
         ]
       },
+      "TlsCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "hostnames": {
+            "type": "string"
+          },
+          "date_created": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "date_expires": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "website": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostnames",
+          "website"
+        ]
+      },
       "Hosting": {
         "type": "object",
         "properties": {
@@ -2746,37 +2810,6 @@
         },
         "required": [
           "email"
-        ]
-      },
-      "TlsCreate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "hostnames": {
-            "type": "string"
-          },
-          "date_created": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          },
-          "date_expires": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          },
-          "website": {
-            "type": "integer"
-          }
-        },
-        "required": [
-          "hostnames",
-          "website"
         ]
       },
       "BanjaxPassword": {
