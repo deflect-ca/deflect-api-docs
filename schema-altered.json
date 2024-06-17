@@ -1031,13 +1031,13 @@
         ]
       }
     },
-    "/api/certificate/{website_id}/origin": {
+    "/api/certificate/{id}/origin": {
       "get": {
-        "operationId": "listTlsCreates",
+        "operationId": "listCertificateOrigins",
         "description": "List all options of a website",
         "parameters": [
           {
-            "name": "website_id",
+            "name": "id",
             "in": "path",
             "required": true,
             "description": "",
@@ -1053,7 +1053,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TlsCreate"
+                    "$ref": "#/components/schemas/CertificateOrigin"
                   }
                 }
               }
@@ -1066,11 +1066,11 @@
         ]
       },
       "post": {
-        "operationId": "createTlsCreate",
-        "description": "List all website options from OptionSchema",
+        "operationId": "createCertificateOrigin",
+        "description": "Create new website under current user",
         "parameters": [
           {
-            "name": "website_id",
+            "name": "id",
             "in": "path",
             "required": true,
             "description": "",
@@ -1083,17 +1083,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TlsCreate"
+                "$ref": "#/components/schemas/CertificateOrigin"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/TlsCreate"
+                "$ref": "#/components/schemas/CertificateOrigin"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/TlsCreate"
+                "$ref": "#/components/schemas/CertificateOrigin"
               }
             }
           }
@@ -1103,7 +1103,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TlsCreate"
+                  "$ref": "#/components/schemas/CertificateOrigin"
                 }
               }
             },
@@ -3347,7 +3347,7 @@
         "type": "object",
         "properties": {}
       },
-      "TlsCreate": {
+      "CertificateOrigin": {
         "type": "object",
         "properties": {
           "id": {
@@ -3369,13 +3369,26 @@
             "readOnly": true,
             "nullable": true
           },
+          "fingerprint": {
+            "type": "string",
+            "readOnly": true
+          },
           "website": {
-            "type": "integer"
+            "type": "string",
+            "readOnly": true
+          },
+          "has_private": {
+            "type": "boolean",
+            "readOnly": true,
+            "nullable": true
+          },
+          "pem_encoded_csr": {
+            "type": "string",
+            "writeOnly": true
           }
         },
         "required": [
-          "hostnames",
-          "website"
+          "hostnames"
         ]
       },
       "Hosting": {
