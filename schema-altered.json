@@ -1031,90 +1031,6 @@
         ]
       }
     },
-    "/api/certificate/{id}/origin": {
-      "get": {
-        "operationId": "listCertificateOrigins",
-        "description": "List all options of a website",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CertificateOrigin"
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "certificate"
-        ]
-      },
-      "post": {
-        "operationId": "createCertificateOrigin",
-        "description": "Create new website under current user",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CertificateOrigin"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/CertificateOrigin"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/CertificateOrigin"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CertificateOrigin"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "certificate"
-        ]
-      }
-    },
     "/api/website/{id}/hosting": {
       "get": {
         "operationId": "listHostings",
@@ -2222,6 +2138,90 @@
         },
         "tags": [
           "admin-edge"
+        ]
+      }
+    },
+    "/api/certificate/{id}/origin": {
+      "get": {
+        "operationId": "listCertificateOrigins",
+        "description": "List all origin certificates under current website",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CertificateOrigin"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "certificate"
+        ]
+      },
+      "post": {
+        "operationId": "createCertificateOrigin",
+        "description": "Create new website origin certificate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateOrigin"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateOrigin"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateOrigin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateOrigin"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "certificate"
         ]
       }
     },
@@ -3347,50 +3347,6 @@
         "type": "object",
         "properties": {}
       },
-      "CertificateOrigin": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "hostnames": {
-            "type": "string"
-          },
-          "date_created": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          },
-          "date_expires": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          },
-          "fingerprint": {
-            "type": "string",
-            "readOnly": true
-          },
-          "website": {
-            "type": "string",
-            "readOnly": true
-          },
-          "has_private": {
-            "type": "boolean",
-            "readOnly": true,
-            "nullable": true
-          },
-          "pem_encoded_csr": {
-            "type": "string",
-            "writeOnly": true
-          }
-        },
-        "required": [
-          "hostnames"
-        ]
-      },
       "Hosting": {
         "type": "object",
         "properties": {
@@ -3645,6 +3601,50 @@
         "required": [
           "hostname",
           "ip"
+        ]
+      },
+      "CertificateOrigin": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "hostnames": {
+            "type": "string"
+          },
+          "date_created": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "date_expires": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "fingerprint": {
+            "type": "string",
+            "readOnly": true
+          },
+          "website": {
+            "type": "string",
+            "readOnly": true
+          },
+          "has_private": {
+            "type": "boolean",
+            "readOnly": true,
+            "nullable": true
+          },
+          "pem_encoded_csr": {
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "hostnames"
         ]
       },
       "AuthToken": {
