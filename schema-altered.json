@@ -2143,14 +2143,14 @@
     },
     "/api/certificate/{id}/origin": {
       "get": {
-        "operationId": "listCertificateOrigins",
+        "operationId": "listCertificates",
         "description": "List all origin certificates under current website",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "",
+            "description": "A unique integer value identifying this certificate.",
             "schema": {
               "type": "string"
             }
@@ -2176,14 +2176,14 @@
         ]
       },
       "post": {
-        "operationId": "createCertificateOrigin",
+        "operationId": "createCertificate",
         "description": "Create new website origin certificate",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "",
+            "description": "A unique integer value identifying this certificate.",
             "schema": {
               "type": "string"
             }
@@ -2225,10 +2225,10 @@
         ]
       }
     },
-    "/api/certificate/{id}/public": {
+    "/api/certificate/{id}/download": {
       "get": {
-        "operationId": "listCertificatePublics",
-        "description": "Get website public certificates info",
+        "operationId": "listCertificateOriginDownloads",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -2246,58 +2246,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CertificatePublic"
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "certificate"
-        ]
-      },
-      "post": {
-        "operationId": "createCertificatePublic",
-        "description": "Save website public certificate",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CertificatePublic"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/CertificatePublic"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/CertificatePublic"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CertificatePublic"
+                  "items": {}
                 }
               }
             },
@@ -3729,41 +3678,6 @@
         },
         "required": [
           "hostnames"
-        ]
-      },
-      "CertificatePublic": {
-        "type": "object",
-        "properties": {
-          "use_ssl": {
-            "type": "string",
-            "writeOnly": true
-          },
-          "cert_issuer": {
-            "type": "string",
-            "writeOnly": true
-          },
-          "certificate_file": {
-            "type": "string",
-            "format": "binary",
-            "writeOnly": true
-          },
-          "chain_file": {
-            "type": "string",
-            "format": "binary",
-            "writeOnly": true
-          },
-          "key_file": {
-            "type": "string",
-            "format": "binary",
-            "writeOnly": true
-          }
-        },
-        "required": [
-          "use_ssl",
-          "cert_issuer",
-          "certificate_file",
-          "chain_file",
-          "key_file"
         ]
       },
       "AuthToken": {
