@@ -2258,90 +2258,6 @@
         ]
       }
     },
-    "/api/certificate/{id}/public": {
-      "get": {
-        "operationId": "listCertificatePublics",
-        "description": "Get website public certificates info",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CertificatePublic"
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "certificate"
-        ]
-      },
-      "post": {
-        "operationId": "createCertificatePublic",
-        "description": "Save website public certificate",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CertificatePublic"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/CertificatePublic"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/CertificatePublic"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CertificatePublic"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "certificate"
-        ]
-      }
-    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
@@ -3762,41 +3678,6 @@
         },
         "required": [
           "hostnames"
-        ]
-      },
-      "CertificatePublic": {
-        "type": "object",
-        "properties": {
-          "use_ssl": {
-            "type": "string",
-            "writeOnly": true
-          },
-          "cert_issuer": {
-            "type": "string",
-            "writeOnly": true
-          },
-          "certificate_file": {
-            "type": "string",
-            "format": "binary",
-            "writeOnly": true
-          },
-          "chain_file": {
-            "type": "string",
-            "format": "binary",
-            "writeOnly": true
-          },
-          "key_file": {
-            "type": "string",
-            "format": "binary",
-            "writeOnly": true
-          }
-        },
-        "required": [
-          "use_ssl",
-          "cert_issuer",
-          "certificate_file",
-          "chain_file",
-          "key_file"
         ]
       },
       "AuthToken": {
