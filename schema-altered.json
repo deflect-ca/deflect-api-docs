@@ -2225,13 +2225,22 @@
         ]
       }
     },
-    "/api/certificate/{id}/download": {
+    "/api/certificate/{id}/download/{cpk}": {
       "get": {
-        "operationId": "listCertificateOriginDownloads",
+        "operationId": "retrieveCertificateOriginDownload",
         "description": "",
         "parameters": [
           {
             "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cpk",
             "in": "path",
             "required": true,
             "description": "",
@@ -2244,10 +2253,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
+                "schema": {}
               }
             },
             "description": ""
