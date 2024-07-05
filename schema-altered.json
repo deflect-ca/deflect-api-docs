@@ -2225,45 +2225,6 @@
         ]
       }
     },
-    "/api/certificate/{id}/download/{cpk}": {
-      "get": {
-        "operationId": "retrieveCertificateOriginDownload",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "cpk",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "certificate"
-        ]
-      }
-    },
     "/api/certificate/{id}/public": {
       "get": {
         "operationId": "listCertificatePublics",
@@ -3163,6 +3124,40 @@
         },
         "tags": [
           "admin-website"
+        ]
+      }
+    },
+    "/api/certificate/{id}/{cpk}": {
+      "delete": {
+        "operationId": "destroyCertificateOrigin",
+        "description": "Delete option under current website",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "certificate"
         ]
       }
     }
