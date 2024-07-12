@@ -3832,7 +3832,11 @@
           }
         },
         "required": [
-          "use_ssl"
+          "use_ssl",
+          "cert_issuer",
+          "certificate_file",
+          "chain_file",
+          "key_file"
         ]
       },
       "AuthToken": {
