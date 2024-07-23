@@ -3808,7 +3808,7 @@
         "type": "object",
         "properties": {
           "use_ssl": {
-            "type": "boolean",
+            "type": "string",
             "writeOnly": true
           },
           "cert_issuer": {
