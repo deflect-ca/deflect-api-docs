@@ -2387,6 +2387,29 @@
         ]
       }
     },
+    "/api/oauth2/authorize/": {
+      "get": {
+        "operationId": "listAuthorizations",
+        "description": "Implements an endpoint to handle *Authorization Requests* as in :rfc:`4.1.1` and prompting the\nuser with a form to determine if she authorizes the client application to access her data.\nThis endpoint is reached two times during the authorization process:\n* first receive a ``GET`` request from user asking authorization for a certain client\napplication, a form is served possibly showing some useful info and prompting for\n*authorize/do not authorize*.\n\n* then receive a ``POST`` request possibly after user authorized the access\n\nSome information contained in the ``GET`` request and needed to create a Grant token during\nthe ``POST`` request would be lost between the two steps above, so they are temporarily stored in\nhidden fields on the form.\nA possible alternative could be keeping such information in the session.\n\nThe endpoint is used in the following flows:\n* Authorization code\n* Implicit grant",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "oauth2"
+        ]
+      }
+    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
