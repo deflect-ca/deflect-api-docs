@@ -2691,6 +2691,72 @@
         ]
       }
     },
+    "/api/oauth2/token/": {
+      "post": {
+        "operationId": "createToken",
+        "description": "Implements an endpoint to provide access tokens\n\nThe endpoint is used in the following flows:\n* Authorization code\n* Password\n* Client credentials",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/api/oauth2/revoke_token/": {
+      "post": {
+        "operationId": "createRevokeToken",
+        "description": "Implements an endpoint to revoke access or refresh tokens",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
     "/api/profile/password": {
       "patch": {
         "operationId": "partialUpdateChangePassword",
