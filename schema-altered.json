@@ -74,6 +74,29 @@
         ]
       }
     },
+    "/api/me": {
+      "get": {
+        "operationId": "listAuthMeZammads",
+        "description": "API to query current user for zammad",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
     "/api/profile": {
       "get": {
         "operationId": "retrieveUserProfile",
@@ -2390,7 +2413,7 @@
     "/api/oauth2/authorize/": {
       "get": {
         "operationId": "listAuthorizations",
-        "description": "Implements an endpoint to handle *Authorization Requests* as in :rfc:`4.1.1` and prompting the\nuser with a form to determine if she authorizes the client application to access her data.\nThis endpoint is reached two times during the authorization process:\n* first receive a ``GET`` request from user asking authorization for a certain client\napplication, a form is served possibly showing some useful info and prompting for\n*authorize/do not authorize*.\n\n* then receive a ``POST`` request possibly after user authorized the access\n\nSome information contained in the ``GET`` request and needed to create a Grant token during\nthe ``POST`` request would be lost between the two steps above, so they are temporarily stored in\nhidden fields on the form.\nA possible alternative could be keeping such information in the session.\n\nThe endpoint is used in the following flows:\n* Authorization code\n* Implicit grant",
+        "description": "Rewrite AuthorizationView from oauth2_provider",
         "parameters": [],
         "responses": {
           "200": {
@@ -2693,19 +2716,25 @@
     },
     "/api/oauth2/token/": {
       "post": {
-        "operationId": "createToken",
-        "description": "Implements an endpoint to provide access tokens\n\nThe endpoint is used in the following flows:\n* Authorization code\n* Password\n* Client credentials",
+        "operationId": "createOauth2Token",
+        "description": "Rewrite the TokenView view from oauth2_provider",
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
-            },
             "application/x-www-form-urlencoded": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/AuthToken"
+              }
             },
             "multipart/form-data": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/AuthToken"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthToken"
+              }
             }
           }
         },
@@ -2713,7 +2742,9 @@
           "201": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AuthToken"
+                }
               }
             },
             "description": ""
@@ -2724,21 +2755,27 @@
         ]
       }
     },
-    "/api/oauth2/revoke_token/": {
+    "/api/oauth2/revoke/": {
       "post": {
-        "operationId": "createRevokeToken",
-        "description": "Implements an endpoint to revoke access or refresh tokens",
+        "operationId": "createRevokeOauth2Token",
+        "description": "Rewrite the RevokeTokenView view from oauth2_provider",
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
-            },
             "application/x-www-form-urlencoded": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/AuthToken"
+              }
             },
             "multipart/form-data": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/AuthToken"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthToken"
+              }
             }
           }
         },
@@ -2746,7 +2783,9 @@
           "201": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AuthToken"
+                }
               }
             },
             "description": ""
