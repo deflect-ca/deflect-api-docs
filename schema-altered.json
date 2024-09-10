@@ -2412,7 +2412,7 @@
     },
     "/api/oauth2/authorize/": {
       "get": {
-        "operationId": "listAuthorizations",
+        "operationId": "listAuthorizationOauth2s",
         "description": "Rewrite AuthorizationView from oauth2_provider",
         "parameters": [],
         "responses": {
@@ -2757,7 +2757,7 @@
     },
     "/api/oauth2/revoke/": {
       "post": {
-        "operationId": "createRevokeOauth2Token",
+        "operationId": "createOauth2TokenRevoke",
         "description": "Rewrite the RevokeTokenView view from oauth2_provider",
         "parameters": [],
         "requestBody": {
