@@ -2433,6 +2433,31 @@
         ]
       }
     },
+    "/api/mfa/user_active_methods": {
+      "get": {
+        "operationId": "listUserMFAMethods",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserMFAMethod"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
@@ -4213,6 +4238,21 @@
         },
         "required": [
           "use_ssl"
+        ]
+      },
+      "UserMFAMethod": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "is_primary": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
         ]
       },
       "AuthToken": {
