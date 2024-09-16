@@ -2951,7 +2951,7 @@
     "/api/mfa/{method}/activate/confirm": {
       "post": {
         "operationId": "createMFAMethodConfirmActivation",
-        "description": "",
+        "description": "Refactoring trench plugin logic for keep is_primaty status of mfa",
         "parameters": [
           {
             "name": "method",
