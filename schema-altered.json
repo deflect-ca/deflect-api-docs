@@ -3333,6 +3333,92 @@
         ]
       }
     },
+    "/api/admin/buisness/enable/{website_id}": {
+      "patch": {
+        "operationId": "partialUpdateWebsiteBuissnessEnable",
+        "description": "Enable buisness statuson website",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
+    "/api/admin/buisness/disable/{website_id}": {
+      "patch": {
+        "operationId": "partialUpdateWebsiteBuissnessDisable",
+        "description": "Disable buisness statuson website",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
     "/api/certificate/{id}/{cpk}": {
       "delete": {
         "operationId": "destroyCertificateOrigin",
@@ -3383,10 +3469,6 @@
           "locale": {
             "type": "string",
             "maxLength": 5
-          },
-          "pgp_key": {
-            "type": "string",
-            "nullable": true
           }
         }
       },
@@ -3802,10 +3884,6 @@
             "properties": {
               "tos_accepted": {
                 "type": "boolean"
-              },
-              "pgp_key": {
-                "type": "string",
-                "nullable": true
               },
               "locale": {
                 "type": "string",
