@@ -3383,6 +3383,10 @@
           "locale": {
             "type": "string",
             "maxLength": 5
+          },
+          "pgp_key": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
