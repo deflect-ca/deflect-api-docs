@@ -3469,6 +3469,10 @@
           "locale": {
             "type": "string",
             "maxLength": 5
+          },
+          "pgp_key": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -3884,6 +3888,10 @@
             "properties": {
               "tos_accepted": {
                 "type": "boolean"
+              },
+              "pgp_key": {
+                "type": "string",
+                "nullable": true
               },
               "locale": {
                 "type": "string",
