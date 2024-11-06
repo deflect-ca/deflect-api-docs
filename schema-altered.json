@@ -2458,6 +2458,126 @@
         ]
       }
     },
+    "/api/zammad/ticket": {
+      "get": {
+        "operationId": "listZammadTickets",
+        "description": "Get ticket list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "zammad"
+        ]
+      },
+      "post": {
+        "operationId": "createZammadTicket",
+        "description": "Create new ticket",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "zammad"
+        ]
+      }
+    },
+    "/api/zammad/ticket/{tpk}/articles": {
+      "get": {
+        "operationId": "listZammadTicketArticles",
+        "description": "Get ticket articles",
+        "parameters": [
+          {
+            "name": "tpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "zammad"
+        ]
+      }
+    },
+    "/api/zammad/{id}/ticket": {
+      "get": {
+        "operationId": "listZammadWebsiteTickets",
+        "description": "Get ticket list",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "zammad"
+        ]
+      }
+    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
