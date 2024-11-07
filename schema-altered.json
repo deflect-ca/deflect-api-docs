@@ -2545,39 +2545,6 @@
         ]
       }
     },
-    "/api/zammad/{id}/ticket": {
-      "get": {
-        "operationId": "listZammadWebsiteTickets",
-        "description": "Get ticket list",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "zammad"
-        ]
-      }
-    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
