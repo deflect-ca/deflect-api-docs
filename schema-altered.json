@@ -850,7 +850,7 @@
       },
       "post": {
         "operationId": "createWebsiteAuthorize",
-        "description": "Authorize user to access the website",
+        "description": "Create a new DNS record under current website",
         "parameters": [
           {
             "name": "id",
@@ -890,29 +890,6 @@
                 }
               }
             },
-            "description": ""
-          }
-        },
-        "tags": [
-          "website-authorize-user"
-        ]
-      },
-      "delete": {
-        "operationId": "destroyWebsiteAuthorize",
-        "description": "Revoke user access to the website",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
             "description": ""
           }
         },
@@ -1793,7 +1770,7 @@
                     "results": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/User"
+                        "$ref": "#/components/schemas/UserAdmin"
                       }
                     }
                   }
@@ -1828,7 +1805,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserAdmin"
                 }
               }
             },
@@ -3768,6 +3745,40 @@
         ]
       }
     },
+    "/api/website/{id}/authorize_user/{ppk}": {
+      "delete": {
+        "operationId": "destroyWebsiteAuthorize",
+        "description": "Delete target website group using website group ID (ppk) under current website",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ppk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "website-authorize-user-detail"
+        ]
+      }
+    },
     "/api/certificate/{id}/{cpk}": {
       "delete": {
         "operationId": "destroyCertificateOrigin",
@@ -4164,76 +4175,8 @@
                 "type": "string",
                 "readOnly": true
               },
-              "userprofile": {
-                "type": "object",
-                "properties": {
-                  "tos_accepted": {
-                    "type": "boolean"
-                  },
-                  "pgp_key": {
-                    "type": "string",
-                    "nullable": true
-                  },
-                  "locale": {
-                    "type": "string",
-                    "maxLength": 5
-                  }
-                },
-                "readOnly": true
-              },
-              "websites": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "readOnly": true
-                    },
-                    "url": {
-                      "type": "string",
-                      "maxLength": 255
-                    },
-                    "status": {
-                      "type": "number"
-                    },
-                    "ip_address": {
-                      "type": "string",
-                      "nullable": true,
-                      "maxLength": 16
-                    },
-                    "under_attack": {
-                      "type": "boolean"
-                    },
-                    "nsinfo": {
-                      "type": "string",
-                      "nullable": true,
-                      "maxLength": 255
-                    },
-                    "business": {
-                      "type": "boolean"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "readOnly": true,
-                      "nullable": true
-                    },
-                    "updated_at": {
-                      "type": "string",
-                      "format": "date-time",
-                      "readOnly": true,
-                      "nullable": true
-                    },
-                    "creator": {
-                      "type": "integer"
-                    }
-                  },
-                  "required": [
-                    "url",
-                    "creator"
-                  ]
-                },
+              "twofa_enabled": {
+                "type": "string",
                 "readOnly": true
               }
             },
@@ -4357,7 +4300,7 @@
         "type": "object",
         "properties": {}
       },
-      "User": {
+      "UserAdmin": {
         "type": "object",
         "properties": {
           "id": {
@@ -4403,6 +4346,10 @@
           "is_superuser": {
             "type": "boolean",
             "description": "Designates that this user has all permissions without explicitly assigning them."
+          },
+          "twofa_enabled": {
+            "type": "string",
+            "readOnly": true
           },
           "has_password": {
             "type": "string",
