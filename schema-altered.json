@@ -210,6 +210,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -816,14 +825,14 @@
     },
     "/api/website/{id}/authorize_user": {
       "get": {
-        "operationId": "listWebsiteAuthorizes",
-        "description": "Get all website roles",
+        "operationId": "listWebsites",
+        "description": "Get all sites under current user",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "",
+            "description": "A unique integer value identifying this website.",
             "schema": {
               "type": "string"
             }
@@ -836,7 +845,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WebsiteAuthorize"
+                    "$ref": "#/components/schemas/Placeholder"
                   }
                 }
               }
@@ -849,14 +858,14 @@
         ]
       },
       "post": {
-        "operationId": "createWebsiteAuthorize",
-        "description": "Create a new DNS record under current website",
+        "operationId": "createWebsite",
+        "description": "Authorize user to access the website",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "",
+            "description": "A unique integer value identifying this website.",
             "schema": {
               "type": "string"
             }
@@ -866,17 +875,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WebsiteAuthorize"
+                "$ref": "#/components/schemas/Placeholder"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/WebsiteAuthorize"
+                "$ref": "#/components/schemas/Placeholder"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/WebsiteAuthorize"
+                "$ref": "#/components/schemas/Placeholder"
               }
             }
           }
@@ -886,10 +895,33 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/WebsiteAuthorize"
+                  "$ref": "#/components/schemas/Placeholder"
                 }
               }
             },
+            "description": ""
+          }
+        },
+        "tags": [
+          "website-authorize-user"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyWebsite",
+        "description": "Revoke user access to the website",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A unique integer value identifying this website.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
             "description": ""
           }
         },
@@ -932,9 +964,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ZoneFetch"
-                  }
+                  "items": {}
                 }
               }
             },
@@ -952,19 +982,13 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ZoneFetch"
-              }
+              "schema": {}
             },
             "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/ZoneFetch"
-              }
+              "schema": {}
             },
             "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/ZoneFetch"
-              }
+              "schema": {}
             }
           }
         },
@@ -972,9 +996,7 @@
           "201": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ZoneFetch"
-                }
+                "schema": {}
               }
             },
             "description": ""
@@ -1029,9 +1051,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TaskStatusFetchZone"
-                  }
+                  "items": {}
                 }
               }
             },
@@ -1345,6 +1365,15 @@
             "required": false,
             "in": "query",
             "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
             "schema": {
               "type": "string"
             }
@@ -1742,6 +1771,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1770,7 +1808,7 @@
                     "results": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/UserAdmin"
+                        "$ref": "#/components/schemas/User"
                       }
                     }
                   }
@@ -1805,7 +1843,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserAdmin"
+                  "$ref": "#/components/schemas/User"
                 }
               }
             },
@@ -2239,7 +2277,7 @@
     },
     "/api/certificate/{id}/download/{cpk}": {
       "get": {
-        "operationId": "retrieveCertificateOrigin",
+        "operationId": "retrieveCertificateOriginDownload",
         "description": "",
         "parameters": [
           {
@@ -2265,9 +2303,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CertificateOrigin"
-                }
+                "schema": {}
               }
             },
             "description": ""
@@ -2390,9 +2426,7 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Cstats"
-                }
+                "schema": {}
               }
             },
             "description": ""
@@ -2835,19 +2869,13 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CachePurge"
-              }
+              "schema": {}
             },
             "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/CachePurge"
-              }
+              "schema": {}
             },
             "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/CachePurge"
-              }
+              "schema": {}
             }
           }
         },
@@ -2855,9 +2883,7 @@
           "201": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CachePurge"
-                }
+                "schema": {}
               }
             },
             "description": ""
@@ -3745,40 +3771,6 @@
         ]
       }
     },
-    "/api/website/{id}/authorize_user/{ppk}": {
-      "delete": {
-        "operationId": "destroyWebsiteAuthorize",
-        "description": "Delete target website group using website group ID (ppk) under current website",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ppk",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "website-authorize-user-detail"
-        ]
-      }
-    },
     "/api/certificate/{id}/{cpk}": {
       "delete": {
         "operationId": "destroyCertificateOrigin",
@@ -4117,111 +4109,7 @@
           "hostname"
         ]
       },
-      "WebsiteAuthorize": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "user": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "integer",
-                "readOnly": true
-              },
-              "username": {
-                "type": "string",
-                "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
-                "pattern": "^[\\w.@+-]+\\\\z",
-                "maxLength": 150
-              },
-              "email": {
-                "type": "string",
-                "format": "email",
-                "maxLength": 254
-              },
-              "first_name": {
-                "type": "string",
-                "maxLength": 150
-              },
-              "last_name": {
-                "type": "string",
-                "maxLength": 150
-              },
-              "date_joined": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "last_login": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
-              },
-              "is_active": {
-                "type": "boolean",
-                "description": "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."
-              },
-              "is_staff": {
-                "type": "boolean",
-                "description": "Designates whether the user can log into this admin site."
-              },
-              "is_superuser": {
-                "type": "boolean",
-                "description": "Designates that this user has all permissions without explicitly assigning them."
-              },
-              "has_password": {
-                "type": "string",
-                "readOnly": true
-              },
-              "twofa_enabled": {
-                "type": "string",
-                "readOnly": true
-              }
-            },
-            "required": [
-              "username"
-            ],
-            "readOnly": true
-          },
-          "group": {
-            "type": "string"
-          },
-          "role": {
-            "enum": [
-              "administrator",
-              "collaborator"
-            ],
-            "type": "string",
-            "writeOnly": true
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "writeOnly": true
-          }
-        }
-      },
-      "ZoneFetch": {
-        "type": "object",
-        "properties": {
-          "async_id": {
-            "type": "string",
-            "writeOnly": true,
-            "maxLength": 255
-          },
-          "fast_scan": {
-            "type": "boolean",
-            "writeOnly": true
-          },
-          "website_id": {
-            "type": "integer",
-            "writeOnly": true
-          }
-        }
-      },
-      "TaskStatusFetchZone": {
+      "Placeholder": {
         "type": "object",
         "properties": {}
       },
@@ -4296,11 +4184,7 @@
           "email"
         ]
       },
-      "Placeholder": {
-        "type": "object",
-        "properties": {}
-      },
-      "UserAdmin": {
+      "User": {
         "type": "object",
         "properties": {
           "id": {
@@ -4346,10 +4230,6 @@
           "is_superuser": {
             "type": "boolean",
             "description": "Designates that this user has all permissions without explicitly assigning them."
-          },
-          "twofa_enabled": {
-            "type": "string",
-            "readOnly": true
           },
           "has_password": {
             "type": "string",
@@ -4568,30 +4448,6 @@
           "use_ssl"
         ]
       },
-      "Cstats": {
-        "type": "object",
-        "properties": {
-          "duration": {
-            "enum": [
-              "hour",
-              "6hours",
-              "day",
-              "week",
-              "month",
-              "year"
-            ],
-            "type": "string",
-            "default": "day"
-          },
-          "start_date": {
-            "type": "string"
-          },
-          "offset": {
-            "type": "integer",
-            "default": 0
-          }
-        }
-      },
       "UserMFAMethod": {
         "type": "object",
         "properties": {
@@ -4686,10 +4542,6 @@
         "required": [
           "email"
         ]
-      },
-      "CachePurge": {
-        "type": "object",
-        "properties": {}
       },
       "ChangePassword": {
         "type": "object",
