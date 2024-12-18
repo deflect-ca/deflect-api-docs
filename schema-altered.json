@@ -1510,6 +1510,29 @@
         ]
       }
     },
+    "/api/admin/banjax/banned": {
+      "get": {
+        "operationId": "listBanjaxBanneds",
+        "description": "Fetch banjax banned IP by domain",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-banjax"
+        ]
+      }
+    },
     "/api/admin/easydns/{website_id}": {
       "get": {
         "operationId": "retrieveEasyDNS",
@@ -2891,6 +2914,39 @@
         },
         "tags": [
           "special"
+        ]
+      }
+    },
+    "/api/admin/banjax/unban": {
+      "post": {
+        "operationId": "createBanjaxUnbanned",
+        "description": "Unban banjax banned IP",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {}
+            },
+            "multipart/form-data": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-banjax"
         ]
       }
     },
