@@ -1510,29 +1510,6 @@
         ]
       }
     },
-    "/api/admin/banjax/banned": {
-      "get": {
-        "operationId": "listBanjaxBanneds",
-        "description": "Fetch banjax banned IP by domain",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-banjax"
-        ]
-      }
-    },
     "/api/admin/easydns/{website_id}": {
       "get": {
         "operationId": "retrieveEasyDNS",
@@ -1665,6 +1642,52 @@
         },
         "tags": [
           "admin-easydns"
+        ]
+      }
+    },
+    "/api/admin/dnet/": {
+      "get": {
+        "operationId": "listDnets",
+        "description": "Fetch edges ip list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-dnet"
+        ]
+      }
+    },
+    "/api/admin/edge/": {
+      "get": {
+        "operationId": "listEdges",
+        "description": "Fetch edges ip list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-edge"
         ]
       }
     },
@@ -1875,342 +1898,6 @@
         },
         "tags": [
           "admin-users"
-        ]
-      }
-    },
-    "/api/dnet/": {
-      "get": {
-        "operationId": "listDnets",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Dnet"
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-dnet"
-        ]
-      },
-      "post": {
-        "operationId": "createDnet",
-        "description": "",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Dnet"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Dnet"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Dnet"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Dnet"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-dnet"
-        ]
-      }
-    },
-    "/api/dnet/{id}": {
-      "get": {
-        "operationId": "retrieveDnet",
-        "description": "We are not using `generics.RetrieveUpdateDestroyAPIView` here\nsince dnet shouldn't be allowed to update",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this dnet.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Dnet"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-dnet"
-        ]
-      },
-      "delete": {
-        "operationId": "destroyDnet",
-        "description": "We are not using `generics.RetrieveUpdateDestroyAPIView` here\nsince dnet shouldn't be allowed to update",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this dnet.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-dnet"
-        ]
-      }
-    },
-    "/api/edge/": {
-      "get": {
-        "operationId": "listEdges",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Edge"
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-edge"
-        ]
-      },
-      "post": {
-        "operationId": "createEdge",
-        "description": "",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Edge"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-edge"
-        ]
-      }
-    },
-    "/api/edge/{id}": {
-      "get": {
-        "operationId": "retrieveEdge",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this edge.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Edge"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-edge"
-        ]
-      },
-      "put": {
-        "operationId": "updateEdge",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this edge.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Edge"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-edge"
-        ]
-      },
-      "patch": {
-        "operationId": "partialUpdateEdge",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this edge.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Edge"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Edge"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-edge"
-        ]
-      },
-      "delete": {
-        "operationId": "destroyEdge",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "A unique integer value identifying this edge.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-edge"
         ]
       }
     },
@@ -2914,39 +2601,6 @@
         },
         "tags": [
           "special"
-        ]
-      }
-    },
-    "/api/admin/banjax/unban": {
-      "post": {
-        "operationId": "createBanjaxUnbanned",
-        "description": "Unban banjax banned IP",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-banjax"
         ]
       }
     },
@@ -4366,67 +4020,6 @@
         },
         "required": [
           "username"
-        ]
-      },
-      "Dnet": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 20
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "Edge": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "hostname": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "ip": {
-            "type": "string",
-            "maxLength": 16
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          }
-        },
-        "required": [
-          "hostname",
-          "ip"
         ]
       },
       "CertificateOrigin": {
