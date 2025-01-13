@@ -1657,7 +1657,7 @@
         ]
       }
     },
-    "/api/admin/dnet/": {
+    "/api/admin/dnet": {
       "get": {
         "operationId": "listDnets",
         "description": "Fetch edges ip list",
@@ -1680,7 +1680,7 @@
         ]
       }
     },
-    "/api/admin/edge/": {
+    "/api/admin/edge": {
       "get": {
         "operationId": "listEdges",
         "description": "Fetch edges ip list",
