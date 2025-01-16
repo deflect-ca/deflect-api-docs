@@ -1052,6 +1052,38 @@
         ]
       }
     },
+    "/api/special/action_status/{website_id}": {
+      "get": {
+        "operationId": "retrieveActionLog",
+        "description": "",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionLog"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "special"
+        ]
+      }
+    },
     "/api/website/{id}/hosting": {
       "get": {
         "operationId": "listHostings",
@@ -1499,29 +1531,6 @@
         ]
       }
     },
-    "/api/admin/banjax/banned": {
-      "get": {
-        "operationId": "listBanjaxBanneds",
-        "description": "Fetch banjax banned IP by domain",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-banjax"
-        ]
-      }
-    },
     "/api/admin/easydns/{website_id}": {
       "get": {
         "operationId": "retrieveEasyDNS",
@@ -1657,7 +1666,7 @@
         ]
       }
     },
-    "/api/admin/dnet": {
+    "/api/admin/dnet/": {
       "get": {
         "operationId": "listDnets",
         "description": "Fetch edges ip list",
@@ -1680,7 +1689,7 @@
         ]
       }
     },
-    "/api/admin/edge": {
+    "/api/admin/edge/": {
       "get": {
         "operationId": "listEdges",
         "description": "Fetch edges ip list",
@@ -2625,39 +2634,6 @@
         },
         "tags": [
           "special"
-        ]
-      }
-    },
-    "/api/admin/banjax/unban": {
-      "post": {
-        "operationId": "createBanjaxUnbanned",
-        "description": "Unban banjax banned IP",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-banjax"
         ]
       }
     },
@@ -4018,6 +3994,10 @@
         }
       },
       "TaskStatusFetchZone": {
+        "type": "object",
+        "properties": {}
+      },
+      "ActionLog": {
         "type": "object",
         "properties": {}
       },
