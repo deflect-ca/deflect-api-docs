@@ -1052,6 +1052,38 @@
         ]
       }
     },
+    "/api/special/action_status/{website_id}": {
+      "get": {
+        "operationId": "retrieveActionLog",
+        "description": "",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionLog"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "special"
+        ]
+      }
+    },
     "/api/website/{id}/hosting": {
       "get": {
         "operationId": "listHostings",
@@ -4018,6 +4050,10 @@
         }
       },
       "TaskStatusFetchZone": {
+        "type": "object",
+        "properties": {}
+      },
+      "ActionLog": {
         "type": "object",
         "properties": {}
       },
