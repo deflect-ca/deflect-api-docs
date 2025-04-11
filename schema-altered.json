@@ -4248,11 +4248,6 @@
                   "readOnly": true,
                   "nullable": true
                 },
-                "last_migration_at": {
-                  "type": "string",
-                  "format": "date-time",
-                  "nullable": true
-                },
                 "creator": {
                   "type": "integer"
                 }
