@@ -3680,6 +3680,11 @@
           "pgp_key": {
             "type": "string",
             "nullable": true
+          },
+          "stripe_cus_id": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
           }
         }
       },
