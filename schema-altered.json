@@ -2330,6 +2330,28 @@
         ]
       }
     },
+    "/api/stripe/customer": {
+      "get": {
+        "operationId": "retrieveCustomer",
+        "description": "Retrieve cached Stripe customer object for the authenticated user.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StripeCustomer"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "stripe"
+        ]
+      }
+    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
@@ -4200,6 +4222,11 @@
               "locale": {
                 "type": "string",
                 "maxLength": 5
+              },
+              "stripe_cus_id": {
+                "type": "string",
+                "nullable": true,
+                "maxLength": 255
               }
             },
             "readOnly": true
@@ -4246,11 +4273,6 @@
                   "type": "string",
                   "format": "date-time",
                   "readOnly": true,
-                  "nullable": true
-                },
-                "last_migration_at": {
-                  "type": "string",
-                  "format": "date-time",
                   "nullable": true
                 },
                 "creator": {
@@ -4381,6 +4403,340 @@
         },
         "required": [
           "name"
+        ]
+      },
+      "StripeCustomer": {
+        "type": "object",
+        "properties": {
+          "djstripe_id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "active_subscriptions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "djstripe_id": {
+                  "type": "integer",
+                  "readOnly": true
+                },
+                "djstripe_created": {
+                  "type": "string",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "djstripe_updated": {
+                  "type": "string",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "stripe_data": {
+                  "type": "object"
+                },
+                "id": {
+                  "type": "string",
+                  "maxLength": 255
+                },
+                "livemode": {
+                  "type": "boolean",
+                  "nullable": true,
+                  "description": "Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation."
+                },
+                "created": {
+                  "type": "string",
+                  "format": "date-time",
+                  "nullable": true,
+                  "description": "The datetime this object was created in stripe."
+                },
+                "metadata": {
+                  "type": "object",
+                  "nullable": true,
+                  "description": "A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format."
+                },
+                "description": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "A description of this object."
+                },
+                "address": {
+                  "type": "object",
+                  "nullable": true,
+                  "description": "The customer's address."
+                },
+                "balance": {
+                  "type": "integer",
+                  "nullable": true,
+                  "description": "Current balance (in cents), if any, being stored on the customer's account. If negative, the customer has credit to apply to the next invoice. If positive, the customer has an amount owed that will be added to the next invoice. The balance does not refer to any unpaid invoices; it solely takes into account amounts that have yet to be successfully applied to any invoice. This balance is only taken into account for recurring billing purposes (i.e., subscriptions, invoices, invoice items)."
+                },
+                "currency": {
+                  "type": "string",
+                  "description": "The currency the customer can be charged in for recurring billing purposes",
+                  "maxLength": 3
+                },
+                "delinquent": {
+                  "type": "boolean",
+                  "nullable": true,
+                  "description": "Whether or not the latest charge for the customer's latest invoice has failed."
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "nullable": true,
+                  "description": "Whether the Customer instance has been deleted upstream in Stripe or not."
+                },
+                "coupon_start": {
+                  "type": "string",
+                  "format": "date-time",
+                  "readOnly": true,
+                  "nullable": true,
+                  "description": "If a coupon is present, the date at which it was applied."
+                },
+                "coupon_end": {
+                  "type": "string",
+                  "format": "date-time",
+                  "readOnly": true,
+                  "nullable": true,
+                  "description": "If a coupon is present and has a limited duration, the date that the discount will end."
+                },
+                "discount": {
+                  "type": "object",
+                  "nullable": true,
+                  "description": "Describes the current discount active on the customer, if there is one."
+                },
+                "email": {
+                  "type": "string",
+                  "maxLength": 5000
+                },
+                "invoice_prefix": {
+                  "type": "string",
+                  "description": "The prefix for the customer used to generate unique invoice numbers.",
+                  "maxLength": 255
+                },
+                "invoice_settings": {
+                  "type": "object",
+                  "nullable": true,
+                  "description": "The customer's default invoice settings."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The customer's full name or business name.",
+                  "maxLength": 5000
+                },
+                "phone": {
+                  "type": "string",
+                  "description": "The customer's phone number.",
+                  "maxLength": 5000
+                },
+                "preferred_locales": {
+                  "type": "object",
+                  "nullable": true,
+                  "description": "The customer's preferred locales (languages), ordered by preference."
+                },
+                "shipping": {
+                  "type": "object",
+                  "nullable": true,
+                  "description": "Shipping information associated with the customer."
+                },
+                "tax_exempt": {
+                  "enum": [
+                    "exempt",
+                    "none",
+                    "reverse"
+                  ],
+                  "type": "string",
+                  "description": "Describes the customer's tax exemption status. When set to reverse, invoice and receipt PDFs include the text \"Reverse charge\"."
+                },
+                "date_purged": {
+                  "type": "string",
+                  "format": "date-time",
+                  "readOnly": true,
+                  "nullable": true
+                },
+                "djstripe_owner_account": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "The Stripe Account this object belongs to."
+                },
+                "default_source": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "coupon": {
+                  "type": "integer",
+                  "nullable": true
+                },
+                "default_payment_method": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "default payment method used for subscriptions and invoices for the customer."
+                },
+                "subscriber": {
+                  "type": "integer",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "readOnly": true
+          },
+          "djstripe_created": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "djstripe_updated": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "stripe_data": {
+            "type": "object"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "livemode": {
+            "type": "boolean",
+            "nullable": true,
+            "description": "Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation."
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "The datetime this object was created in stripe."
+          },
+          "metadata": {
+            "type": "object",
+            "nullable": true,
+            "description": "A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format."
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "description": "A description of this object."
+          },
+          "address": {
+            "type": "object",
+            "nullable": true,
+            "description": "The customer's address."
+          },
+          "balance": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Current balance (in cents), if any, being stored on the customer's account. If negative, the customer has credit to apply to the next invoice. If positive, the customer has an amount owed that will be added to the next invoice. The balance does not refer to any unpaid invoices; it solely takes into account amounts that have yet to be successfully applied to any invoice. This balance is only taken into account for recurring billing purposes (i.e., subscriptions, invoices, invoice items)."
+          },
+          "currency": {
+            "type": "string",
+            "description": "The currency the customer can be charged in for recurring billing purposes",
+            "maxLength": 3
+          },
+          "delinquent": {
+            "type": "boolean",
+            "nullable": true,
+            "description": "Whether or not the latest charge for the customer's latest invoice has failed."
+          },
+          "deleted": {
+            "type": "boolean",
+            "nullable": true,
+            "description": "Whether the Customer instance has been deleted upstream in Stripe or not."
+          },
+          "coupon_start": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "description": "If a coupon is present, the date at which it was applied."
+          },
+          "coupon_end": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "description": "If a coupon is present and has a limited duration, the date that the discount will end."
+          },
+          "discount": {
+            "type": "object",
+            "nullable": true,
+            "description": "Describes the current discount active on the customer, if there is one."
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 5000
+          },
+          "invoice_prefix": {
+            "type": "string",
+            "description": "The prefix for the customer used to generate unique invoice numbers.",
+            "maxLength": 255
+          },
+          "invoice_settings": {
+            "type": "object",
+            "nullable": true,
+            "description": "The customer's default invoice settings."
+          },
+          "name": {
+            "type": "string",
+            "description": "The customer's full name or business name.",
+            "maxLength": 5000
+          },
+          "phone": {
+            "type": "string",
+            "description": "The customer's phone number.",
+            "maxLength": 5000
+          },
+          "preferred_locales": {
+            "type": "object",
+            "nullable": true,
+            "description": "The customer's preferred locales (languages), ordered by preference."
+          },
+          "shipping": {
+            "type": "object",
+            "nullable": true,
+            "description": "Shipping information associated with the customer."
+          },
+          "tax_exempt": {
+            "enum": [
+              "exempt",
+              "none",
+              "reverse"
+            ],
+            "type": "string",
+            "description": "Describes the customer's tax exemption status. When set to reverse, invoice and receipt PDFs include the text \"Reverse charge\"."
+          },
+          "date_purged": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "djstripe_owner_account": {
+            "type": "string",
+            "nullable": true,
+            "description": "The Stripe Account this object belongs to."
+          },
+          "default_source": {
+            "type": "string",
+            "nullable": true
+          },
+          "coupon": {
+            "type": "integer",
+            "nullable": true
+          },
+          "default_payment_method": {
+            "type": "string",
+            "nullable": true,
+            "description": "default payment method used for subscriptions and invoices for the customer."
+          },
+          "subscriber": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id"
         ]
       },
       "AuthToken": {
