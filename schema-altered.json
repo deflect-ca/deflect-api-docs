@@ -2355,38 +2355,6 @@
         ]
       }
     },
-    "/api/stripe/checkout/{website_id}": {
-      "get": {
-        "operationId": "retrieveStripeCheckout",
-        "description": "Create a Stripe checkout session.",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StripeCheckout"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "stripe"
-        ]
-      }
-    },
     "/api/stripe/subscription/{id}": {
       "get": {
         "operationId": "retrieveStripeWebsiteSubscription",
@@ -2408,31 +2376,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StripeWebsiteSubscription"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "stripe"
-        ]
-      }
-    },
-    "/api/stripe/portal": {
-      "get": {
-        "operationId": "listStripePortals",
-        "description": "Get current subscriptions",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/StripePortal"
-                  }
                 }
               }
             },
@@ -3061,6 +3004,57 @@
         ]
       }
     },
+    "/api/stripe/checkout/{website_id}": {
+      "post": {
+        "operationId": "createStripeCheckout",
+        "description": "Create a Stripe checkout session.",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StripeCheckout"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/StripeCheckout"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/StripeCheckout"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StripeCheckout"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "stripe"
+        ]
+      }
+    },
     "/api/stripe/webhook/{webhook_id}": {
       "post": {
         "operationId": "createStripeWebhook",
@@ -3101,6 +3095,47 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StripeWebhook"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "stripe"
+        ]
+      }
+    },
+    "/api/stripe/portal": {
+      "post": {
+        "operationId": "createStripePortal",
+        "description": "Get current subscriptions",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StripePortal"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/StripePortal"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/StripePortal"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StripePortal"
                 }
               }
             },
@@ -4557,29 +4592,6 @@
         "type": "object",
         "properties": {}
       },
-      "StripeCheckout": {
-        "type": "object",
-        "properties": {
-          "success_url": {
-            "type": "string",
-            "format": "uri",
-            "pattern": "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z\u00a1-\uffff0-9](?:[a-z\u00a1-\uffff0-9-]{0,61}[a-z\u00a1-\uffff0-9])?(?:\\.(?!-)[a-z\u00a1-\uffff0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\u00a1-\uffff-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\\\z"
-          },
-          "cancel_url": {
-            "type": "string",
-            "format": "uri",
-            "pattern": "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z\u00a1-\uffff0-9](?:[a-z\u00a1-\uffff0-9-]{0,61}[a-z\u00a1-\uffff0-9])?(?:\\.(?!-)[a-z\u00a1-\uffff0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\u00a1-\uffff-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\\\z"
-          },
-          "price_id": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "success_url",
-          "cancel_url",
-          "price_id"
-        ]
-      },
       "StripeWebsiteSubscription": {
         "type": "object",
         "properties": {
@@ -4618,19 +4630,6 @@
           "subscription_id",
           "price_id",
           "status"
-        ]
-      },
-      "StripePortal": {
-        "type": "object",
-        "properties": {
-          "return_url": {
-            "type": "string",
-            "format": "uri",
-            "pattern": "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z\u00a1-\uffff0-9](?:[a-z\u00a1-\uffff0-9-]{0,61}[a-z\u00a1-\uffff0-9])?(?:\\.(?!-)[a-z\u00a1-\uffff0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\u00a1-\uffff-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\\\z"
-          }
-        },
-        "required": [
-          "return_url"
         ]
       },
       "AuthToken": {
@@ -4717,6 +4716,29 @@
         "type": "object",
         "properties": {}
       },
+      "StripeCheckout": {
+        "type": "object",
+        "properties": {
+          "success_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z\u00a1-\uffff0-9](?:[a-z\u00a1-\uffff0-9-]{0,61}[a-z\u00a1-\uffff0-9])?(?:\\.(?!-)[a-z\u00a1-\uffff0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\u00a1-\uffff-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\\\z"
+          },
+          "cancel_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z\u00a1-\uffff0-9](?:[a-z\u00a1-\uffff0-9-]{0,61}[a-z\u00a1-\uffff0-9])?(?:\\.(?!-)[a-z\u00a1-\uffff0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\u00a1-\uffff-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\\\z"
+          },
+          "price_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success_url",
+          "cancel_url",
+          "price_id"
+        ]
+      },
       "StripeWebhook": {
         "type": "object",
         "properties": {
@@ -4726,6 +4748,19 @@
         },
         "required": [
           "data"
+        ]
+      },
+      "StripePortal": {
+        "type": "object",
+        "properties": {
+          "return_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z\u00a1-\uffff0-9](?:[a-z\u00a1-\uffff0-9-]{0,61}[a-z\u00a1-\uffff0-9])?(?:\\.(?!-)[a-z\u00a1-\uffff0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\u00a1-\uffff-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\\\z"
+          }
+        },
+        "required": [
+          "return_url"
         ]
       },
       "ChangePassword": {
