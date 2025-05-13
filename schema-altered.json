@@ -4600,37 +4600,34 @@
             "readOnly": true
           },
           "website": {
-            "type": "integer"
+            "type": "string",
+            "readOnly": true
           },
           "subscription_id": {
             "type": "string",
-            "maxLength": 255
+            "readOnly": true
           },
           "price_id": {
             "type": "string",
-            "maxLength": 255
+            "readOnly": true
           },
           "status": {
             "type": "string",
-            "maxLength": 255
+            "readOnly": true
           },
           "current_period_start": {
             "type": "string",
             "format": "date-time",
+            "readOnly": true,
             "nullable": true
           },
           "current_period_end": {
             "type": "string",
             "format": "date-time",
+            "readOnly": true,
             "nullable": true
           }
-        },
-        "required": [
-          "website",
-          "subscription_id",
-          "price_id",
-          "status"
-        ]
+        }
       },
       "AuthToken": {
         "type": "object",
