@@ -4503,6 +4503,10 @@
             "format": "date-time",
             "readOnly": true,
             "nullable": true
+          },
+          "is_eqpress": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -4580,6 +4584,10 @@
             "format": "date-time",
             "readOnly": true,
             "nullable": true
+          },
+          "is_eqpress": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
