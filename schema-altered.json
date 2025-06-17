@@ -197,6 +197,31 @@
         ]
       }
     },
+    "/api/profile/unsubscribe": {
+      "get": {
+        "operationId": "listEmailUnsubscribes",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmailUnsubscribe"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "profile"
+        ]
+      }
+    },
     "/api/website": {
       "get": {
         "operationId": "listWebsiteListCreates",
@@ -4041,6 +4066,57 @@
         ]
       }
     },
+    "/api/admin/website/{website_id}/hosting/approve": {
+      "patch": {
+        "operationId": "partialUpdateHostingAdminApprove",
+        "description": "Approve eqPress hosting",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HostingAdminApprove"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/HostingAdminApprove"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/HostingAdminApprove"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HostingAdminApprove"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-hosting"
+        ]
+      }
+    },
     "/api/admin/website/reject/{website_id}": {
       "patch": {
         "operationId": "partialUpdateWebsiteReject",
@@ -4432,6 +4508,17 @@
             "nullable": true
           }
         }
+      },
+      "EmailUnsubscribe": {
+        "type": "object",
+        "properties": {
+          "signed_email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "signed_email"
+        ]
       },
       "WebsiteListCreate": {
         "type": "object",
@@ -5354,6 +5441,9 @@
                 "type": "string",
                 "nullable": true,
                 "maxLength": 255
+              },
+              "is_unsubscribed": {
+                "type": "boolean"
               }
             },
             "readOnly": true
@@ -5751,6 +5841,15 @@
         "required": [
           "banjax_auth_hash"
         ]
+      },
+      "HostingAdminApprove": {
+        "type": "object",
+        "properties": {
+          "no_email": {
+            "type": "boolean",
+            "writeOnly": true
+          }
+        }
       }
     }
   }
