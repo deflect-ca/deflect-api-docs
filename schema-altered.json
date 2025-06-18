@@ -197,31 +197,6 @@
         ]
       }
     },
-    "/api/profile/unsubscribe": {
-      "get": {
-        "operationId": "listEmailUnsubscribes",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EmailUnsubscribe"
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "profile"
-        ]
-      }
-    },
     "/api/website": {
       "get": {
         "operationId": "listWebsiteListCreates",
@@ -4509,17 +4484,6 @@
           }
         }
       },
-      "EmailUnsubscribe": {
-        "type": "object",
-        "properties": {
-          "signed_email": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "signed_email"
-        ]
-      },
       "WebsiteListCreate": {
         "type": "object",
         "properties": {
@@ -5441,9 +5405,6 @@
                 "type": "string",
                 "nullable": true,
                 "maxLength": 255
-              },
-              "is_unsubscribed": {
-                "type": "boolean"
               }
             },
             "readOnly": true
