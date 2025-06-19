@@ -197,6 +197,31 @@
         ]
       }
     },
+    "/api/profile/unsubscribe": {
+      "get": {
+        "operationId": "listEmailUnsubscribes",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmailUnsubscribe"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "profile"
+        ]
+      }
+    },
     "/api/website": {
       "get": {
         "operationId": "listWebsiteListCreates",
@@ -1073,38 +1098,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActionLog"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "special"
-        ]
-      }
-    },
-    "/api/special/eqpress_info/{website_id}": {
-      "get": {
-        "operationId": "retrievePlaceholder",
-        "description": "Provide eQPress connection details for the website.",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Placeholder"
                 }
               }
             },
@@ -4516,6 +4509,17 @@
           }
         }
       },
+      "EmailUnsubscribe": {
+        "type": "object",
+        "properties": {
+          "signed_email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "signed_email"
+        ]
+      },
       "WebsiteListCreate": {
         "type": "object",
         "properties": {
@@ -4586,10 +4590,6 @@
             "format": "date-time",
             "readOnly": true,
             "nullable": true
-          },
-          "is_eqpress": {
-            "type": "string",
-            "readOnly": true
           }
         },
         "required": [
@@ -4667,10 +4667,6 @@
             "format": "date-time",
             "readOnly": true,
             "nullable": true
-          },
-          "is_eqpress": {
-            "type": "string",
-            "readOnly": true
           }
         },
         "required": [
@@ -4917,10 +4913,6 @@
         "properties": {}
       },
       "ActionLog": {
-        "type": "object",
-        "properties": {}
-      },
-      "Placeholder": {
         "type": "object",
         "properties": {}
       },
@@ -5372,6 +5364,10 @@
           "email"
         ]
       },
+      "Placeholder": {
+        "type": "object",
+        "properties": {}
+      },
       "UserAdmin": {
         "type": "object",
         "properties": {
@@ -5445,6 +5441,9 @@
                 "type": "string",
                 "nullable": true,
                 "maxLength": 255
+              },
+              "is_unsubscribed": {
+                "type": "boolean"
               }
             },
             "readOnly": true
