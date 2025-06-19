@@ -1109,6 +1109,38 @@
         ]
       }
     },
+    "/api/special/eqpress_info/{website_id}": {
+      "get": {
+        "operationId": "retrievePlaceholder",
+        "description": "Provide eQPress connection details for the website.",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Placeholder"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "special"
+        ]
+      }
+    },
     "/api/website/{id}/survey": {
       "get": {
         "operationId": "retrieveSurvey",
@@ -4590,6 +4622,10 @@
             "format": "date-time",
             "readOnly": true,
             "nullable": true
+          },
+          "is_eqpress": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -4667,6 +4703,10 @@
             "format": "date-time",
             "readOnly": true,
             "nullable": true
+          },
+          "is_eqpress": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -4913,6 +4953,10 @@
         "properties": {}
       },
       "ActionLog": {
+        "type": "object",
+        "properties": {}
+      },
+      "Placeholder": {
         "type": "object",
         "properties": {}
       },
@@ -5363,10 +5407,6 @@
           "name",
           "email"
         ]
-      },
-      "Placeholder": {
-        "type": "object",
-        "properties": {}
       },
       "UserAdmin": {
         "type": "object",
