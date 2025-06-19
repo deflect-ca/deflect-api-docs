@@ -1084,6 +1084,38 @@
         ]
       }
     },
+    "/api/special/eqpress_info/{website_id}": {
+      "get": {
+        "operationId": "retrievePlaceholder",
+        "description": "Provide eQPress connection details for the website.",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Placeholder"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "special"
+        ]
+      }
+    },
     "/api/website/{id}/survey": {
       "get": {
         "operationId": "retrieveSurvey",
@@ -4041,57 +4073,6 @@
         ]
       }
     },
-    "/api/admin/website/{website_id}/hosting/approve": {
-      "patch": {
-        "operationId": "partialUpdateHostingAdminApprove",
-        "description": "Approve eqPress hosting",
-        "parameters": [
-          {
-            "name": "website_id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/HostingAdminApprove"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/HostingAdminApprove"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/HostingAdminApprove"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HostingAdminApprove"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-hosting"
-        ]
-      }
-    },
     "/api/admin/website/reject/{website_id}": {
       "patch": {
         "operationId": "partialUpdateWebsiteReject",
@@ -4554,6 +4535,10 @@
             "format": "date-time",
             "readOnly": true,
             "nullable": true
+          },
+          "is_eqpress": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -4631,6 +4616,10 @@
             "format": "date-time",
             "readOnly": true,
             "nullable": true
+          },
+          "is_eqpress": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -4877,6 +4866,10 @@
         "properties": {}
       },
       "ActionLog": {
+        "type": "object",
+        "properties": {}
+      },
+      "Placeholder": {
         "type": "object",
         "properties": {}
       },
@@ -5327,10 +5320,6 @@
           "name",
           "email"
         ]
-      },
-      "Placeholder": {
-        "type": "object",
-        "properties": {}
       },
       "UserAdmin": {
         "type": "object",
@@ -5802,15 +5791,6 @@
         "required": [
           "banjax_auth_hash"
         ]
-      },
-      "HostingAdminApprove": {
-        "type": "object",
-        "properties": {
-          "no_email": {
-            "type": "boolean",
-            "writeOnly": true
-          }
-        }
       }
     }
   }
