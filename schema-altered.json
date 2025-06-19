@@ -2110,7 +2110,7 @@
     "/api/admin/easydns/{website_id}": {
       "get": {
         "operationId": "retrieveEasyDNS",
-        "description": "Get easydns status from easyDNS (GET ?refersh_status=True to refresh status from easydns)",
+        "description": "Get easydns status from easyDNS (GET ?refresh_status=True to refresh status from easydns)",
         "parameters": [
           {
             "name": "website_id",
@@ -2487,39 +2487,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UserAdmin"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-users"
-        ]
-      }
-    },
-    "/api/users/{id}/sudo": {
-      "get": {
-        "operationId": "listUserSudos",
-        "description": "Sudo user (Permission: IsAdminOrDenied)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
                 }
               }
             },
