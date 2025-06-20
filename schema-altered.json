@@ -2498,39 +2498,6 @@
         ]
       }
     },
-    "/api/users/{id}/sudo": {
-      "get": {
-        "operationId": "listUserSudos",
-        "description": "Sudo user (Permission: IsAdminOrDenied)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-users"
-        ]
-      }
-    },
     "/api/certificate/{id}/origin": {
       "get": {
         "operationId": "listCertificates",
