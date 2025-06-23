@@ -197,6 +197,31 @@
         ]
       }
     },
+    "/api/profile/unsubscribe": {
+      "get": {
+        "operationId": "listEmailUnsubscribes",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmailUnsubscribe"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "profile"
+        ]
+      }
+    },
     "/api/website": {
       "get": {
         "operationId": "listWebsiteListCreates",
@@ -2110,7 +2135,7 @@
     "/api/admin/easydns/{website_id}": {
       "get": {
         "operationId": "retrieveEasyDNS",
-        "description": "Get easydns status from easyDNS (GET ?refersh_status=True to refresh status from easydns)",
+        "description": "Get easydns status from easyDNS (GET ?refresh_status=True to refresh status from easydns)",
         "parameters": [
           {
             "name": "website_id",
@@ -4516,6 +4541,17 @@
           }
         }
       },
+      "EmailUnsubscribe": {
+        "type": "object",
+        "properties": {
+          "signed_email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "signed_email"
+        ]
+      },
       "WebsiteListCreate": {
         "type": "object",
         "properties": {
@@ -4671,15 +4707,10 @@
           "is_eqpress": {
             "type": "string",
             "readOnly": true
-          },
-          "password": {
-            "type": "string",
-            "writeOnly": true
           }
         },
         "required": [
-          "options",
-          "password"
+          "options"
         ]
       },
       "WebsiteOption": {
@@ -5450,6 +5481,9 @@
                 "type": "string",
                 "nullable": true,
                 "maxLength": 255
+              },
+              "is_unsubscribed": {
+                "type": "boolean"
               }
             },
             "readOnly": true
