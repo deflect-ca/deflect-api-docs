@@ -2773,6 +2773,31 @@
         ]
       }
     },
+    "/api/stats/banjax": {
+      "get": {
+        "operationId": "listPlaceholders",
+        "description": "Get global cstats",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Placeholder"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "cstats"
+        ]
+      }
+    },
     "/api/oauth2/authorize/": {
       "get": {
         "operationId": "listAuthorizationOauth2s",
@@ -4707,15 +4732,10 @@
           "is_eqpress": {
             "type": "string",
             "readOnly": true
-          },
-          "password": {
-            "type": "string",
-            "writeOnly": true
           }
         },
         "required": [
-          "options",
-          "password"
+          "options"
         ]
       },
       "WebsiteOption": {
