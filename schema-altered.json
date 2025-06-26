@@ -5663,8 +5663,8 @@
       "CertificatePublic": {
         "type": "object",
         "properties": {
-          "ssl_type": {
-            "type": "string",
+          "use_ssl": {
+            "type": "boolean",
             "writeOnly": true
           },
           "cert_issuer": {
@@ -5688,7 +5688,7 @@
           }
         },
         "required": [
-          "ssl_type"
+          "use_ssl"
         ]
       },
       "Cstats": {
