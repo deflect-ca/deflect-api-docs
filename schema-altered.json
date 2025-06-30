@@ -2890,9 +2890,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ZammadTicket"
-                  }
+                  "items": {}
                 }
               }
             },
@@ -2910,19 +2908,13 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ZammadTicket"
-              }
+              "schema": {}
             },
             "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/ZammadTicket"
-              }
+              "schema": {}
             },
             "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/ZammadTicket"
-              }
+              "schema": {}
             }
           }
         },
@@ -2930,9 +2922,7 @@
           "201": {
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ZammadTicket"
-                }
+                "schema": {}
               }
             },
             "description": ""
@@ -2964,9 +2954,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ZammadTicketArticles"
-                  }
+                  "items": {}
                 }
               }
             },
@@ -5740,63 +5728,6 @@
         },
         "required": [
           "name"
-        ]
-      },
-      "ZammadTicket": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "page": {
-            "type": "integer",
-            "writeOnly": true
-          },
-          "title": {
-            "type": "string",
-            "writeOnly": true
-          },
-          "subject": {
-            "type": "string",
-            "writeOnly": true
-          },
-          "message": {
-            "type": "string",
-            "writeOnly": true
-          },
-          "attachments": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "binary"
-            }
-          },
-          "customer_email": {
-            "type": "string",
-            "format": "email",
-            "writeOnly": true
-          },
-          "website_concerned": {
-            "type": "string",
-            "writeOnly": true
-          }
-        }
-      },
-      "ZammadTicketArticles": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "tpk": {
-            "type": "integer",
-            "writeOnly": true
-          }
-        },
-        "required": [
-          "tpk"
         ]
       },
       "StripeSubscription": {
