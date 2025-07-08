@@ -5986,8 +5986,16 @@
       "ActiveClients": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
           "url": {
             "type": "string",
+            "readOnly": true
+          },
+          "status": {
+            "type": "number",
             "readOnly": true
           },
           "ip_address": {
