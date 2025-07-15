@@ -3287,7 +3287,7 @@
         ]
       }
     },
-    "/api/oauth2/authorize/": {
+    "/api/oauth2/authorize": {
       "get": {
         "operationId": "listAuthorizationOauth2s",
         "description": "Rewrite AuthorizationView from oauth2_provider",
@@ -3905,7 +3905,7 @@
         ]
       }
     },
-    "/api/oauth2/token/": {
+    "/api/oauth2/token": {
       "post": {
         "operationId": "createOauth2Token",
         "description": "Rewrite the TokenView view from oauth2_provider",
@@ -3946,7 +3946,7 @@
         ]
       }
     },
-    "/api/oauth2/revoke/": {
+    "/api/oauth2/revoke": {
       "post": {
         "operationId": "createOauth2TokenRevoke",
         "description": "Rewrite the RevokeTokenView view from oauth2_provider",
