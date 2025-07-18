@@ -5086,7 +5086,8 @@
             "readOnly": true
           },
           "url": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "status": {
             "type": "number",
