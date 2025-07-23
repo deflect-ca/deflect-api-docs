@@ -884,7 +884,7 @@
       },
       "post": {
         "operationId": "createWebsiteAuthorize",
-        "description": "Create new website group under current website",
+        "description": "partial(func, *args, **keywords) - new function with partial application\nof the given arguments and keywords.",
         "parameters": [
           {
             "name": "id",
