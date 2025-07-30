@@ -4346,7 +4346,7 @@
     "/api/profile/email": {
       "patch": {
         "operationId": "partialUpdateChangeEmail",
-        "description": "partial(func, *args, **keywords) - new function with partial application\nof the given arguments and keywords.",
+        "description": "",
         "parameters": [],
         "requestBody": {
           "content": {
