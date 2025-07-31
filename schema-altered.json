@@ -5236,6 +5236,10 @@
           "password": {
             "type": "string",
             "writeOnly": true
+          },
+          "is_subsite": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
