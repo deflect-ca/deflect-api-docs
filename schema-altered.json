@@ -4346,7 +4346,7 @@
     "/api/profile/email": {
       "patch": {
         "operationId": "partialUpdateChangeEmail",
-        "description": "",
+        "description": "partial(func, *args, **keywords) - new function with partial application\nof the given arguments and keywords.",
         "parameters": [],
         "requestBody": {
           "content": {
@@ -5236,6 +5236,10 @@
           "password": {
             "type": "string",
             "writeOnly": true
+          },
+          "is_subsite": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
