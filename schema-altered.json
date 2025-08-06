@@ -5094,7 +5094,8 @@
           },
           "ip_address": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "maxLength": 16
           },
           "admin_key": {
             "type": "string",
@@ -5173,7 +5174,8 @@
           },
           "ip_address": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "maxLength": 16
           },
           "admin_key": {
             "type": "string",
@@ -5849,6 +5851,11 @@
                 "format": "date-time",
                 "nullable": true
               },
+              "fully_migrated_at": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
               "creator": {
                 "type": "integer"
               }
@@ -6147,6 +6154,11 @@
                   "nullable": true
                 },
                 "last_migration_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "nullable": true
+                },
+                "fully_migrated_at": {
                   "type": "string",
                   "format": "date-time",
                   "nullable": true
