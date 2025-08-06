@@ -5849,6 +5849,11 @@
                 "format": "date-time",
                 "nullable": true
               },
+              "fully_migrated_at": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
               "creator": {
                 "type": "integer"
               }
@@ -6147,6 +6152,11 @@
                   "nullable": true
                 },
                 "last_migration_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "nullable": true
+                },
+                "fully_migrated_at": {
                   "type": "string",
                   "format": "date-time",
                   "nullable": true
