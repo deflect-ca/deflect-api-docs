@@ -5094,8 +5094,7 @@
           },
           "ip_address": {
             "type": "string",
-            "nullable": true,
-            "maxLength": 16
+            "nullable": true
           },
           "admin_key": {
             "type": "string",
@@ -5174,8 +5173,7 @@
           },
           "ip_address": {
             "type": "string",
-            "nullable": true,
-            "maxLength": 16
+            "nullable": true
           },
           "admin_key": {
             "type": "string",
