@@ -1042,29 +1042,6 @@
         ]
       }
     },
-    "/api/integration/baskerville/config_v2": {
-      "get": {
-        "operationId": "listBaskervilleConfigs",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "integration"
-        ]
-      }
-    },
     "/api/special/{website_id}/tasks/fetch_dns_zone": {
       "get": {
         "operationId": "listTaskStatusFetchZones",
