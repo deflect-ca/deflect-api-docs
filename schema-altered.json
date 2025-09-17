@@ -1306,6 +1306,38 @@
         ]
       }
     },
+    "/api/website/{id}/hosting/vulnerabilities": {
+      "get": {
+        "operationId": "retrieveHostingVulnerabilities",
+        "description": "Get vulnerabilities of current website",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HostingVulnerabilities"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "hosting"
+        ]
+      }
+    },
     "/api/website/{id}/hosting/{hpk}": {
       "get": {
         "operationId": "retrieveHosting",
@@ -4302,47 +4334,6 @@
         ]
       }
     },
-    "/api/stripe/deflect_supporter/checkout": {
-      "post": {
-        "operationId": "createStripeDeflectSupporter",
-        "description": "Create a Stripe checkout session.",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StripeDeflectSupporter"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/StripeDeflectSupporter"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/StripeDeflectSupporter"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StripeDeflectSupporter"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "stripe"
-        ]
-      }
-    },
     "/api/profile/password": {
       "patch": {
         "operationId": "partialUpdateChangePassword",
@@ -5986,6 +5977,27 @@
           "email"
         ]
       },
+      "HostingVulnerabilities": {
+        "type": "object",
+        "properties": {
+          "website": {
+            "type": "string",
+            "readOnly": true
+          },
+          "vulnerabilities": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "readOnly": true
+          },
+          "last_updated": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        }
+      },
       "WebsiteList": {
         "type": "object",
         "properties": {
@@ -6659,30 +6671,6 @@
         },
         "required": [
           "return_url"
-        ]
-      },
-      "StripeDeflectSupporter": {
-        "type": "object",
-        "properties": {
-          "success_url": {
-            "type": "string",
-            "format": "uri",
-            "pattern": "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z\u00a1-\uffff0-9](?:[a-z\u00a1-\uffff0-9-]{0,61}[a-z\u00a1-\uffff0-9])?(?:\\.(?!-)[a-z\u00a1-\uffff0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\u00a1-\uffff-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\\\z"
-          },
-          "cancel_url": {
-            "type": "string",
-            "format": "uri",
-            "pattern": "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z\u00a1-\uffff0-9](?:[a-z\u00a1-\uffff0-9-]{0,61}[a-z\u00a1-\uffff0-9])?(?:\\.(?!-)[a-z\u00a1-\uffff0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\u00a1-\uffff-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\\\z"
-          },
-          "quantity": {
-            "type": "integer",
-            "minimum": 1
-          }
-        },
-        "required": [
-          "success_url",
-          "cancel_url",
-          "quantity"
         ]
       },
       "ChangePassword": {
