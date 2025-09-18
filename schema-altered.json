@@ -3516,6 +3516,31 @@
         ]
       }
     },
+    "/api/deflect_supporter/subscription": {
+      "get": {
+        "operationId": "listStripeUserSubscriptions",
+        "description": "Get current subscriptions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StripeUserSubscription"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "deflect_supporter"
+        ]
+      }
+    },
     "/api/auth/login": {
       "post": {
         "operationId": "createAuthToken",
@@ -6592,6 +6617,67 @@
           },
           "product_name": {
             "type": "string",
+            "readOnly": true
+          }
+        }
+      },
+      "StripeUserSubscription": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "user": {
+            "type": "string",
+            "readOnly": true
+          },
+          "subscription_id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "price_id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "status": {
+            "type": "string",
+            "readOnly": true
+          },
+          "current_period_start": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "current_period_end": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "product_id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "product_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "quantity": {
+            "type": "integer",
             "readOnly": true
           }
         }
