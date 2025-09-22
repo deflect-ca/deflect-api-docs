@@ -6315,6 +6315,16 @@
               },
               "is_unsubscribed": {
                 "type": "boolean"
+              },
+              "last_migration_at": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "fully_migrated_at": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
               }
             },
             "readOnly": true
