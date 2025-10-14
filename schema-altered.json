@@ -3432,6 +3432,55 @@
         "tags": [
           "zammad"
         ]
+      },
+      "post": {
+        "operationId": "createZammadTicketArticles",
+        "description": "Update ticket",
+        "parameters": [
+          {
+            "name": "tpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ZammadTicketArticles"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ZammadTicketArticles"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ZammadTicketArticles"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ZammadTicketArticles"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "zammad"
+        ]
       }
     },
     "/api/stripe/subscription": {
@@ -6561,14 +6610,23 @@
             "type": "integer",
             "readOnly": true
           },
-          "tpk": {
-            "type": "integer",
+          "message": {
+            "type": "string",
             "writeOnly": true
+          },
+          "customer_email": {
+            "type": "string",
+            "format": "email",
+            "writeOnly": true
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            }
           }
-        },
-        "required": [
-          "tpk"
-        ]
+        }
       },
       "StripeSubscription": {
         "type": "object",
