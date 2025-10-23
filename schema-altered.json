@@ -6526,13 +6526,15 @@
           },
           "title": {
             "type": "string",
-            "writeOnly": true,
-            "maxLength": 255
+            "writeOnly": true
+          },
+          "subject": {
+            "type": "string",
+            "writeOnly": true
           },
           "message": {
             "type": "string",
-            "writeOnly": true,
-            "maxLength": 1000
+            "writeOnly": true
           },
           "attachments": {
             "type": "array",
