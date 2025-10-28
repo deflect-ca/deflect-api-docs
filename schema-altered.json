@@ -6628,15 +6628,13 @@
           },
           "title": {
             "type": "string",
-            "writeOnly": true
-          },
-          "subject": {
-            "type": "string",
-            "writeOnly": true
+            "writeOnly": true,
+            "maxLength": 255
           },
           "message": {
             "type": "string",
-            "writeOnly": true
+            "writeOnly": true,
+            "maxLength": 1000
           },
           "attachments": {
             "type": "array",
