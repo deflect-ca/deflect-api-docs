@@ -3399,7 +3399,7 @@
         ]
       }
     },
-    "/api/zammad/ticket/{tpk}/articles": {
+    "/api/zammad/ticket/{tpk}/article": {
       "get": {
         "operationId": "listZammadTicketArticles",
         "description": "Get ticket articles",
@@ -3422,6 +3422,108 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/ZammadTicketArticles"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "zammad"
+        ]
+      },
+      "post": {
+        "operationId": "createZammadTicketArticles",
+        "description": "Update ticket",
+        "parameters": [
+          {
+            "name": "tpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ZammadTicketArticles"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ZammadTicketArticles"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ZammadTicketArticles"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ZammadTicketArticles"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "zammad"
+        ]
+      }
+    },
+    "/api/zammad/ticket/{tpk}/article/{apk}/attachment/{fpk}/download": {
+      "get": {
+        "operationId": "listZammadTicketArticlesAttachments",
+        "description": "Download ticket article attachment",
+        "parameters": [
+          {
+            "name": "tpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ZammadTicketArticlesAttachment"
                   }
                 }
               }
@@ -6559,14 +6661,32 @@
             "type": "integer",
             "readOnly": true
           },
-          "tpk": {
-            "type": "integer",
+          "message": {
+            "type": "string",
             "writeOnly": true
+          },
+          "customer_email": {
+            "type": "string",
+            "format": "email",
+            "writeOnly": true
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            }
           }
-        },
-        "required": [
-          "tpk"
-        ]
+        }
+      },
+      "ZammadTicketArticlesAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          }
+        }
       },
       "StripeSubscription": {
         "type": "object",
