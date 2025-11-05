@@ -1306,6 +1306,38 @@
         ]
       }
     },
+    "/api/website/{id}/hosting/vulnerabilities": {
+      "get": {
+        "operationId": "retrieveHostingVulnerabilities",
+        "description": "Get vulnerabilities of current website",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HostingVulnerabilities"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "hosting"
+        ]
+      }
+    },
     "/api/website/{id}/hosting/{hpk}": {
       "get": {
         "operationId": "retrieveHosting",
@@ -3399,7 +3431,7 @@
         ]
       }
     },
-    "/api/zammad/ticket/{tpk}/articles": {
+    "/api/zammad/ticket/{tpk}/article": {
       "get": {
         "operationId": "listZammadTicketArticles",
         "description": "Get ticket articles",
@@ -3422,6 +3454,108 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/ZammadTicketArticles"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "zammad"
+        ]
+      },
+      "post": {
+        "operationId": "createZammadTicketArticles",
+        "description": "Update ticket",
+        "parameters": [
+          {
+            "name": "tpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ZammadTicketArticles"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ZammadTicketArticles"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ZammadTicketArticles"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ZammadTicketArticles"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "zammad"
+        ]
+      }
+    },
+    "/api/zammad/ticket/{tpk}/article/{apk}/attachment/{fpk}/download": {
+      "get": {
+        "operationId": "listZammadTicketArticlesAttachments",
+        "description": "Download ticket article attachment",
+        "parameters": [
+          {
+            "name": "tpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ZammadTicketArticlesAttachment"
                   }
                 }
               }
@@ -6075,6 +6209,27 @@
           "email"
         ]
       },
+      "HostingVulnerabilities": {
+        "type": "object",
+        "properties": {
+          "website": {
+            "type": "string",
+            "readOnly": true
+          },
+          "vulnerabilities": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "readOnly": true
+          },
+          "scan_date": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        }
+      },
       "WebsiteList": {
         "type": "object",
         "properties": {
@@ -6524,15 +6679,13 @@
           },
           "title": {
             "type": "string",
-            "writeOnly": true
-          },
-          "subject": {
-            "type": "string",
-            "writeOnly": true
+            "writeOnly": true,
+            "maxLength": 255
           },
           "message": {
             "type": "string",
-            "writeOnly": true
+            "writeOnly": true,
+            "maxLength": 1000
           },
           "attachments": {
             "type": "array",
@@ -6559,14 +6712,32 @@
             "type": "integer",
             "readOnly": true
           },
-          "tpk": {
-            "type": "integer",
+          "message": {
+            "type": "string",
             "writeOnly": true
+          },
+          "customer_email": {
+            "type": "string",
+            "format": "email",
+            "writeOnly": true
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            }
           }
-        },
-        "required": [
-          "tpk"
-        ]
+        }
+      },
+      "ZammadTicketArticlesAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          }
+        }
       },
       "StripeSubscription": {
         "type": "object",
