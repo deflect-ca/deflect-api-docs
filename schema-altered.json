@@ -1306,6 +1306,38 @@
         ]
       }
     },
+    "/api/website/{id}/hosting/vulnerabilities": {
+      "get": {
+        "operationId": "retrieveHostingVulnerabilities",
+        "description": "Get vulnerabilities of current website",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HostingVulnerabilities"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "hosting"
+        ]
+      }
+    },
     "/api/website/{id}/hosting/{hpk}": {
       "get": {
         "operationId": "retrieveHosting",
@@ -6101,8 +6133,6 @@
         },
         "required": [
           "survey_reason",
-          "survey_country",
-          "survey_regional_focus",
           "survey_content_type",
           "survey_language",
           "input_description"
@@ -6178,6 +6208,27 @@
           "name",
           "email"
         ]
+      },
+      "HostingVulnerabilities": {
+        "type": "object",
+        "properties": {
+          "website": {
+            "type": "string",
+            "readOnly": true
+          },
+          "vulnerabilities": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "readOnly": true
+          },
+          "scan_date": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        }
       },
       "WebsiteList": {
         "type": "object",
