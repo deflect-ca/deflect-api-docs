@@ -1042,6 +1042,29 @@
         ]
       }
     },
+    "/api/integration/baskerville/config_v2": {
+      "get": {
+        "operationId": "listBaskervilleConfigs",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "integration"
+        ]
+      }
+    },
     "/api/special/{website_id}/tasks/fetch_dns_zone": {
       "get": {
         "operationId": "listTaskStatusFetchZones",
@@ -1295,6 +1318,38 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Hosting"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "hosting"
+        ]
+      }
+    },
+    "/api/website/{id}/hosting/vulnerabilities": {
+      "get": {
+        "operationId": "retrieveHostingVulnerabilities",
+        "description": "Get vulnerabilities of current website",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HostingVulnerabilities"
                 }
               }
             },
@@ -6101,8 +6156,6 @@
         },
         "required": [
           "survey_reason",
-          "survey_country",
-          "survey_regional_focus",
           "survey_content_type",
           "survey_language",
           "input_description"
@@ -6178,6 +6231,27 @@
           "name",
           "email"
         ]
+      },
+      "HostingVulnerabilities": {
+        "type": "object",
+        "properties": {
+          "website": {
+            "type": "string",
+            "readOnly": true
+          },
+          "vulnerabilities": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "readOnly": true
+          },
+          "scan_date": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        }
       },
       "WebsiteList": {
         "type": "object",
