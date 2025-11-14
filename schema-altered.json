@@ -1042,10 +1042,10 @@
         ]
       }
     },
-    "/api/integration/baskerville/config_v2": {
+    "/api/integration/website_alive_list": {
       "get": {
-        "operationId": "listBaskervilleConfigs",
-        "description": "",
+        "operationId": "listWebsiteAlives",
+        "description": "List all alive websites",
         "parameters": [],
         "responses": {
           "200": {
@@ -1061,7 +1061,7 @@
           }
         },
         "tags": [
-          "integration"
+          "admin-website"
         ]
       }
     },
