@@ -1042,10 +1042,10 @@
         ]
       }
     },
-    "/api/integration/live_sites": {
+    "/api/integration/baskerville/config_v2": {
       "get": {
-        "operationId": "listWebsiteAlives",
-        "description": "List all alive websites",
+        "operationId": "listBaskervilleConfigs",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -1061,30 +1061,7 @@
           }
         },
         "tags": [
-          "admin-website"
-        ]
-      }
-    },
-    "/api/integration/origin_ips": {
-      "get": {
-        "operationId": "listWebsiteOriginIps",
-        "description": "List all alive websites origin IPs",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-website"
+          "integration"
         ]
       }
     },
@@ -6179,8 +6156,6 @@
         },
         "required": [
           "survey_reason",
-          "survey_country",
-          "survey_regional_focus",
           "survey_content_type",
           "survey_language",
           "input_description"
@@ -6794,10 +6769,6 @@
       "StripeWebsiteSubscription": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
           "website": {
             "type": "string",
             "readOnly": true
@@ -6851,10 +6822,6 @@
       "StripeUserSubscription": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
           "user": {
             "type": "string",
             "readOnly": true
