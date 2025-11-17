@@ -1042,10 +1042,10 @@
         ]
       }
     },
-    "/api/integration/baskerville/config_v2": {
+    "/api/integration/live_sites": {
       "get": {
-        "operationId": "listBaskervilleConfigs",
-        "description": "",
+        "operationId": "listWebsiteAlives",
+        "description": "List all alive websites",
         "parameters": [],
         "responses": {
           "200": {
@@ -1061,7 +1061,53 @@
           }
         },
         "tags": [
-          "integration"
+          "admin-website"
+        ]
+      }
+    },
+    "/api/integration/origin_ips": {
+      "get": {
+        "operationId": "listWebsiteOriginIps",
+        "description": "List all alive websites origin IPs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
+    "/api/integration/edge_ip_list": {
+      "get": {
+        "operationId": "listEdgesApis",
+        "description": "List all edge IPs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
         ]
       }
     },
@@ -6156,6 +6202,8 @@
         },
         "required": [
           "survey_reason",
+          "survey_country",
+          "survey_regional_focus",
           "survey_content_type",
           "survey_language",
           "input_description"
@@ -6769,6 +6817,10 @@
       "StripeWebsiteSubscription": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
           "website": {
             "type": "string",
             "readOnly": true
@@ -6822,6 +6874,10 @@
       "StripeUserSubscription": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
           "user": {
             "type": "string",
             "readOnly": true
