@@ -1111,6 +1111,29 @@
         ]
       }
     },
+    "/api/integration/global_allowlist": {
+      "get": {
+        "operationId": "listGlobalAllowlists",
+        "description": "List all global allowlist entries",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
     "/api/special/{website_id}/tasks/fetch_dns_zone": {
       "get": {
         "operationId": "listTaskStatusFetchZones",
