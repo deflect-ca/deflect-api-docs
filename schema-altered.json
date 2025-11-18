@@ -1065,6 +1065,98 @@
         ]
       }
     },
+    "/api/integration/live_sites": {
+      "get": {
+        "operationId": "listWebsiteAlives",
+        "description": "List all alive websites",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
+    "/api/integration/origin_ips": {
+      "get": {
+        "operationId": "listWebsiteOriginIps",
+        "description": "List all alive websites origin IPs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
+    "/api/integration/edge_ip_list": {
+      "get": {
+        "operationId": "listEdgesApis",
+        "description": "List all edge IPs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
+    "/api/integration/global_allowlist": {
+      "get": {
+        "operationId": "listGlobalAllowlists",
+        "description": "List all global allowlist entries",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-website"
+        ]
+      }
+    },
     "/api/special/{website_id}/tasks/fetch_dns_zone": {
       "get": {
         "operationId": "listTaskStatusFetchZones",
@@ -6156,6 +6248,8 @@
         },
         "required": [
           "survey_reason",
+          "survey_country",
+          "survey_regional_focus",
           "survey_content_type",
           "survey_language",
           "input_description"
