@@ -6861,6 +6861,10 @@
       "StripeWebsiteSubscription": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
           "website": {
             "type": "string",
             "readOnly": true
@@ -6914,6 +6918,10 @@
       "StripeUserSubscription": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
           "user": {
             "type": "string",
             "readOnly": true
