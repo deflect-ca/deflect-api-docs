@@ -3096,14 +3096,14 @@
     },
     "/api/users/{id}": {
       "get": {
-        "operationId": "retrieveUser",
+        "operationId": "retrieveUserAdmin",
         "description": "Detail of a user (Permission: IsAdminOrDenied)",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "A unique integer value identifying this user.",
+            "description": "",
             "schema": {
               "type": "string"
             }
@@ -3431,6 +3431,29 @@
         },
         "tags": [
           "cstats"
+        ]
+      }
+    },
+    "/api/stats/baskerville": {
+      "get": {
+        "operationId": "listBaskervilleMainStats",
+        "description": "Get Baskerville statistics in the format expected by the dashboard.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "baskerville"
         ]
       }
     },
@@ -6598,68 +6621,7 @@
             "readOnly": true
           },
           "websites": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "integer",
-                  "readOnly": true
-                },
-                "url": {
-                  "type": "string",
-                  "maxLength": 255
-                },
-                "status": {
-                  "type": "number"
-                },
-                "ip_address": {
-                  "type": "string",
-                  "nullable": true,
-                  "maxLength": 16
-                },
-                "under_attack": {
-                  "type": "boolean"
-                },
-                "nsinfo": {
-                  "type": "string",
-                  "nullable": true,
-                  "maxLength": 255
-                },
-                "business": {
-                  "type": "boolean"
-                },
-                "created_at": {
-                  "type": "string",
-                  "format": "date-time",
-                  "readOnly": true,
-                  "nullable": true
-                },
-                "updated_at": {
-                  "type": "string",
-                  "format": "date-time",
-                  "readOnly": true,
-                  "nullable": true
-                },
-                "last_migration_at": {
-                  "type": "string",
-                  "format": "date-time",
-                  "nullable": true
-                },
-                "fully_migrated_at": {
-                  "type": "string",
-                  "format": "date-time",
-                  "nullable": true
-                },
-                "creator": {
-                  "type": "integer"
-                }
-              },
-              "required": [
-                "url",
-                "creator"
-              ]
-            },
+            "type": "string",
             "readOnly": true
           }
         },
