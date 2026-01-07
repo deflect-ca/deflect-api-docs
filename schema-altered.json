@@ -3434,29 +3434,6 @@
         ]
       }
     },
-    "/api/stats/baskerville": {
-      "get": {
-        "operationId": "listBaskervilleMainStats",
-        "description": "Get Baskerville statistics in the format expected by the dashboard.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "baskerville"
-        ]
-      }
-    },
     "/api/oauth2/authorize": {
       "get": {
         "operationId": "listAuthorizationOauth2s",
