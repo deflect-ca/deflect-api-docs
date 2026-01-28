@@ -1061,7 +1061,7 @@
           }
         },
         "tags": [
-          "integration"
+          "integration-api"
         ]
       }
     },
@@ -1176,7 +1176,7 @@
           }
         },
         "tags": [
-          "admin-website"
+          "integration-api"
         ]
       }
     },
