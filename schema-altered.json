@@ -5607,10 +5607,6 @@
           "is_eqpress": {
             "type": "string",
             "readOnly": true
-          },
-          "is_banjax_path_protected": {
-            "type": "string",
-            "readOnly": true
           }
         },
         "required": [
