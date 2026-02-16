@@ -7189,10 +7189,7 @@
             "nullable": true,
             "maxLength": 255
           }
-        },
-        "required": [
-          "banjax_auth_hash"
-        ]
+        }
       },
       "HostingAdminApprove": {
         "type": "object",
