@@ -2189,6 +2189,29 @@
         ]
       }
     },
+    "/api/admin/tools_451/alias_of_domain": {
+      "get": {
+        "operationId": "listTools451Alias",
+        "description": "Main list view with server side processed datatable logic\nImplementation of the same logic as Flask tools_451_portal()",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "tools-451"
+        ]
+      }
+    },
     "/api/admin/checks/on_edge/{website_id}": {
       "get": {
         "operationId": "retrieveChecksOnEdge",
@@ -5695,10 +5718,6 @@
           "is_subsite": {
             "type": "string",
             "readOnly": true
-          },
-          "is_banjax_path_protected": {
-            "type": "string",
-            "readOnly": true
           }
         },
         "required": [
@@ -6499,10 +6518,6 @@
           "is_eqpress": {
             "type": "string",
             "readOnly": true
-          },
-          "is_banjax_path_protected": {
-            "type": "string",
-            "readOnly": true
           }
         },
         "required": [
@@ -7182,10 +7197,12 @@
         "properties": {
           "banjax_auth_hash": {
             "type": "string",
-            "nullable": true,
             "maxLength": 255
           }
-        }
+        },
+        "required": [
+          "banjax_auth_hash"
+        ]
       },
       "HostingAdminApprove": {
         "type": "object",
