@@ -5718,6 +5718,10 @@
           "is_subsite": {
             "type": "string",
             "readOnly": true
+          },
+          "is_banjax_path_protected": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -6518,6 +6522,10 @@
           "is_eqpress": {
             "type": "string",
             "readOnly": true
+          },
+          "is_banjax_path_protected": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -7197,12 +7205,10 @@
         "properties": {
           "banjax_auth_hash": {
             "type": "string",
+            "nullable": true,
             "maxLength": 255
           }
-        },
-        "required": [
-          "banjax_auth_hash"
-        ]
+        }
       },
       "HostingAdminApprove": {
         "type": "object",
