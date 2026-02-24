@@ -2189,29 +2189,6 @@
         ]
       }
     },
-    "/api/admin/tools_451/alias_of_domain": {
-      "get": {
-        "operationId": "listTools451Alias",
-        "description": "Main list view with server side processed datatable logic\nImplementation of the same logic as Flask tools_451_portal()",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "tools-451"
-        ]
-      }
-    },
     "/api/admin/checks/on_edge/{website_id}": {
       "get": {
         "operationId": "retrieveChecksOnEdge",
