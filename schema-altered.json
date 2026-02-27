@@ -218,8 +218,7 @@
           }
         },
         "tags": [
-          "profile",
-          "user-api"
+          "profile"
         ]
       }
     },
@@ -1276,8 +1275,7 @@
           }
         },
         "tags": [
-          "special",
-          "user-api"
+          "special"
         ]
       }
     },
@@ -4137,47 +4135,6 @@
         ]
       }
     },
-    "/api/auth/oauth_token": {
-      "post": {
-        "operationId": "createOauthTokenGenerate",
-        "description": "API to generate token for oauth",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OauthTokenGenerate"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/OauthTokenGenerate"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/OauthTokenGenerate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OauthTokenGenerate"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "auth"
-        ]
-      }
-    },
     "/api/integration/test_email": {
       "post": {
         "operationId": "createTestEmail",
@@ -6723,6 +6680,11 @@
                 "nullable": true,
                 "maxLength": 255
               },
+              "last_password_updated_at": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
               "is_unsubscribed": {
                 "type": "boolean"
               },
@@ -7127,37 +7089,6 @@
         },
         "required": [
           "email"
-        ]
-      },
-      "OauthTokenGenerate": {
-        "type": "object",
-        "properties": {
-          "expires": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "token": {
-            "type": "string",
-            "readOnly": true
-          },
-          "scope": {
-            "type": "string",
-            "readOnly": true
-          },
-          "expire": {
-            "enum": [
-              "7",
-              "30",
-              "90",
-              "180"
-            ],
-            "type": "string",
-            "writeOnly": true
-          }
-        },
-        "required": [
-          "expire"
         ]
       },
       "CachePurge": {
