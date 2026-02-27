@@ -6680,6 +6680,11 @@
                 "nullable": true,
                 "maxLength": 255
               },
+              "last_password_updated_at": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
               "is_unsubscribed": {
                 "type": "boolean"
               },
