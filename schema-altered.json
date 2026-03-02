@@ -5591,11 +5591,13 @@
           "last_password_updated_at": {
             "type": "string",
             "format": "date-time",
+            "readOnly": true,
             "nullable": true
           },
           "last_2fa_updated_at": {
             "type": "string",
             "format": "date-time",
+            "readOnly": true,
             "nullable": true
           }
         }
