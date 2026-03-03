@@ -5490,7 +5490,7 @@
         ]
       }
     },
-    "/api/admin/user/{id}/delete": {
+    "/api/user/{id}/delete": {
       "delete": {
         "operationId": "destroyUserAdmin",
         "description": "Delete a user and all associated records",
