@@ -5536,7 +5536,7 @@
     "/api/user/{id}/delete": {
       "delete": {
         "operationId": "destroyUserAdmin",
-        "description": "partial(func, *args, **keywords) - new function with partial application\nof the given arguments and keywords.",
+        "description": "Delete a user and all associated records",
         "parameters": [
           {
             "name": "id",
