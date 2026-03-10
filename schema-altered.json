@@ -7099,18 +7099,12 @@
       "ZoneFetch": {
         "type": "object",
         "properties": {
-          "async_id": {
-            "type": "string",
-            "writeOnly": true,
-            "maxLength": 255
-          },
           "fast_scan": {
             "type": "boolean",
-            "writeOnly": true
+            "default": true
           },
           "website_id": {
-            "type": "integer",
-            "writeOnly": true
+            "type": "integer"
           }
         }
       },
