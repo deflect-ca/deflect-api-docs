@@ -7106,7 +7106,10 @@
           "website_id": {
             "type": "integer"
           }
-        }
+        },
+        "required": [
+          "website_id"
+        ]
       },
       "CachePurge": {
         "type": "object",
