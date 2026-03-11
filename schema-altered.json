@@ -955,6 +955,70 @@
         ]
       }
     },
+    "/api/integration/zone_fetch": {
+      "get": {
+        "operationId": "listZoneFetchs",
+        "description": "Query AsyncResult for task status",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ZoneFetch"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "special"
+        ]
+      },
+      "post": {
+        "operationId": "createZoneFetch",
+        "description": "Fetch DNS zone for domain",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ZoneFetch"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ZoneFetch"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ZoneFetch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ZoneFetch"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "special"
+        ]
+      }
+    },
     "/api/integration/test_sentry": {
       "get": {
         "operationId": "listTestSentrys",
@@ -981,29 +1045,6 @@
     "/api/integration/baskerville/config_v2": {
       "get": {
         "operationId": "listBaskervilleConfigs",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "integration-api"
-        ]
-      }
-    },
-    "/api/integration/baskerville/config_v3": {
-      "get": {
-        "operationId": "listBaskervilleConfigV3s",
         "description": "",
         "parameters": [],
         "responses": {
@@ -1136,6 +1177,41 @@
         },
         "tags": [
           "integration-api"
+        ]
+      }
+    },
+    "/api/special/{website_id}/tasks/fetch_dns_zone": {
+      "get": {
+        "operationId": "listTaskStatusFetchZones",
+        "description": "Sample output:\n{\n    \"task_id\": \"d934c143-3aba-4759-a88e-ccc519b2cd20\",\n    \"task_name\": \"tasks.fetch_dns_zone_task\",\n    \"state\": \"SUCCESS\",\n    \"date_created\": \"2023-11-16T07:53:44.910986Z\",\n    \"date_done\": \"2023-11-16T07:54:07.003721Z\",\n    \"result\": \"[]\"\n}",
+        "parameters": [
+          {
+            "name": "website_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskStatusFetchZone"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "special"
         ]
       }
     },
@@ -4092,47 +4168,6 @@
         ]
       }
     },
-    "/api/integration/zone_fetch": {
-      "post": {
-        "operationId": "createZoneFetch",
-        "description": "Fetch DNS zone for domain",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ZoneFetch"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/ZoneFetch"
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/ZoneFetch"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ZoneFetch"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "special"
-        ]
-      }
-    },
     "/api/special/cache_purge/{website_id}": {
       "post": {
         "operationId": "createCachePurge",
@@ -4354,49 +4389,6 @@
       "post": {
         "operationId": "createMFAMethodActivation",
         "description": "",
-        "parameters": [
-          {
-            "name": "method",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {}
-            },
-            "multipart/form-data": {
-              "schema": {}
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      }
-    },
-    "/api/mfa/{method}/reactivate": {
-      "post": {
-        "operationId": "createMFAMethodReactivation",
-        "description": "Custom API for refresh 2fa with update secret keys",
         "parameters": [
           {
             "name": "method",
@@ -5498,31 +5490,6 @@
         ]
       }
     },
-    "/api/user/{id}/delete": {
-      "delete": {
-        "operationId": "destroyUserAdmin",
-        "description": "partial(func, *args, **keywords) - new function with partial application\nof the given arguments and keywords.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "admin-users"
-        ]
-      }
-    },
     "/api/certificate/{id}/{cpk}": {
       "delete": {
         "operationId": "destroyCertificateOrigin",
@@ -5576,18 +5543,6 @@
           },
           "pgp_key": {
             "type": "string",
-            "nullable": true
-          },
-          "last_password_updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true
-          },
-          "last_2fa_updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
             "nullable": true
           }
         }
@@ -5673,6 +5628,10 @@
             "nullable": true
           },
           "is_eqpress": {
+            "type": "string",
+            "readOnly": true
+          },
+          "is_banjax_password_set": {
             "type": "string",
             "readOnly": true
           }
@@ -5761,6 +5720,10 @@
             "writeOnly": true
           },
           "is_subsite": {
+            "type": "string",
+            "readOnly": true
+          },
+          "is_banjax_password_set": {
             "type": "string",
             "readOnly": true
           }
@@ -5986,6 +5949,28 @@
         "required": [
           "email"
         ]
+      },
+      "ZoneFetch": {
+        "type": "object",
+        "properties": {
+          "async_id": {
+            "type": "string",
+            "writeOnly": true,
+            "maxLength": 255
+          },
+          "fast_scan": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "website_id": {
+            "type": "integer",
+            "writeOnly": true
+          }
+        }
+      },
+      "TaskStatusFetchZone": {
+        "type": "object",
+        "properties": {}
       },
       "ActionLog": {
         "type": "object",
@@ -6703,16 +6688,6 @@
                 "nullable": true,
                 "maxLength": 255
               },
-              "last_password_updated_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
-              },
-              "last_2fa_updated_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
-              },
               "is_unsubscribed": {
                 "type": "boolean"
               },
@@ -7117,21 +7092,6 @@
         },
         "required": [
           "email"
-        ]
-      },
-      "ZoneFetch": {
-        "type": "object",
-        "properties": {
-          "fast_scan": {
-            "type": "boolean",
-            "default": true
-          },
-          "website_id": {
-            "type": "integer"
-          }
-        },
-        "required": [
-          "website_id"
         ]
       },
       "CachePurge": {
