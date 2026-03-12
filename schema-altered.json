@@ -1065,29 +1065,6 @@
         ]
       }
     },
-    "/api/integration/baskerville/config_v3": {
-      "get": {
-        "operationId": "listBaskervilleConfigV3s",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "integration-api"
-        ]
-      }
-    },
     "/api/integration/live_sites": {
       "get": {
         "operationId": "listWebsiteAlives",
