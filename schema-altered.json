@@ -5796,6 +5796,10 @@
           "is_eqpress": {
             "type": "string",
             "readOnly": true
+          },
+          "is_banjax_password_set": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -5882,6 +5886,10 @@
             "writeOnly": true
           },
           "is_subsite": {
+            "type": "string",
+            "readOnly": true
+          },
+          "is_banjax_password_set": {
             "type": "string",
             "readOnly": true
           }
