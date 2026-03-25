@@ -5673,6 +5673,10 @@
           "is_eqpress": {
             "type": "string",
             "readOnly": true
+          },
+          "is_banjax_password_set": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -5759,6 +5763,10 @@
             "writeOnly": true
           },
           "is_subsite": {
+            "type": "string",
+            "readOnly": true
+          },
+          "is_banjax_password_set": {
             "type": "string",
             "readOnly": true
           }
@@ -6345,16 +6353,6 @@
                 "readOnly": true,
                 "nullable": true
               },
-              "last_migration_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
-              },
-              "fully_migrated_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
-              },
               "creator": {
                 "type": "integer"
               }
@@ -6713,16 +6711,6 @@
               },
               "is_unsubscribed": {
                 "type": "boolean"
-              },
-              "last_migration_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
-              },
-              "fully_migrated_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
               }
             },
             "readOnly": true
