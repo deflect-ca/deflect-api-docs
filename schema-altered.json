@@ -3482,8 +3482,8 @@
     },
     "/api/mfa/user_active_methods": {
       "get": {
-        "operationId": "listMFAListActiveUserMethods",
-        "description": "Return list of user's active MFA methods",
+        "operationId": "listUserMFAMethods",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -3491,7 +3491,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {}
+                  "items": {
+                    "$ref": "#/components/schemas/UserMFAMethod"
+                  }
                 }
               }
             },
@@ -3499,7 +3501,7 @@
           }
         },
         "tags": [
-          "auth"
+          "api"
         ]
       }
     },
@@ -4351,7 +4353,7 @@
     "/api/mfa/{method}/activate": {
       "post": {
         "operationId": "createMFAMethodActivation",
-        "description": "Start TOTP device activation by generating new QR code/secret",
+        "description": "",
         "parameters": [
           {
             "name": "method",
@@ -4387,14 +4389,14 @@
           }
         },
         "tags": [
-          "auth"
+          "api"
         ]
       }
     },
     "/api/mfa/{method}/reactivate": {
       "post": {
         "operationId": "createMFAMethodReactivation",
-        "description": "Reactivate/refresh TOTP device with new secret key",
+        "description": "Custom API for refresh 2fa with update secret keys",
         "parameters": [
           {
             "name": "method",
@@ -4437,7 +4439,7 @@
     "/api/mfa/{method}/deactivate": {
       "post": {
         "operationId": "createMFAMethodDeactivation",
-        "description": "Deactivate TOTP device and all backup codes",
+        "description": "Refactoring trench plugin logic for delete mfa record after deactivate",
         "parameters": [
           {
             "name": "method",
@@ -4480,7 +4482,7 @@
     "/api/mfa/{method}/activate/confirm": {
       "post": {
         "operationId": "createMFAMethodConfirmActivation",
-        "description": "Confirm TOTP device activation by verifying initial code",
+        "description": "Refactoring trench plugin logic for keep is_primaty status of mfa",
         "parameters": [
           {
             "name": "method",
@@ -4523,7 +4525,7 @@
     "/api/mfa/{method}/codes/regenerate": {
       "post": {
         "operationId": "createMFAMethodBackupCodesRegeneration",
-        "description": "Regenerate backup codes for active TOTP device",
+        "description": "",
         "parameters": [
           {
             "name": "method",
@@ -4559,7 +4561,7 @@
           }
         },
         "tags": [
-          "auth"
+          "api"
         ]
       }
     },
@@ -6345,16 +6347,6 @@
                 "readOnly": true,
                 "nullable": true
               },
-              "last_migration_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
-              },
-              "fully_migrated_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
-              },
               "creator": {
                 "type": "integer"
               }
@@ -6713,16 +6705,6 @@
               },
               "is_unsubscribed": {
                 "type": "boolean"
-              },
-              "last_migration_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
-              },
-              "fully_migrated_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
               }
             },
             "readOnly": true
@@ -6834,6 +6816,21 @@
             "default": 0
           }
         }
+      },
+      "UserMFAMethod": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "is_primary": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
+        ]
       },
       "ZammadTicket": {
         "type": "object",
