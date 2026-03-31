@@ -97,6 +97,70 @@
         ]
       }
     },
+    "/api/auth/oauth_token": {
+      "get": {
+        "operationId": "listOauthTokenGenerates",
+        "description": "List and generate OAuth API keys for the current user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OauthTokenGenerate"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "post": {
+        "operationId": "createOauthTokenGenerate",
+        "description": "List and generate OAuth API keys for the current user",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OauthTokenGenerate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/OauthTokenGenerate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/OauthTokenGenerate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OauthTokenGenerate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
     "/api/profile": {
       "get": {
         "operationId": "retrieveUserProfile",
@@ -3480,6 +3544,31 @@
         ]
       }
     },
+    "/api/mfa/user_active_methods": {
+      "get": {
+        "operationId": "listUserMFAMethods",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserMFAMethod"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
     "/api/zammad/ticket": {
       "get": {
         "operationId": "listZammadTickets",
@@ -4325,11 +4414,21 @@
         ]
       }
     },
-    "/api/mfa/app/activate": {
+    "/api/mfa/{method}/activate": {
       "post": {
         "operationId": "createMFAMethodActivation",
-        "description": "Initiate MFA activation. Creates an unconfirmed TOTP device.\nReturns config URL that can be rendered as QR code.",
-        "parameters": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "method",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4354,15 +4453,25 @@
           }
         },
         "tags": [
-          "auth"
+          "api"
         ]
       }
     },
-    "/api/mfa/app/reactivate": {
+    "/api/mfa/{method}/reactivate": {
       "post": {
         "operationId": "createMFAMethodReactivation",
-        "description": "Reactivate/refresh TOTP device with new secret key",
-        "parameters": [],
+        "description": "Custom API for refresh 2fa with update secret keys",
+        "parameters": [
+          {
+            "name": "method",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4391,11 +4500,21 @@
         ]
       }
     },
-    "/api/mfa/app/deactivate": {
+    "/api/mfa/{method}/deactivate": {
       "post": {
         "operationId": "createMFAMethodDeactivation",
-        "description": "Deactivate TOTP device and all backup codes",
-        "parameters": [],
+        "description": "Refactoring trench plugin logic for delete mfa record after deactivate",
+        "parameters": [
+          {
+            "name": "method",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4424,11 +4543,21 @@
         ]
       }
     },
-    "/api/mfa/app/activate/confirm": {
+    "/api/mfa/{method}/activate/confirm": {
       "post": {
         "operationId": "createMFAMethodConfirmActivation",
-        "description": "Confirm TOTP device activation by verifying initial code",
-        "parameters": [],
+        "description": "Refactoring trench plugin logic for keep is_primaty status of mfa",
+        "parameters": [
+          {
+            "name": "method",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4457,11 +4586,21 @@
         ]
       }
     },
-    "/api/mfa/app/codes/regenerate": {
+    "/api/mfa/{method}/codes/regenerate": {
       "post": {
         "operationId": "createMFAMethodBackupCodesRegeneration",
-        "description": "Regenerate backup codes for active TOTP device",
-        "parameters": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "method",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4486,7 +4625,7 @@
           }
         },
         "tags": [
-          "auth"
+          "api"
         ]
       }
     },
@@ -5389,6 +5528,31 @@
         ]
       }
     },
+    "/api/auth/oauth_token/{id}": {
+      "delete": {
+        "operationId": "destroyOauthTokenList",
+        "description": "Revoke (delete) a specific OAuth API key belonging to the current user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
     "/api/website/{id}/authorize_user/{ppk}": {
       "delete": {
         "operationId": "destroyWebsiteAuthorize",
@@ -5485,6 +5649,51 @@
   },
   "components": {
     "schemas": {
+      "OauthTokenGenerate": {
+        "type": "object",
+        "properties": {
+          "expires": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "token": {
+            "type": "string",
+            "readOnly": true
+          },
+          "scope": {
+            "type": "string",
+            "readOnly": true
+          },
+          "expire": {
+            "enum": [
+              "7",
+              "30",
+              "90",
+              "180",
+              "360"
+            ],
+            "type": "string",
+            "writeOnly": true
+          },
+          "is_valid": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "is_expired": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "expire"
+        ]
+      },
       "UserProfile": {
         "type": "object",
         "properties": {
@@ -6272,16 +6481,6 @@
                 "readOnly": true,
                 "nullable": true
               },
-              "last_migration_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
-              },
-              "fully_migrated_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
-              },
               "creator": {
                 "type": "integer"
               }
@@ -6640,16 +6839,6 @@
               },
               "is_unsubscribed": {
                 "type": "boolean"
-              },
-              "last_migration_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
-              },
-              "fully_migrated_at": {
-                "type": "string",
-                "format": "date-time",
-                "nullable": true
               }
             },
             "readOnly": true
@@ -6761,6 +6950,21 @@
             "default": 0
           }
         }
+      },
+      "UserMFAMethod": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "is_primary": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
+        ]
       },
       "ZammadTicket": {
         "type": "object",
