@@ -3546,8 +3546,8 @@
     },
     "/api/mfa/user_active_methods": {
       "get": {
-        "operationId": "listUserMFAMethods",
-        "description": "",
+        "operationId": "listMFAListActiveUserMethods",
+        "description": "Return list of user's active MFA methods",
         "parameters": [],
         "responses": {
           "200": {
@@ -3555,9 +3555,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserMFAMethod"
-                  }
+                  "items": {}
                 }
               }
             },
@@ -3565,7 +3563,7 @@
           }
         },
         "tags": [
-          "api"
+          "auth"
         ]
       }
     },
@@ -4417,7 +4415,7 @@
     "/api/mfa/{method}/activate": {
       "post": {
         "operationId": "createMFAMethodActivation",
-        "description": "",
+        "description": "Start TOTP device activation by generating new QR code/secret",
         "parameters": [
           {
             "name": "method",
@@ -4453,14 +4451,14 @@
           }
         },
         "tags": [
-          "api"
+          "auth"
         ]
       }
     },
     "/api/mfa/{method}/reactivate": {
       "post": {
         "operationId": "createMFAMethodReactivation",
-        "description": "Custom API for refresh 2fa with update secret keys",
+        "description": "Reactivate/refresh TOTP device with new secret key",
         "parameters": [
           {
             "name": "method",
@@ -4503,7 +4501,7 @@
     "/api/mfa/{method}/deactivate": {
       "post": {
         "operationId": "createMFAMethodDeactivation",
-        "description": "Refactoring trench plugin logic for delete mfa record after deactivate",
+        "description": "Deactivate TOTP device and all backup codes",
         "parameters": [
           {
             "name": "method",
@@ -4546,7 +4544,7 @@
     "/api/mfa/{method}/activate/confirm": {
       "post": {
         "operationId": "createMFAMethodConfirmActivation",
-        "description": "Refactoring trench plugin logic for keep is_primaty status of mfa",
+        "description": "Confirm TOTP device activation by verifying initial code",
         "parameters": [
           {
             "name": "method",
@@ -4589,7 +4587,7 @@
     "/api/mfa/{method}/codes/regenerate": {
       "post": {
         "operationId": "createMFAMethodBackupCodesRegeneration",
-        "description": "",
+        "description": "Regenerate backup codes for active TOTP device",
         "parameters": [
           {
             "name": "method",
@@ -4625,7 +4623,7 @@
           }
         },
         "tags": [
-          "api"
+          "auth"
         ]
       }
     },
@@ -5809,6 +5807,10 @@
           "is_eqpress": {
             "type": "string",
             "readOnly": true
+          },
+          "is_banjax_password_set": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -5895,6 +5897,10 @@
             "writeOnly": true
           },
           "is_subsite": {
+            "type": "string",
+            "readOnly": true
+          },
+          "is_banjax_password_set": {
             "type": "string",
             "readOnly": true
           }
@@ -6950,21 +6956,6 @@
             "default": 0
           }
         }
-      },
-      "UserMFAMethod": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "is_primary": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "name"
-        ]
       },
       "ZammadTicket": {
         "type": "object",
