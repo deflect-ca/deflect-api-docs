@@ -3544,29 +3544,6 @@
         ]
       }
     },
-    "/api/mfa/user_active_methods": {
-      "get": {
-        "operationId": "listMFAListActiveUserMethods",
-        "description": "Return list of user's active MFA methods",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {}
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "auth"
-        ]
-      }
-    },
     "/api/zammad/ticket": {
       "get": {
         "operationId": "listZammadTickets",
@@ -4412,21 +4389,11 @@
         ]
       }
     },
-    "/api/mfa/{method}/activate": {
+    "/api/mfa/app/activate": {
       "post": {
         "operationId": "createMFAMethodActivation",
-        "description": "Start TOTP device activation by generating new QR code/secret",
-        "parameters": [
-          {
-            "name": "method",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Initiate MFA activation. Creates an unconfirmed TOTP device.\nReturns config URL that can be rendered as QR code.",
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4455,21 +4422,11 @@
         ]
       }
     },
-    "/api/mfa/{method}/reactivate": {
+    "/api/mfa/app/reactivate": {
       "post": {
         "operationId": "createMFAMethodReactivation",
         "description": "Reactivate/refresh TOTP device with new secret key",
-        "parameters": [
-          {
-            "name": "method",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4498,21 +4455,11 @@
         ]
       }
     },
-    "/api/mfa/{method}/deactivate": {
+    "/api/mfa/app/deactivate": {
       "post": {
         "operationId": "createMFAMethodDeactivation",
         "description": "Deactivate TOTP device and all backup codes",
-        "parameters": [
-          {
-            "name": "method",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4541,21 +4488,11 @@
         ]
       }
     },
-    "/api/mfa/{method}/activate/confirm": {
+    "/api/mfa/app/activate/confirm": {
       "post": {
         "operationId": "createMFAMethodConfirmActivation",
         "description": "Confirm TOTP device activation by verifying initial code",
-        "parameters": [
-          {
-            "name": "method",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4584,21 +4521,11 @@
         ]
       }
     },
-    "/api/mfa/{method}/codes/regenerate": {
+    "/api/mfa/app/codes/regenerate": {
       "post": {
         "operationId": "createMFAMethodBackupCodesRegeneration",
         "description": "Regenerate backup codes for active TOTP device",
-        "parameters": [
-          {
-            "name": "method",
-            "in": "path",
-            "required": true,
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
