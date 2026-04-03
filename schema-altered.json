@@ -3544,6 +3544,31 @@
         ]
       }
     },
+    "/api/mfa/user_active_methods": {
+      "get": {
+        "operationId": "listUserMFAMethods",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserMFAMethod"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
     "/api/zammad/ticket": {
       "get": {
         "operationId": "listZammadTickets",
@@ -4389,11 +4414,21 @@
         ]
       }
     },
-    "/api/mfa/app/activate": {
+    "/api/mfa/{method}/activate": {
       "post": {
         "operationId": "createMFAMethodActivation",
-        "description": "Initiate MFA activation. Creates an unconfirmed TOTP device.\nReturns config URL that can be rendered as QR code.",
-        "parameters": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "method",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4418,15 +4453,25 @@
           }
         },
         "tags": [
-          "auth"
+          "api"
         ]
       }
     },
-    "/api/mfa/app/reactivate": {
+    "/api/mfa/{method}/reactivate": {
       "post": {
         "operationId": "createMFAMethodReactivation",
-        "description": "Reactivate/refresh TOTP device with new secret key",
-        "parameters": [],
+        "description": "Custom API for refresh 2fa with update secret keys",
+        "parameters": [
+          {
+            "name": "method",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4455,11 +4500,21 @@
         ]
       }
     },
-    "/api/mfa/app/deactivate": {
+    "/api/mfa/{method}/deactivate": {
       "post": {
         "operationId": "createMFAMethodDeactivation",
-        "description": "Deactivate TOTP device and all backup codes",
-        "parameters": [],
+        "description": "Refactoring trench plugin logic for delete mfa record after deactivate",
+        "parameters": [
+          {
+            "name": "method",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4488,11 +4543,21 @@
         ]
       }
     },
-    "/api/mfa/app/activate/confirm": {
+    "/api/mfa/{method}/activate/confirm": {
       "post": {
         "operationId": "createMFAMethodConfirmActivation",
-        "description": "Confirm TOTP device activation by verifying initial code",
-        "parameters": [],
+        "description": "Refactoring trench plugin logic for keep is_primaty status of mfa",
+        "parameters": [
+          {
+            "name": "method",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4521,11 +4586,21 @@
         ]
       }
     },
-    "/api/mfa/app/codes/regenerate": {
+    "/api/mfa/{method}/codes/regenerate": {
       "post": {
         "operationId": "createMFAMethodBackupCodesRegeneration",
-        "description": "Regenerate backup codes for active TOTP device",
-        "parameters": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "method",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4550,7 +4625,7 @@
           }
         },
         "tags": [
-          "auth"
+          "api"
         ]
       }
     },
@@ -5577,6 +5652,10 @@
       "OauthTokenGenerate": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
           "expires": {
             "type": "string",
             "format": "date-time",
@@ -5734,10 +5813,6 @@
           "is_eqpress": {
             "type": "string",
             "readOnly": true
-          },
-          "is_banjax_password_set": {
-            "type": "string",
-            "readOnly": true
           }
         },
         "required": [
@@ -5824,10 +5899,6 @@
             "writeOnly": true
           },
           "is_subsite": {
-            "type": "string",
-            "readOnly": true
-          },
-          "is_banjax_password_set": {
             "type": "string",
             "readOnly": true
           }
@@ -6883,6 +6954,21 @@
             "default": 0
           }
         }
+      },
+      "UserMFAMethod": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "is_primary": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
+        ]
       },
       "ZammadTicket": {
         "type": "object",
