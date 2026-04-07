@@ -97,6 +97,70 @@
         ]
       }
     },
+    "/api/auth/oauth_token": {
+      "get": {
+        "operationId": "listOauthTokenGenerates",
+        "description": "List and generate OAuth API keys for the current user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OauthTokenGenerate"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "post": {
+        "operationId": "createOauthTokenGenerate",
+        "description": "List and generate OAuth API keys for the current user",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OauthTokenGenerate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/OauthTokenGenerate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/OauthTokenGenerate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OauthTokenGenerate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
     "/api/profile": {
       "get": {
         "operationId": "retrieveUserProfile",
@@ -5389,6 +5453,31 @@
         ]
       }
     },
+    "/api/auth/oauth_token/{id}": {
+      "delete": {
+        "operationId": "destroyOauthTokenList",
+        "description": "Revoke (delete) a specific OAuth API key belonging to the current user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
     "/api/website/{id}/authorize_user/{ppk}": {
       "delete": {
         "operationId": "destroyWebsiteAuthorize",
@@ -5485,6 +5574,55 @@
   },
   "components": {
     "schemas": {
+      "OauthTokenGenerate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "expires": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "token": {
+            "type": "string",
+            "readOnly": true
+          },
+          "scope": {
+            "type": "string",
+            "readOnly": true
+          },
+          "expire": {
+            "enum": [
+              "7",
+              "30",
+              "90",
+              "180",
+              "360"
+            ],
+            "type": "string",
+            "writeOnly": true
+          },
+          "is_valid": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "is_expired": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "expire"
+        ]
+      },
       "UserProfile": {
         "type": "object",
         "properties": {
@@ -5600,6 +5738,10 @@
           "is_eqpress": {
             "type": "string",
             "readOnly": true
+          },
+          "is_banjax_password_set": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -5686,6 +5828,10 @@
             "writeOnly": true
           },
           "is_subsite": {
+            "type": "string",
+            "readOnly": true
+          },
+          "is_banjax_password_set": {
             "type": "string",
             "readOnly": true
           }
