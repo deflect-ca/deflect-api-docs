@@ -1160,7 +1160,7 @@
     "/api/integration/global_allowlist": {
       "get": {
         "operationId": "listGlobalAllowlists",
-        "description": "List all global allowlist entries",
+        "description": "List all global allowlist entries (combining static and custom whitelists)",
         "parameters": [],
         "responses": {
           "200": {
@@ -1183,7 +1183,7 @@
     "/api/integration/banjax_global_per_site_allowlist": {
       "get": {
         "operationId": "listBanjaxGlobalPerSiteAllowlists",
-        "description": "List all banjax global per-site allowlist entries",
+        "description": "List all banjax global per-site allowlist entries (combining static and custom)",
         "parameters": [],
         "responses": {
           "200": {
