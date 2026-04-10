@@ -5367,10 +5367,10 @@
         ]
       }
     },
-    "/api/admin/business/enable/{website_id}": {
+    "/api/admin/buisness/enable/{website_id}": {
       "patch": {
-        "operationId": "partialUpdateWebsiteBusinessEnable",
-        "description": "Enable business status on website",
+        "operationId": "partialUpdateWebsiteBuissnessEnable",
+        "description": "Enable buisness statuson website",
         "parameters": [
           {
             "name": "website_id",
@@ -5410,10 +5410,10 @@
         ]
       }
     },
-    "/api/admin/business/disable/{website_id}": {
+    "/api/admin/buisness/disable/{website_id}": {
       "patch": {
-        "operationId": "partialUpdateWebsiteBusinessDisable",
-        "description": "Disable business status on website",
+        "operationId": "partialUpdateWebsiteBuissnessDisable",
+        "description": "Disable buisness statuson website",
         "parameters": [
           {
             "name": "website_id",
