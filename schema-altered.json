@@ -7103,6 +7103,10 @@
           "first_name": {
             "type": "string",
             "readOnly": true
+          },
+          "locale": {
+            "type": "string",
+            "maxLength": 5
           }
         },
         "required": [
