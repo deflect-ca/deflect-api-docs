@@ -4864,7 +4864,7 @@
     "/api/special/{website_id}/banjax_auth_hash": {
       "patch": {
         "operationId": "partialUpdateBanjaxPassword",
-        "description": "Update banjax passwor of current website",
+        "description": "Update banjax password of current website",
         "parameters": [
           {
             "name": "website_id",
@@ -5738,6 +5738,10 @@
           "is_eqpress": {
             "type": "string",
             "readOnly": true
+          },
+          "is_banjax_password_set": {
+            "type": "string",
+            "readOnly": true
           }
         },
         "required": [
@@ -5824,6 +5828,10 @@
             "writeOnly": true
           },
           "is_subsite": {
+            "type": "string",
+            "readOnly": true
+          },
+          "is_banjax_password_set": {
             "type": "string",
             "readOnly": true
           }
@@ -7103,6 +7111,10 @@
           "first_name": {
             "type": "string",
             "readOnly": true
+          },
+          "locale": {
+            "type": "string",
+            "maxLength": 5
           }
         },
         "required": [
@@ -7273,7 +7285,7 @@
         "properties": {
           "banjax_auth_hash": {
             "type": "string",
-            "maxLength": 255
+            "writeOnly": true
           }
         },
         "required": [
