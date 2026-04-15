@@ -6873,8 +6873,7 @@
               "6hours",
               "day",
               "week",
-              "month",
-              "year"
+              "month"
             ],
             "type": "string",
             "default": "day"
