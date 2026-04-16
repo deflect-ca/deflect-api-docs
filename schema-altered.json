@@ -3024,7 +3024,7 @@
     "/api/admin/users/{id}/oauth_tokens": {
       "get": {
         "operationId": "listUserAdminOauthTokenGenerates",
-        "description": "List and generate OAuth API keys for the current user",
+        "description": "List and generate OAuth API keys for the specified user",
         "parameters": [
           {
             "name": "id",
@@ -3057,7 +3057,7 @@
       },
       "post": {
         "operationId": "createUserAdminOauthTokenGenerate",
-        "description": "List and generate OAuth API keys for the current user",
+        "description": "List and generate OAuth API keys for the specified user",
         "parameters": [
           {
             "name": "id",
@@ -5599,7 +5599,7 @@
     "/api/admin/users/{id}/oauth_tokens/{tpk}/revoke": {
       "delete": {
         "operationId": "destroyUserAdminOauthTokenList",
-        "description": "Revoke (delete) a specific OAuth API key belonging to the current user",
+        "description": "Revoke (delete) a specific OAuth API key belonging to the specified user",
         "parameters": [
           {
             "name": "id",
