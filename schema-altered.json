@@ -3021,6 +3021,90 @@
         ]
       }
     },
+    "/api/admin/users/{id}/oauth_tokens": {
+      "get": {
+        "operationId": "listUserAdminOauthTokenGenerates",
+        "description": "List and generate OAuth API keys for the specified user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserAdminOauthTokenGenerate"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-users"
+        ]
+      },
+      "post": {
+        "operationId": "createUserAdminOauthTokenGenerate",
+        "description": "List and generate OAuth API keys for the specified user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAdminOauthTokenGenerate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAdminOauthTokenGenerate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAdminOauthTokenGenerate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAdminOauthTokenGenerate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-users"
+        ]
+      }
+    },
     "/api/users": {
       "get": {
         "operationId": "listUsers",
@@ -5512,6 +5596,40 @@
         ]
       }
     },
+    "/api/admin/users/{id}/oauth_tokens/{tpk}/revoke": {
+      "delete": {
+        "operationId": "destroyUserAdminOauthTokenList",
+        "description": "Revoke (delete) a specific OAuth API key belonging to the specified user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tpk",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "admin-users"
+        ]
+      }
+    },
     "/api/user/{id}/delete": {
       "delete": {
         "operationId": "destroyUserAdmin",
@@ -6689,6 +6807,59 @@
             "readOnly": true
           }
         }
+      },
+      "UserAdminOauthTokenGenerate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "expires": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "token": {
+            "type": "string",
+            "readOnly": true
+          },
+          "scope": {
+            "type": "string",
+            "readOnly": true
+          },
+          "expire": {
+            "enum": [
+              "7",
+              "30",
+              "90",
+              "180",
+              "360"
+            ],
+            "type": "string",
+            "writeOnly": true
+          },
+          "is_valid": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "is_expired": {
+            "type": "string",
+            "readOnly": true
+          },
+          "user_id": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "expire"
+        ]
       },
       "UserAdmin": {
         "type": "object",
