@@ -5145,7 +5145,7 @@
     "/api/admin/website/approve/{website_id}": {
       "patch": {
         "operationId": "partialUpdateWebsiteApprove",
-        "description": "Approve website - only move to 3.4 if status < 3.4, otherwise keep current status",
+        "description": "Approve website (To 3.4)",
         "parameters": [
           {
             "name": "website_id",
@@ -5239,7 +5239,7 @@
     "/api/admin/website/reject/{website_id}": {
       "patch": {
         "operationId": "partialUpdateWebsiteReject",
-        "description": "Reject website - keeps status but sets approved=False and triggers reject handlers",
+        "description": "Reject website, To 0 (No WebsiteStatusGuardMixin)",
         "parameters": [
           {
             "name": "website_id",
